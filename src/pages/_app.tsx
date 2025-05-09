@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Head from 'next/head';
 import { AppProps as NextAppProps } from 'next/app';
-import { CssBaseline } from '@mui/material';
-import '../styles/fonts';
 import '../styles/_app.scss';
 import '../styles/_core.scss';
 import '../styles/tailwind.scss';
+import { useScrollToTop } from '../hooks';
+import { AppThemeProvider } from '../theme/AppThemeProvider';
 
 type AppInitialProps = {
   pageProps: {
@@ -16,11 +16,13 @@ type AppInitialProps = {
 
 type AppProps = AppInitialProps & Omit<NextAppProps, 'pageProps'>;
 
-function EnigmaApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
+  useScrollToTop();
+
   return (
     <>
       <Head>
-        <title>AZ moving Admin</title>
+        <title>AZ Moving Admin</title>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
@@ -30,13 +32,11 @@ function EnigmaApp({ Component, pageProps }: AppProps) {
         />
       </Head>
 
-      {/*<ThemeProvider theme={}>*/}
-      <CssBaseline />
-
-      <Component {...pageProps} />
-      {/*</ThemeProvider>*/}
+      <AppThemeProvider>
+        <Component {...pageProps} />
+      </AppThemeProvider>
     </>
   );
 }
 
-export default EnigmaApp;
+export default App;

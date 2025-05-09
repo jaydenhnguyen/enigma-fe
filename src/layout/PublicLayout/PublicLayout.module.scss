@@ -1,0 +1,54 @@
+.container {
+  @apply pt-[6.25rem] pb-8 flex flex-col gap-y-24;
+
+  @media only screen and (min-width: 768px) {
+    @apply max-w-[50rem] pt-[7.5rem];
+  }
+
+  @media only screen and (min-width: 1024px) {
+    @apply flex-row gap-x-[3.125rem];
+  }
+
+  @media only screen and (min-width: 1024px) {
+    @apply max-w-[75rem] pt-[10rem];
+  }
+
+  @media only screen and (min-width: 1440px) {
+    @apply gap-x-[6.25rem];
+  }
+}
+
+.wrapper {
+  @apply w-full flex flex-col gap-y-[2.5rem];
+
+  @media only screen and (min-width: 1024px) {
+    @apply flex-row gap-x-[3.125rem];
+  }
+
+  @media only screen and (min-width: 1440px) {
+    @apply gap-x-[6.25rem];
+  }
+}
+
+.left-side {
+  @media only screen and (min-width: 1024px) {
+    @apply min-w-[21.5rem];
+  }
+}
+
+.right-side {
+  @apply flex-1 flex flex-col gap-y-20;
+
+  @media only screen and (min-width: 768px) {
+    @apply gap-y-24;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    @apply gap-y-32;
+    max-width: calc(1200px - var(--min-width-left-side) - var(--gap-x-layout));
+  }
+}
+
+.navbar-wrapper {
+  @apply absolute top-5 w-full flex items-center justify-center;
+}

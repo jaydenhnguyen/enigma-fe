@@ -1,0 +1,11 @@
+.wrapper {
+  @apply w-full h-full flex justify-center;
+}
+
+.login-card {
+  @apply w-full max-w-[28rem] h-fit mt-[25vh];
+
+  .login-card-content {
+    @apply p-8 #{!important};
+  }
+}

@@ -1,3 +1,5 @@
+import { themeConfig } from './src/theme/Core/@config';
+
 const SCREENS = {
   xs: 480,
   sm: 576,
@@ -24,9 +26,7 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      colors: {
-        //   config theme color for the application here
-      },
+      colors: { ...themeConfig.palette },
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],

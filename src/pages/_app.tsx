@@ -6,6 +6,7 @@ import '../styles/_core.scss';
 import '../styles/tailwind.scss';
 import { useScrollToTop } from '../hooks';
 import { AppThemeProvider } from '../theme/AppThemeProvider';
+import { AllAppContexts } from '../shared/context';
 
 type AppInitialProps = {
   pageProps: {
@@ -32,9 +33,11 @@ function App({ Component, pageProps }: AppProps) {
         />
       </Head>
 
-      <AppThemeProvider>
-        <Component {...pageProps} />
-      </AppThemeProvider>
+      <AllAppContexts>
+        <AppThemeProvider>
+          <Component {...pageProps} />
+        </AppThemeProvider>
+      </AllAppContexts>
     </>
   );
 }

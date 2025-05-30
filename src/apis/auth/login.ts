@@ -1,4 +1,4 @@
-import { request } from 'src/utils';
+import { request } from 'src/configs';
 import { RegisterRequest } from 'src/modules/Register/models';
 import { UpdateCurrentUserPasswordRequest } from 'src/modules/UserProfile/models';
 import { LoginRequest, RefreshTokenRequest, RefreshTokenResponse } from 'src/modules/Login/models';

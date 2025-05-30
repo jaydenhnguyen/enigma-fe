@@ -23,7 +23,7 @@ const config: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'api.vietqr.io',
+        hostname: 'apis.vietqr.io',
       },
       {
         protocol: 'https',

@@ -5,8 +5,8 @@ import '../styles/_app.scss';
 import '../styles/_core.scss';
 import '../styles/tailwind.scss';
 import { useScrollToTop } from '../hooks';
+import { AllAppContexts } from '../shared';
 import { AppThemeProvider } from '../theme/AppThemeProvider';
-import { AllAppContexts } from '../shared/context';
 
 type AppInitialProps = {
   pageProps: {

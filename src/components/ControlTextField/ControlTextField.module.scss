@@ -1,0 +1,4 @@
+.error-text-box {
+  @apply mt-1 ml-2 text-error-main text-[0.75rem];
+  transition: opacity 200ms ease-in-out;
+}

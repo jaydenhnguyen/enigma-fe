@@ -1,14 +1,38 @@
 import * as React from 'react';
+import isEmpty from 'lodash/isEmpty';
+import { useRouter } from 'next/router';
 import { Box, Button, Card, CardContent, Stack, Typography } from '@mui/material';
+import { tokenManager } from 'src/configs';
 import { ControlTextField } from 'src/components';
 import { LOGIN_FORM_FIELDS } from './constants';
-import { LoginFormSchema, useLoginForm } from './hooks';
+import { useLoginForm, useLogin } from './hooks';
+import { LoginRequest, LoginResponse } from './models';
 import classes from './Login.module.scss';
 
-type Props = {};
+export function Login(): React.ReactElement {
+  const { control, formHandleSubmit } = useLoginForm();
+  const router = useRouter();
 
-export function Login({}: Props): React.ReactElement {
-  const { control, onSubmit } = useLoginForm();
+  const handleLoginSuccess = React.useCallback(
+    (loginResponse: LoginResponse) => {
+      const { accessToken, expireIn } = loginResponse;
+
+      if (!isEmpty(accessToken)) {
+        tokenManager.setAccessToken({ accessToken, expireIn });
+
+        const { redirect } = router.query;
+        if (redirect) return router.replace(`/${redirect as string}`);
+        return router.replace('/home');
+      }
+
+      return;
+    },
+    [router],
+  );
+
+  const { mutate: loginMutation, isPending: isLoading, data } = useLogin(handleLoginSuccess);
+
+  const onSubmitLoginForm = React.useCallback((data: LoginRequest) => loginMutation(data), [data]);
 
   return (
     <div className={classes['wrapper']}>
@@ -18,9 +42,9 @@ export function Login({}: Props): React.ReactElement {
             Login
           </Typography>
 
-          <Box component="form" onSubmit={onSubmit} noValidate>
+          <Box component="form" onSubmit={formHandleSubmit(onSubmitLoginForm)} noValidate>
             <Stack spacing={3}>
-              <ControlTextField<LoginFormSchema>
+              <ControlTextField<LoginRequest>
                 control={control}
                 fullWidth
                 id="email"
@@ -30,7 +54,7 @@ export function Login({}: Props): React.ReactElement {
                 variant="outlined"
               />
 
-              <ControlTextField<LoginFormSchema>
+              <ControlTextField<LoginRequest>
                 control={control}
                 fullWidth
                 id="password"
@@ -39,7 +63,14 @@ export function Login({}: Props): React.ReactElement {
                 type="password"
               />
 
-              <Button type="submit" variant="contained" size="large" className={classes['submit-btn']}>
+              <Button
+                type="submit"
+                variant="contained"
+                size="large"
+                className={classes['submit-btn']}
+                disabled={isLoading}
+                loading={isLoading}
+              >
                 Sign in
               </Button>
             </Stack>

@@ -1,45 +1,31 @@
 import Cookies from 'js-cookie';
-import { isNil } from 'lodash';
+import isNil from 'lodash/isNil';
 import { addSeconds } from 'date-fns';
-import { CookieKey } from 'src/shared/constants';
-import { envVariables } from './environment';
 
-export const CookiesStorage = {
+export class CookiesStorage {
+  private readonly cookies;
+
+  constructor() {
+    this.cookies = Cookies;
+  }
+
   get(key: string): string | undefined {
-    return Cookies.get(key) as string | undefined;
-  },
+    return this.cookies.get(key) as string | undefined;
+  }
 
-  setCookieData(key: string, data: string | number | null | undefined, expireTimestamp?: number, path?: string) {
+  setCookieData(key: string, data: string | number | null | undefined, expireIn?: number, path?: string) {
     if (isNil(data)) return;
 
     const domain = window.location.hostname;
-    const expires = expireTimestamp
-      ? new Date(expireTimestamp * 1000)
-      : addSeconds(new Date(), envVariables.ACCESS_TOKEN_TTL);
+    const expires = addSeconds(new Date(), expireIn ?? 3600);
 
-    return Cookies.set(key, data.toString(), { domain, expires, path: path ?? '/' });
-  },
+    return this.cookies.set(key, data.toString(), { domain, expires, path: path ?? '/' });
+  }
 
-  clearCookieData(key: string, path = '/') {
+  clearCookieData(key: string, path = '/'): void {
     const domain = window.location.hostname;
-    return Cookies.remove(key, { domain, path: path ?? '/' });
-  },
+    this.cookies.remove(key, { domain, path: path ?? '/' });
+  }
+}
 
-  getAccessToken() {
-    return Cookies.get(CookieKey.AccessToken) as string;
-  },
-
-  getRefreshToken() {
-    return Cookies.get(CookieKey.RefreshToken) as string;
-  },
-
-  isAuthenticated() {
-    const accessToken = Cookies.get(CookieKey.AccessToken) as string;
-    const refreshToken = Cookies.get(CookieKey.RefreshToken) as string;
-    return !!accessToken || !!refreshToken;
-  },
-
-  clearSession() {
-    this.clearCookieData(CookieKey.AccessToken);
-  },
-};
+export const cookiesStorage = new CookiesStorage();

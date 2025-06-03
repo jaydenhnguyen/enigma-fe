@@ -1,8 +1,10 @@
 import qs from 'qs';
-import axios from 'axios';
-import { isNil } from 'lodash';
+import axios, { AxiosError } from 'axios';
+import isNil from 'lodash/isNil';
+import camelcaseKeys from 'camelcase-keys';
 import { envVariables } from './environment';
-import { CookiesStorage } from './cookies';
+import { tokenManager } from './tokensManager';
+import { StatusCodes } from 'http-status-codes';
 
 export const request = axios.create({
   timeout: 10000,
@@ -17,11 +19,32 @@ export const request = axios.create({
 
 request.interceptors.request.use(
   (config) => {
-    const accessToken: string = CookiesStorage.getAccessToken();
+    const accessToken: string = tokenManager.getAccessToken();
     if (!isNil(accessToken)) config.headers.Authorization = `Bearer ${accessToken}`;
     return config;
   },
   (error) => {
     return Promise.reject(error);
+  },
+);
+
+request.interceptors.response.use(
+  (response) => camelcaseKeys(response.data),
+  (error: AxiosError) => {
+    const errorResponse = error.response as {
+      status: number;
+      data: {
+        code: string;
+        message: string;
+      };
+    };
+    const status = errorResponse?.status;
+
+    if (status === StatusCodes.UNAUTHORIZED) {
+      tokenManager.clearSession();
+      // window.location.href = PathName.AuthLogin;
+      return Promise.reject(errorResponse?.data);
+    }
+    return Promise.reject(errorResponse?.data);
   },
 );

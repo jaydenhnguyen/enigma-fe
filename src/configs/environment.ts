@@ -1,5 +1,3 @@
-import * as process from 'node:process';
-
 export const envVariables = {
   APP_NAME: process.env['NEXT_PUBLIC_APP_NAME'],
   BASE_API_URL: `${process.env['NEXT_PUBLIC_BASE_API_URL']}/api/v${process.env['NEXT_PUBLIC_API_VERSION']}`,

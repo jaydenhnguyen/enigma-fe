@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Head from 'next/head';
 import { Login } from 'src/modules/Authentication';
+import { PublicLayout } from 'src/layouts';
 
 export default function LoginPage(): React.ReactElement {
   return (
@@ -13,3 +14,5 @@ export default function LoginPage(): React.ReactElement {
     </>
   );
 }
+
+LoginPage.getLayout = (page: React.ReactElement) => <PublicLayout>{page}</PublicLayout>;

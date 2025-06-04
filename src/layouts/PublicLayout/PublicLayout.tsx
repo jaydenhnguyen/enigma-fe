@@ -22,7 +22,5 @@ export function PublicLayout({ children }: { children: React.ReactElement }): Re
     <Box sx={{ minHeight: '100vh', paddingBottom: '7.75rem' }}>
       <Container className={classes['container']}>{children}</Container>
     </Box>
-  ) : (
-    <Box></Box>
-  );
+  ) : null;
 }

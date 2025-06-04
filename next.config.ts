@@ -18,19 +18,6 @@ const config: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'img.vietqr.io',
-        pathname: '/image/upload/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'api.vietqr.io',
-      },
-      {
-        protocol: 'https',
-        hostname: 'vietqr.net',
-      },
-      {
-        protocol: 'https',
         hostname: 'icon-library.com',
       },
       {

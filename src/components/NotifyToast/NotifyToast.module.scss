@@ -1,0 +1,8 @@
+.toast-wrapper {
+  @apply p-0;
+  min-height: unset;
+
+  [class*='Toastify__close-button--light'] {
+    color: white;
+  }
+}

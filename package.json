@@ -30,6 +30,7 @@
     "react-dom": "^18.3.1",
     "react-error-boundary": "^6.0.0",
     "react-hook-form": "^7.56.3",
+    "react-toastify": "^11.0.5",
     "zod": "^3.24.4"
   },
   "devDependencies": {

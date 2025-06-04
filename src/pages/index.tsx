@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box } from '@mui/material';
 import { Home } from 'src/modules/home';
-import { PublicLayout } from 'src/layout/PublicLayout';
+import { PublicLayout } from 'src/layouts/PublicLayout';
 
 export default function Index() {
   return (

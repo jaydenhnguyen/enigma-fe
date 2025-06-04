@@ -7,6 +7,7 @@ import '../styles/tailwind.scss';
 import { useScrollToTop } from '../hooks';
 import { AllAppContexts } from '../shared';
 import { AppThemeProvider } from '../theme/AppThemeProvider';
+import { ToastContainer } from 'react-toastify';
 
 type AppInitialProps = {
   pageProps: {
@@ -35,7 +36,19 @@ function App({ Component, pageProps }: AppProps) {
 
       <AllAppContexts>
         <AppThemeProvider>
-          <Component {...pageProps} />
+          <>
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar
+              newestOnTop
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              pauseOnHover
+            />
+            <Component {...pageProps} />
+          </>
         </AppThemeProvider>
       </AllAppContexts>
     </>

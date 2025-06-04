@@ -3,10 +3,10 @@ import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import { Box, Button, Card, CardContent, Stack, Typography } from '@mui/material';
 import { tokenManager } from 'src/configs';
-import { ControlTextField } from 'src/components';
-import { LOGIN_FORM_FIELDS } from './constants';
-import { useLoginForm, useLogin } from './hooks';
+import { ControlTextField, notify, ToastType } from 'src/components';
+import { useLogin, useLoginForm } from './hooks';
 import { LoginRequest, LoginResponse } from './models';
+import { LOGIN_FORM_FIELD_NAMES, NOTIFY_MESSAGES } from './constants';
 import classes from './Login.module.scss';
 
 export function Login(): React.ReactElement {
@@ -30,7 +30,11 @@ export function Login(): React.ReactElement {
     [router],
   );
 
-  const { mutate: loginMutation, isPending: isLoading, data } = useLogin(handleLoginSuccess);
+  const {
+    mutate: loginMutation,
+    isPending: isLoading,
+    data,
+  } = useLogin(handleLoginSuccess, () => notify({ message: NOTIFY_MESSAGES.ERROR, type: ToastType.error }));
 
   const onSubmitLoginForm = React.useCallback((data: LoginRequest) => loginMutation(data), [data]);
 
@@ -41,7 +45,6 @@ export function Login(): React.ReactElement {
           <Typography component="h2" variant="h2" align="center" fontWeight="bold" gutterBottom>
             Login
           </Typography>
-
           <Box component="form" onSubmit={formHandleSubmit(onSubmitLoginForm)} noValidate>
             <Stack spacing={3}>
               <ControlTextField<LoginRequest>
@@ -49,7 +52,7 @@ export function Login(): React.ReactElement {
                 fullWidth
                 id="email"
                 label="Email"
-                name={LOGIN_FORM_FIELDS.email}
+                name={LOGIN_FORM_FIELD_NAMES.email}
                 type="email"
                 variant="outlined"
               />
@@ -58,7 +61,7 @@ export function Login(): React.ReactElement {
                 control={control}
                 fullWidth
                 id="password"
-                name={LOGIN_FORM_FIELDS.password}
+                name={LOGIN_FORM_FIELD_NAMES.password}
                 label="Password"
                 type="password"
               />

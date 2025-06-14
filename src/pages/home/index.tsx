@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
-import { Home } from 'src/modules/home';
+import { Home } from 'src/modules/Home';
 import { PrivateLayout } from 'src/layouts';
 
 export default function HomePage(): React.JSX.Element {

@@ -5,6 +5,10 @@
 .login-card {
   @apply w-full max-w-[28rem] h-fit mt-[25vh];
 
+  .title {
+    @apply text-primary-main font-bold;
+  }
+
   .login-card-content {
     @apply p-8 #{!important};
   }

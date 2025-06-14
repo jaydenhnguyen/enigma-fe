@@ -42,7 +42,7 @@ export function Login(): React.ReactElement {
     <div className={classes['wrapper']}>
       <Card elevation={5} className={classes['login-card']}>
         <CardContent className={classes['login-card-content']}>
-          <Typography component="h2" variant="h2" align="center" fontWeight="bold" gutterBottom>
+          <Typography component="h2" variant="h2" align="center" gutterBottom className={classes['title']}>
             Login
           </Typography>
           <Box component="form" onSubmit={formHandleSubmit(onSubmitLoginForm)} noValidate>
@@ -74,7 +74,7 @@ export function Login(): React.ReactElement {
                 disabled={isLoading}
                 loading={isLoading}
               >
-                Sign in
+                Log in
               </Button>
             </Stack>
           </Box>

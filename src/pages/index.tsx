@@ -10,7 +10,7 @@ export default function IndexPage() {
     if (isAuthenticated) {
       router.replace('/home').then();
     } else {
-      router.replace('/login').then();
+      router.replace('/intro').then();
     }
   }, [isAuthenticated]);
 

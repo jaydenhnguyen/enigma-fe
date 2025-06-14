@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Box, Container, AppBar, Toolbar, Stack, Link, Typography } from '@mui/material';
+import { NavItem } from 'src/components';
 import { tokenManager } from 'src/configs';
 import azMovingLogo from 'src/assets/az_moving_logo.svg';
 import { NAV_ITEMS } from './constants';
@@ -38,9 +39,7 @@ export function PublicLayout({ children }: { children: React.ReactElement }): Re
             <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Stack direction="row" spacing={3} className={classes['nav-wrapper']}>
                 {NAV_ITEMS.map((item) => (
-                  <Link key={item.label} href={item.href} underline="none" className={classes['nav-item']}>
-                    {item.label}
-                  </Link>
+                  <NavItem key={item.label} href={item.href} content={item.label} />
                 ))}
               </Stack>
 

@@ -1,5 +1,5 @@
 const NAV_LINK = {
-  HOME: '/',
+  HOME: '/intro',
   ABOUT: '/about',
   CONTACT: '/contact',
 };

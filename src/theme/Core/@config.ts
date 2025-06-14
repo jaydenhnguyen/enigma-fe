@@ -20,7 +20,7 @@ export const themeConfig: ThemeConfig = {
     primary: {
       lighter: '#D0ECFE',
       light: '#73BAFB',
-      main: '#1877F2',
+      main: '#315EFB',
       dark: '#0C44AE',
       darker: '#042174',
       contrastText: '#FFFFFF',
@@ -47,7 +47,7 @@ export const themeConfig: ThemeConfig = {
       main: '#22C55E',
       dark: '#118D57',
       darker: '#065E49',
-      contrastText: '#ffffff',
+      contrastText: '#FFFFFF',
     },
     warning: {
       lighter: '#FFF5CC',
@@ -77,6 +77,6 @@ export const themeConfig: ThemeConfig = {
       '800': '#1C252E',
       '900': '#141A21',
     },
-    common: { black: '#000000', white: '#FFFFFF' },
+    common: { black: '#1C252E', white: '#FFFFFF' },
   },
 };

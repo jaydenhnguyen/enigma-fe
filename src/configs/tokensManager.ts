@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
-import { CookieKey } from 'src/shared/constants/common';
-import { CookiesStorage, cookiesStorage } from './cookies';
+import { CookieKey } from 'src/shared/constants/auth.constant';
 import { envVariables } from './environment';
+import { CookiesStorage, cookiesStorage } from './cookies';
 
 type TokensParams = {
   accessToken: string;

@@ -53,7 +53,9 @@ export function PublicLayout({ children }: { children: React.ReactElement }): Re
 
       {/* Main content */}
       <Box component="main" flex={1} className={classes['main-wrapper']}>
-        <Container maxWidth="lg">{children}</Container>
+        <Container maxWidth="lg" style={{ padding: 0 }}>
+          {children}
+        </Container>
       </Box>
 
       {/* Footer */}

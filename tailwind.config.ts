@@ -26,7 +26,10 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      colors: { ...themeConfig.palette },
+      colors: {
+        ...themeConfig.palette,
+        'hero-bg': '#f8faff',
+      },
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],

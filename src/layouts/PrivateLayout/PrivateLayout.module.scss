@@ -1,0 +1,9 @@
+.wrapper {
+  @apply flex h-[100vh]
+}
+
+// Main Content Styles
+.main-content-wrapper {
+  @apply flex-1 bg-grey-200 overflow-y-auto relative top-[4.125rem];
+  @apply min-h-[calc(100vh-4.125rem)] p-6;
+}

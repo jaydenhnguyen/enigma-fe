@@ -18,7 +18,7 @@ export function TopBar({ children, customClasses, appBarProps, toolbarProps }: P
     <AppBar
       color="default"
       sx={{
-        minHeight: '66px',
+        minHeight: '4.125rem',
         boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.06)',
         zIndex: 1200,
       }}

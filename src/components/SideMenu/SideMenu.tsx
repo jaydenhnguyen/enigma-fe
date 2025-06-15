@@ -1,13 +1,21 @@
 import * as React from 'react';
-import { Drawer } from '@mui/material';
+import { useRouter } from 'next/router';
+import { Box, Drawer, List } from '@mui/material';
+import { MenuItem } from 'src/shared/types';
+import { SIDE_MENU_ITEMS } from 'src/shared/constants';
+import { SideMenuItem } from '../SideMenuItem';
 import classes from './SideMenu.module.scss';
 
 type Props = {
-  sidebarCollapsed: boolean;
+  width: number;
+  isCollapsed: boolean;
 };
 
-export function SideMenu({ sidebarCollapsed }: Props): React.ReactElement {
-  const drawerWidth = React.useMemo(() => (sidebarCollapsed ? 64 : 280), [sidebarCollapsed]);
+export function SideMenu({ width, isCollapsed }: Props): React.ReactElement {
+  const router = useRouter();
+  const currentPath = router.pathname;
+
+  const handleClick = (item: MenuItem) => router.push(item.route).then();
 
   return (
     <Drawer
@@ -16,10 +24,30 @@ export function SideMenu({ sidebarCollapsed }: Props): React.ReactElement {
       classes={{ paper: classes['drawer-paper'] }}
       sx={{
         '& .MuiDrawer-paper': {
-          width: drawerWidth,
+          width: width,
           transition: 'width 0.3s ease',
         },
       }}
-    ></Drawer>
+    >
+      <Box className={classes['content-wrapper']}>
+        <Box className={classes['content-container']}>
+          <List className={classes['content-list']}>
+            {SIDE_MENU_ITEMS.map((item, idx) => {
+              const isSelected = item.route === currentPath;
+
+              return (
+                <SideMenuItem
+                  key={`${item.text}_${idx}`}
+                  item={item}
+                  isSelected={isSelected}
+                  onClick={handleClick}
+                  isCollapsed={isCollapsed}
+                />
+              );
+            })}
+          </List>
+        </Box>
+      </Box>
+    </Drawer>
   );
 }

@@ -1,1 +1,1 @@
-e;
+export * from './SideMenu';

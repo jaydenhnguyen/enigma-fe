@@ -9,9 +9,11 @@ import { tokenManager } from 'src/configs';
 import AzMovingLogo from 'src/assets/az_moving_logo.svg';
 import classes from './HeadBar.module.scss';
 
-type Props = {};
+type Props = {
+  onToggleSideMenu: () => void;
+};
 
-export function HeadBar({}: Props): React.ReactElement {
+export function HeadBar({ onToggleSideMenu }: Props): React.ReactElement {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -30,7 +32,7 @@ export function HeadBar({}: Props): React.ReactElement {
     <AppBar position="fixed" color="default" className={classes['wrapper']} elevation={1}>
       <Toolbar className={classes['container']}>
         <Box className={classes['header-left']}>
-          <IconButton onClick={() => {}} className={classes['toggle-btn']}>
+          <IconButton onClick={onToggleSideMenu} className={classes['toggle-btn']}>
             <MenuIcon />
           </IconButton>
 

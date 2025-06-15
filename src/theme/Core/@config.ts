@@ -9,6 +9,7 @@ type ThemeConfig = {
     common: Pick<CommonColors, 'black' | 'white'>;
     grey: Record<'50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900', string>;
   };
+  darkText: Record<'primary' | 'secondary' | 'disabled', string>;
 };
 
 export const themeConfig: ThemeConfig = {
@@ -78,5 +79,10 @@ export const themeConfig: ThemeConfig = {
       '900': '#141A21',
     },
     common: { black: '#1C252E', white: '#FFFFFF' },
+  },
+  darkText: {
+    primary: '#1B1B1B',
+    secondary: '#5C5F62',
+    disabled: '#9E9E9E',
   },
 };

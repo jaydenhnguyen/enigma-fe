@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { Box, Container, AppBar, Toolbar, Stack, Link, Typography } from '@mui/material';
 import { NavItem } from 'src/components';
 import { tokenManager } from 'src/configs';
-import azMovingLogo from 'src/assets/az_moving_logo.svg';
+import AzMovingLogo from 'src/assets/az_moving_logo.svg';
 import { NAV_ITEMS } from './constants';
 import classes from './PublicLayout.module.scss';
 
@@ -33,7 +33,7 @@ export function PublicLayout({ children }: { children: React.ReactElement }): Re
         <Toolbar className={classes['toolbar-wrapper']}>
           <Container maxWidth="lg" className={classes['toolbar']}>
             <Box>
-              <Image src={azMovingLogo} alt="A-Z Moving" width={65} />
+              <Image src={AzMovingLogo} alt="A-Z Moving" width={65} />
             </Box>
 
             <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

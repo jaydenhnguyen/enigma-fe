@@ -6,16 +6,16 @@ export const palette: Partial<Record<ThemeColorScheme, ColorSystemOptions['palet
   light: {
     ...themeConfig.palette,
     text: {
-      primary: themeConfig.palette.grey[800],
-      secondary: themeConfig.palette.grey[600],
-      disabled: themeConfig.palette.grey[500],
+      primary: '#1B1B1B',
+      secondary: '#5C5F62',
+      disabled: '#9E9E9E',
     },
     background: {
       paper: '#FFFFFF',
-      default: themeConfig.palette.grey[100],
+      default: '#FFFFFF',
     },
     action: {
-      active: themeConfig.palette.grey[600],
+      active: '#1B1B1B',
     },
   },
 };

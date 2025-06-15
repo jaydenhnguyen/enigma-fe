@@ -4,16 +4,18 @@ import { useRouter } from 'next/router';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { AppBar, Avatar, Box, IconButton, Menu, MenuItem, Toolbar } from '@mui/material';
+import { Avatar, Box, IconButton, Menu, MenuItem } from '@mui/material';
 import { tokenManager } from 'src/configs';
+import { APP_ROUTES } from 'src/shared/constants';
 import AzMovingLogo from 'src/assets/az_moving_logo.svg';
-import classes from './HeadBar.module.scss';
+import { TopBar } from '../common';
+import classes from './PrivateHeadBar.module.scss';
 
 type Props = {
   onToggleSideMenu: () => void;
 };
 
-export function HeadBar({ onToggleSideMenu }: Props): React.ReactElement {
+export function PrivateHeadBar({ onToggleSideMenu }: Props): React.ReactElement {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -25,18 +27,18 @@ export function HeadBar({ onToggleSideMenu }: Props): React.ReactElement {
 
   const handleSignOut = React.useCallback(async () => {
     tokenManager.clearSession();
-    router.replace('/login').then();
+    router.replace(APP_ROUTES.INTRODUCTION).then();
   }, [router]);
 
   return (
-    <AppBar position="fixed" color="default" className={classes['wrapper']} elevation={1}>
-      <Toolbar className={classes['container']}>
+    <TopBar customClasses={{ container: classes['container'] }} appBarProps={{ position: 'fixed' }}>
+      <>
         <Box className={classes['header-left']}>
           <IconButton onClick={onToggleSideMenu} className={classes['toggle-btn']}>
             <MenuIcon />
           </IconButton>
 
-          <Image src={AzMovingLogo} alt={'AZ moving logo'} />
+          <Image src={AzMovingLogo} alt={'AZ moving logo'} width={65} />
         </Box>
 
         <Box>
@@ -45,6 +47,7 @@ export function HeadBar({ onToggleSideMenu }: Props): React.ReactElement {
           </IconButton>
 
           <Menu
+            sx={{ marginTop: '6px' }}
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
             onClose={handleClose}
@@ -67,7 +70,7 @@ export function HeadBar({ onToggleSideMenu }: Props): React.ReactElement {
             </MenuItem>
           </Menu>
         </Box>
-      </Toolbar>
-    </AppBar>
+      </>
+    </TopBar>
   );
 }

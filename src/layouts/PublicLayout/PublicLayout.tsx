@@ -1,11 +1,8 @@
 import React from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Box, Container, AppBar, Toolbar, Stack, Link, Typography } from '@mui/material';
-import { NavItem } from 'src/components';
+import { Box, Container, Typography } from '@mui/material';
 import { tokenManager } from 'src/configs';
-import AzMovingLogo from 'src/assets/az_moving_logo.svg';
-import { NAV_ITEMS } from './constants';
+import { PublicHeadBar } from 'src/components';
 import classes from './PublicLayout.module.scss';
 
 export function PublicLayout({ children }: { children: React.ReactElement }): React.ReactElement | null {
@@ -24,32 +21,7 @@ export function PublicLayout({ children }: { children: React.ReactElement }): Re
 
   return isClient && !isAuthenticated ? (
     <Box className={classes['wrapper']}>
-      <AppBar
-        position="sticky"
-        color="default"
-        className={classes['shadow']}
-        sx={{ boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)' }}
-      >
-        <Toolbar className={classes['toolbar-wrapper']}>
-          <Container maxWidth="lg" className={classes['toolbar']}>
-            <Box>
-              <Image src={AzMovingLogo} alt="A-Z Moving" width={65} />
-            </Box>
-
-            <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Stack direction="row" spacing={3} className={classes['nav-wrapper']}>
-                {NAV_ITEMS.map((item) => (
-                  <NavItem key={item.label} href={item.href} content={item.label} />
-                ))}
-              </Stack>
-
-              <Link href="https://az-moving.com/" underline="none" className={classes['main-page-btn']}>
-                Main Page
-              </Link>
-            </div>
-          </Container>
-        </Toolbar>
-      </AppBar>
+      <PublicHeadBar />
 
       {/* Main content */}
       <Box component="main" flex={1} className={classes['main-wrapper']}>

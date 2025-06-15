@@ -1,15 +1,21 @@
 // NOTE: this constant must be matched with the pages folder structure
 
 export const APP_ROUTES = {
-  // Public routes
+  /**
+   *  Redirect route
+   * if authenticated -> CALENDAR_VIEW
+   * else -> INTRODUCTION
+   * */
   HOME: '/',
+
+  // Public routes
   INTRODUCTION: '/intro',
   ABOUT_US: '/about',
   CONTACT_US: '/contact',
   LOGIN: '/login',
 
   // Private routes
-  CALENDAR_VIEW: '/calendar_view',
+  CALENDAR_VIEW: 'CALENDAR_VIEW',
   LEADS: '/leads',
   UPCOMING_EVENTS: '/upcoming_events',
   PAST_EVENTS: '/past_events',

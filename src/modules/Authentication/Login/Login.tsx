@@ -3,6 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import { Box, Button, Card, CardContent, Stack, Typography } from '@mui/material';
 import { tokenManager } from 'src/configs';
+import { APP_ROUTES } from 'src/shared/constants';
 import { ControlTextField, notify, ToastType } from 'src/components';
 import { useLogin, useLoginForm } from './hooks';
 import { LoginRequest, LoginResponse } from './models';
@@ -22,7 +23,7 @@ export function Login(): React.ReactElement {
 
         const { redirect } = router.query;
         if (redirect) return router.replace(`/${redirect as string}`);
-        return router.replace('/home');
+        return router.replace(APP_ROUTES.CALENDAR_VIEW);
       }
 
       return;

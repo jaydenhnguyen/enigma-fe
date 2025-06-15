@@ -1,5 +1,5 @@
 import { ColorSystemOptions } from '@mui/material/styles';
-import { ThemeColorScheme } from '../types';
+import { ThemeColorScheme } from 'src/shared/types';
 import { themeConfig } from './@config';
 
 export const palette: Partial<Record<ThemeColorScheme, ColorSystemOptions['palette']>> = {

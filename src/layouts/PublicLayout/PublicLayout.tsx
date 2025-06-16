@@ -34,8 +34,6 @@ export function PublicLayout({ children }: { children: React.ReactElement }): Re
       <Box
         component="footer"
         className={classes['footer-wrapper']}
-        {/*asodnkadasjkdasdjasoidjioasj*/}
-        {/*sjdasjkdjkasjdklaskldaskdklasdlkasjdkl*/}
         sx={{ boxShadow: '0 -4px 12px rgba(0, 0, 0, 0.05)' }}
       >
         <Container maxWidth="lg">

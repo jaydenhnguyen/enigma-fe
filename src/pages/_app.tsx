@@ -7,7 +7,7 @@ import 'src/styles/_app.scss';
 import 'src/styles/_core.scss';
 import 'src/styles/tailwind.scss';
 import { useScrollToTop } from 'src/hooks';
-import { AllAppContexts } from 'src/shared';
+import { LayoutProvider, AllAppContexts } from 'src/context';
 import { AppThemeProvider } from 'src/theme/AppThemeProvider';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -38,7 +38,7 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
 
       <AllAppContexts>
         <AppThemeProvider>
-          <>
+          <LayoutProvider>
             <ToastContainer
               position="top-right"
               autoClose={3000}
@@ -50,7 +50,7 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
               pauseOnHover
             />
             {getLayout(<Component {...pageProps} />)}
-          </>
+          </LayoutProvider>
         </AppThemeProvider>
       </AllAppContexts>
     </>

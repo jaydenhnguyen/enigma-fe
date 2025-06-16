@@ -27,21 +27,23 @@ export function CalendarView({}: Props): React.ReactElement {
 
   return (
     <AppCard>
-      <FullCalendar
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
-        headerToolbar={{
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay',
-        }}
-        events={events}
-        dateClick={handleDateClick}
-        editable={true}
-        eventDrop={handleEventDrop}
-        viewClassNames={classes['check']}
-        height="100%"
-      />
+      <div className={classes['calendar-view-wrapper']}>
+        <FullCalendar
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+          initialView="dayGridMonth"
+          headerToolbar={{
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay',
+          }}
+          events={events}
+          dateClick={handleDateClick}
+          editable={true}
+          eventDrop={handleEventDrop}
+          viewClassNames={classes['check']}
+          height="100%"
+        />
+      </div>
     </AppCard>
   );
 }

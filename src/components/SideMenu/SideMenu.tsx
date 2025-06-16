@@ -20,12 +20,13 @@ export function SideMenu({ width, isCollapsed }: Props): React.ReactElement {
   return (
     <Drawer
       variant="permanent"
-      className={classes['wrapper']}
       classes={{ paper: classes['drawer-paper'] }}
       sx={{
         '& .MuiDrawer-paper': {
           width: width,
           transition: 'width 0.3s ease',
+          height: '100vh',
+          top: '4.125rem',
         },
       }}
     >

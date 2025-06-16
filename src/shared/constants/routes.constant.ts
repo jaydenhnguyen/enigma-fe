@@ -15,7 +15,7 @@ export const APP_ROUTES = {
   LOGIN: '/login',
 
   // Private routes
-  CALENDAR_VIEW: 'CALENDAR_VIEW',
+  CALENDAR_VIEW: '/calendar_view',
   LEADS: '/leads',
   UPCOMING_EVENTS: '/upcoming_events',
   PAST_EVENTS: '/past_events',

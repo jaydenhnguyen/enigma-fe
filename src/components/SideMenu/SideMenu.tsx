@@ -31,7 +31,7 @@ export function SideMenu(): React.ReactElement {
           '& .MuiDrawer-paper': {
             width: width,
             transition: 'width 0.3s ease',
-            height: '100vh',
+            height: 'calc(100vh - 66px)',
             top: '4.125rem',
           },
         }}

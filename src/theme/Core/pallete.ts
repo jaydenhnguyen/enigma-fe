@@ -11,7 +11,9 @@ export const palette: Partial<Record<ThemeColorScheme, ColorSystemOptions['palet
       default: '#FFFFFF',
     },
     action: {
-      active: '#1B1B1B',
+      active: themeConfig.palette.primary.main,
+      disabled: '#FFFFFF',
+      disabledBackground: themeConfig.palette.grey['500'],
     },
   },
 };

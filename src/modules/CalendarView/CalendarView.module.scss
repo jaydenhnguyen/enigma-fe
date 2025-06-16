@@ -1,5 +1,36 @@
-.check {
-  //transition: width 0.3s ease;
-  //width: 100%; /* or adjust based on sidebar state */
-  //height: 100%;
+.calendar-view-wrapper {
+  @apply h-full;
+  [class*='fc-button-group'] {
+    @apply gap-x-1;
+
+    > [class*='fc-button']:not(:last-child),
+    > [class*='fc-button']:not(:first-child) {
+      @apply rounded-lg;
+    }
+  }
+
+  [class*='fc-button-primary'] {
+    @apply bg-primary-main border-none font-bold text-sm px-4 py-2;
+
+    &:hover {
+      @apply bg-primary-dark;
+    }
+
+    &:focus {
+      @apply bg-primary-dark;
+      box-shadow: none !important;
+    }
+
+    &:active {
+      @apply bg-primary-dark #{!important};
+    }
+
+    &:disabled {
+      @apply rounded-lg bg-grey-500 #{!important};
+    }
+  }
+
+  [class*='fc-button-active'] {
+    @apply bg-primary-dark #{!important};
+  }
 }

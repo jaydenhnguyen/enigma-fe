@@ -1,7 +1,7 @@
 import { TypographyVariantsOptions } from '@mui/material';
-import { themeConfig } from './@config';
-import { FontExtendType } from '../types';
+import { FontExtendType } from 'src/shared/types';
 import { pxToRem, setFont, responsiveFontSizes } from '../helpers';
+import { themeConfig } from './@config';
 
 const primaryFont = setFont(themeConfig.fontFamily.primary);
 const secondaryFont = setFont(themeConfig.fontFamily.secondary);

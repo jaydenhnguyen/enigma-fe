@@ -9,6 +9,7 @@ type ThemeConfig = {
     common: Pick<CommonColors, 'black' | 'white'>;
     grey: Record<'50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900', string>;
   };
+  darkText: Record<'primary' | 'secondary' | 'disabled', string>;
 };
 
 export const themeConfig: ThemeConfig = {
@@ -18,19 +19,19 @@ export const themeConfig: ThemeConfig = {
   },
   palette: {
     primary: {
-      lighter: '#D0ECFE',
-      light: '#73BAFB',
+      lighter: '#AABCFD',
+      light: '#6385FD',
       main: '#315EFB',
-      dark: '#0C44AE',
-      darker: '#042174',
+      dark: '#2447C9',
+      darker: '#1B3193',
       contrastText: '#FFFFFF',
     },
     secondary: {
-      lighter: '#EFD6FF',
-      light: '#C684FF',
-      main: '#8E33FF',
-      dark: '#5119B7',
-      darker: '#27097A',
+      lighter: '#FFD6C2',
+      light: '#FF9966',
+      main: '#FF6633',
+      dark: '#CC5229',
+      darker: '#993D1F',
       contrastText: '#FFFFFF',
     },
     info: {
@@ -78,5 +79,10 @@ export const themeConfig: ThemeConfig = {
       '900': '#141A21',
     },
     common: { black: '#1C252E', white: '#FFFFFF' },
+  },
+  darkText: {
+    primary: '#1B1B1B',
+    secondary: '#5C5F62',
+    disabled: '#9E9E9E',
   },
 };

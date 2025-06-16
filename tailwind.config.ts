@@ -29,6 +29,9 @@ module.exports = {
       colors: {
         ...themeConfig.palette,
         'hero-bg': '#f8faff',
+        'app-primary-dtxt': themeConfig.darkText.primary,
+        'app-secondary-dtxt': themeConfig.darkText.secondary,
+        'app-disabled-dtxt': themeConfig.darkText.disabled,
       },
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'],

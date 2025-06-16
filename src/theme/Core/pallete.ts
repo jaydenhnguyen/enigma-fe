@@ -1,21 +1,17 @@
 import { ColorSystemOptions } from '@mui/material/styles';
+import { ThemeColorScheme } from 'src/shared/types';
 import { themeConfig } from './@config';
-import { ThemeColorScheme } from '../types';
 
 export const palette: Partial<Record<ThemeColorScheme, ColorSystemOptions['palette']>> = {
   light: {
     ...themeConfig.palette,
-    text: {
-      primary: themeConfig.palette.grey[800],
-      secondary: themeConfig.palette.grey[600],
-      disabled: themeConfig.palette.grey[500],
-    },
+    text: themeConfig.darkText,
     background: {
       paper: '#FFFFFF',
-      default: themeConfig.palette.grey[100],
+      default: '#FFFFFF',
     },
     action: {
-      active: themeConfig.palette.grey[600],
+      active: '#1B1B1B',
     },
   },
 };

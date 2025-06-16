@@ -1,0 +1,38 @@
+.container {
+  @apply flex justify-between items-center px-6 pb-[5px] #{!important};
+}
+
+.header-left {
+  @apply flex items-center gap-x-4;
+}
+
+.toggle-btn {
+  @apply mt-[5px] #{!important};
+
+  &:hover {
+    @apply text-primary-dark;
+  }
+}
+
+.user-ava-btn {
+  @apply flex items-center gap-x-3 px-4 py-2 cursor-pointer rounded-lg;
+  @apply border border-gray-200 border-solid;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    @apply bg-primary-lighter;
+  }
+}
+
+.user-ava {
+  @apply bg-primary-main #{!important};
+  @apply w-8 h-8 text-[0.875rem];
+}
+
+.user-name {
+  @apply text-primary-main whitespace-nowrap font-medium;
+}
+
+.menu-item {
+  @apply flex items-center gap-x-2;
+}

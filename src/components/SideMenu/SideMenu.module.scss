@@ -1,0 +1,18 @@
+.drawer-paper {
+  // header bar height
+  @apply h-full;
+  @apply top-[4.125rem] #{!important};
+  @apply relative whitespace-nowrap;
+}
+
+.content-wrapper {
+  @apply flex flex-col h-full p-0;
+
+  .content-container {
+    @apply flex-1 p-4 overflow-y-auto;
+
+    .content-list {
+      @apply p-0 #{!important};
+    }
+  }
+}

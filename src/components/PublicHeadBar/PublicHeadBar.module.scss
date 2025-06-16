@@ -1,0 +1,20 @@
+.toolbar {
+  @apply w-full flex items-center px-0 h-full;
+}
+
+.action-wrapper {
+  @apply w-full flex items-center justify-between;
+}
+
+.nav-wrapper {
+  @apply ml-24 flex gap-x-11;
+}
+
+.main-page-btn {
+  @apply w-fit py-2 px-3 bg-[#315efb1f] rounded-3xl font-bold;
+  transition: background-color 0.3s ease;
+}
+
+.main-page-btn:hover {
+  @apply bg-[#315efb3d];
+}

@@ -1,19 +1,36 @@
-.container {
-  @apply pt-[6.25rem] pb-8 flex flex-col gap-y-24;
+.wrapper {
+  @apply min-h-screen flex flex-col;
+}
 
-  @media only screen and (min-width: 768px) {
-    @apply max-w-[50rem] pt-[7.5rem];
+.toolbar-wrapper {
+  @apply flex items-center justify-center py-2;
+
+  .toolbar {
+    @apply w-full flex items-center px-0;
   }
 
-  @media only screen and (min-width: 1024px) {
-    @apply flex-row gap-x-[3.125rem];
+  .main-page-btn {
+    @apply w-fit py-2 px-3 bg-[#315efb1f] rounded-3xl font-bold;
+    transition: background-color 0.3s ease;
   }
 
-  @media only screen and (min-width: 1024px) {
-    @apply max-w-[75rem] pt-[10rem];
+  .main-page-btn:hover {
+    @apply bg-[#315efb3d];
   }
+}
 
-  @media only screen and (min-width: 1440px) {
-    @apply gap-x-[6.25rem];
+.nav-wrapper {
+  @apply ml-24 flex gap-x-11;
+}
+
+.main-wrapper {
+  @apply bg-hero-bg relative top-[4.125rem];
+}
+
+.footer-wrapper {
+  @apply py-4 mt-auto;
+
+  .footer-content-wrapper {
+    @apply flex justify-between flex-wrap gap-y-2
   }
 }

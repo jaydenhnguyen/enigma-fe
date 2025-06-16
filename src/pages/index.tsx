@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { tokenManager } from '../configs';
+import { tokenManager } from 'src/configs';
+import { APP_ROUTES } from 'src/shared/constants';
 
 export default function IndexPage() {
   const router = useRouter();
@@ -8,9 +9,9 @@ export default function IndexPage() {
 
   React.useEffect(() => {
     if (isAuthenticated) {
-      router.replace('/home').then();
+      router.replace(APP_ROUTES.CALENDAR_VIEW).then();
     } else {
-      router.replace('/login').then();
+      router.replace(APP_ROUTES.INTRODUCTION).then();
     }
   }, [isAuthenticated]);
 

@@ -1,0 +1,21 @@
+.nav-item {
+  @apply text-common-black #{!important};
+  @apply font-medium relative;
+  text-decoration: none;
+
+  &::after {
+    @apply absolute left-0 bottom-0 h-[3px]  w-full bg-primary-main;
+    content: '';
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+
+  &[aria-current='page']::after {
+    transform: scaleX(1);
+  }
+}

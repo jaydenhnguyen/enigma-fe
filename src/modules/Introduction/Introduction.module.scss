@@ -1,0 +1,79 @@
+.wrapper {
+  @apply w-full h-full flex justify-center items-center;
+}
+
+.container {
+  @apply grid;
+  grid-template-columns: 1.25fr 2fr;
+}
+
+.title {
+  @apply text-primary-main;
+}
+
+.left-side-wrapper {
+  @apply w-full flex flex-col justify-center;
+}
+
+.description-item {
+  @apply gap-x-2 text-gray-600;
+}
+
+.description-icon {
+  @apply flex;
+  min-width: unset !important;
+}
+
+.login-btn {
+  @apply w-48;
+}
+
+.right-side-wrapper {
+  @apply relative overflow-hidden;
+
+  &::before {
+    content: '';
+    @apply absolute inset-0 opacity-10;
+  }
+}
+
+.cover-image {
+  @apply w-[50vw] max-w-xl h-auto relative z-10;
+}
+
+.leaft-cover {
+  @apply h-fit absolute z-[5];
+}
+
+.leaft-image-1 {
+  @apply top-[19rem] left-[-3rem] bottom-0;
+}
+
+.leaft-image-2 {
+  @apply top-4 right-[-2rem];
+  transform: rotate(52.5deg);
+}
+
+.floating-icon {
+  @apply absolute bg-white rounded-full shadow-lg flex items-center justify-center z-[9];
+
+  img {
+    @apply object-contain;
+  }
+}
+
+.armchair-icon {
+  @apply top-12 right-32;
+}
+
+.bookcase-icon {
+  @apply bottom-56 right-4;
+}
+
+.dresser-icon {
+  @apply bottom-8 left-12;
+}
+
+.leaf-icon {
+  @apply top-32 left-8;
+}

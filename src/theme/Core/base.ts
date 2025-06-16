@@ -1,5 +1,5 @@
+import { ThemeOptions } from 'src/shared/types';
 import { palette } from './pallete';
-import { ThemeOptions } from '../types';
 import { typography } from './typography';
 
 export const base: ThemeOptions = {

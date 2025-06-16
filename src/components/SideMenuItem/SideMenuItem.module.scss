@@ -1,0 +1,48 @@
+.wrapper {
+  @apply justify-start;
+  @apply m-0 rounded-lg mx-0 my-1 #{!important};
+  @apply text-app-secondary-dtxt #{!important};
+  transition: all 0.2s ease;
+
+  &:hover {
+    @apply text-primary-main bg-primary-main bg-opacity-[0.1] #{!important};
+    transform: translateY(-3px);
+    transition: all 0.5s ease;
+  }
+}
+
+.selected {
+  @apply bg-primary-main bg-opacity-10 #{!important};
+  @apply text-primary-main #{!important};
+
+  .MuiListItemIcon-root {
+    @apply text-inherit;
+  }
+}
+
+.collapsed {
+  @apply mx-0 my-1 justify-center #{!important};
+
+  &:hover {
+    @apply transform-none;
+  }
+}
+
+.item-text {
+  @apply text-sm max-w-52 pl-4 whitespace-nowrap overflow-hidden opacity-100;
+  transition: opacity 0.3s ease, max-width 0.3s ease, padding 0.3s ease;
+
+  span {
+    @apply font-medium #{!important};
+  }
+}
+
+.collapsed-text {
+  @apply max-w-0 pointer-events-none pl-0 opacity-0;
+}
+
+.selected-text {
+  span {
+    @apply font-semibold #{!important};
+  }
+}

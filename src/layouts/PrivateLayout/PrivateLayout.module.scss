@@ -1,0 +1,17 @@
+.wrapper {
+  @apply flex flex-col h-screen;
+}
+
+.content-area {
+  @apply flex flex-row flex-1;
+}
+
+.side-menu-wrapper {
+  @apply h-full shrink-0;
+  transition: width 0.3s ease;
+}
+
+.main-content-wrapper {
+  @apply flex-1 bg-grey-200 overflow-y-auto relative top-[4.125rem];
+  @apply min-h-[calc(100vh-4.125rem)] p-6;
+}

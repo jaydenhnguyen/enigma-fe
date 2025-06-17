@@ -7,8 +7,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Avatar, Box, IconButton, Menu, MenuItem } from '@mui/material';
 import { tokenManager } from 'src/configs';
 import { APP_ROUTES } from 'src/shared/constants';
-import { LAYOUT_ACTION, useLayout } from 'src/context';
 import AzMovingLogo from 'src/assets/az_moving_logo.svg';
+import { LAYOUT_ACTION, useLayout } from 'src/shared/context';
 import { TopBar } from '../common';
 import classes from './PrivateHeadBar.module.scss';
 

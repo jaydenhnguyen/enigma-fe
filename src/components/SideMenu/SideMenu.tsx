@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { Box, Drawer, List } from '@mui/material';
-import { useLayout } from 'src/context';
+import { useLayout } from 'src/shared/context';
 import { MenuItem } from 'src/shared/types';
 import { SIDE_MENU_ITEMS } from 'src/shared/constants';
 import { SideMenuItem } from '../SideMenuItem';

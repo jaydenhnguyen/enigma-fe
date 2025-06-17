@@ -7,7 +7,7 @@ import 'src/styles/_app.scss';
 import 'src/styles/_core.scss';
 import 'src/styles/tailwind.scss';
 import { useScrollToTop } from 'src/hooks/';
-import { AllAppContexts } from 'src/shared';
+import { AllAppContexts, LayoutProvider } from 'src/shared/context';
 import { AppThemeProvider } from 'src/theme/AppThemeProvider';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -49,7 +49,7 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
               pauseOnFocusLoss
               pauseOnHover
             />
-            {getLayout(<Component {...pageProps} />)}
+            <LayoutProvider>{getLayout(<Component {...pageProps} />)}</LayoutProvider>
           </>
         </AppThemeProvider>
       </AllAppContexts>

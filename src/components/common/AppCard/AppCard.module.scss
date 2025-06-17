@@ -4,5 +4,5 @@
 }
 
 .card-content {
-  @apply h-full p-8 #{!important};
+  @apply flex flex-col gap-y-4 h-full p-6 #{!important};
 }

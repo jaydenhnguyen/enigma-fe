@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Head from 'next/head';
-import { PublicLayout } from 'src/layouts';
 import { ContactUs } from 'src/modules/ContactUs';
+import { PublicLayout } from 'src/layouts';
 
-export default function ContactPage(): React.ReactElement {
+export default function ContactPage(): React.JSX.Element {
   return (
     <>
       <Head>

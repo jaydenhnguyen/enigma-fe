@@ -10,8 +10,8 @@ export const APP_ROUTES = {
 
   // Public routes
   INTRODUCTION: '/intro',
-  ABOUT_US: '/about',
-  CONTACT_US: '/contact',
+  ABOUT_US: '/about_us',
+  CONTACT_US: '/contact_us',
   LOGIN: '/login',
 
   // Private routes

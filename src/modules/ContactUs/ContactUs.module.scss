@@ -1,13 +1,19 @@
+.wrapper {
+  @apply w-full h-full flex justify-center items-center;
+}
+
 .container {
-  @apply flex flex-col md:flex-row justify-center gap-12 p-8 w-full max-w-6xl;
+  @apply grid gap-x-24 mr-[3vh] ;
+  grid-template-columns: 2.25fr 2.25fr ;
 }
 
 .info-section {
-  @apply flex flex-col w-full md:w-1/2 gap-x-2 text-gray-600;
+  // @apply flex flex-col w-full md:w-1/2 text-gray-600;
+ @apply w-full flex flex-col justify-center text-gray-600 ;
 }
 
 .info-row {
-  @apply flex justify-between gap-6 mb-4 mt-[5vh];
+  @apply flex justify-between gap-6 mb-4 mt-[3vh] ;
 }
 
 .info-item {
@@ -22,14 +28,20 @@
   }
 }
 
-.title {
-  @apply text-primary-main font-bold;
+.right-side {
+  @apply self-start mt-[4vh]; // Adjust the value to your liking
 }
 
-.contact-card {
-  @apply w-full md:w-1/2 h-fit;
 
-  .contact-card-content {
+.title {
+  @apply text-primary-main;
+}
+
+.contactMe-card {
+  @apply w-full max-w-[28rem] h-fit mt-[2vh] ; 
+
+
+  .contactMe-card-content {
     @apply p-8;
   }
 }

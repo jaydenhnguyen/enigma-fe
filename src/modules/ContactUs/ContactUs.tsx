@@ -64,6 +64,7 @@ export function ContactUs(): React.ReactElement {
         </Box>
 
         {/* Right Form Section */}
+        <Box className={classes['right-side']}>
         <Card elevation={5} className={classes['contactMe-card']}>
           <CardContent className={classes['contactMe-card-content']}>
             <Typography
@@ -120,6 +121,7 @@ export function ContactUs(): React.ReactElement {
             </Box>
           </CardContent>
         </Card>
+        </Box>
       </Box>
     </div>
   );

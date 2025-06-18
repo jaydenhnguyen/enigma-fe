@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
-import { Contact } from 'src/modules/Contact';
+import { ContactUs } from 'src/modules/ContactUs';
 import { PublicLayout } from 'src/layouts';
 
 export default function ContactPage(): React.JSX.Element {
@@ -9,7 +9,8 @@ export default function ContactPage(): React.JSX.Element {
       <Head>
         <title>A-Z Moving: Contact Us</title>
       </Head>
-      <Contact />
+
+      <ContactUs />
     </>
   );
 }

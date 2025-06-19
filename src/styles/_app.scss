@@ -15,6 +15,14 @@ body {
   flex: 1 1 auto;
 }
 
-h1, h2, h3, h4, h5, h6, p, ul, span {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+span {
   @apply m-0;
 }

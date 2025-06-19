@@ -15,4 +15,5 @@ export default function LoginPage(): React.ReactElement {
   );
 }
 
+// This will be retrieved in _app.tsx.
 LoginPage.getLayout = (page: React.ReactElement) => <PublicLayout>{page}</PublicLayout>;

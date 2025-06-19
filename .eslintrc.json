@@ -1,0 +1,78 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "react", "react-hooks"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "next/core-web-vitals",
+    "plugin:react-hooks/recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/no-unnecessary-type-assertions": "off",
+    "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/no-unnecessary-type-assertion": "off",
+    "no-constant-binary-expression": "off",
+    "@typescript-eslint/prefer-promise-reject-errors": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unsafe-enum-comparison": "off",
+    "eqeqeq": ["warn", "always", { "null": "ignore" }],
+    "react/no-unescaped-entities": "off",
+    "no-empty-pattern": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-console": "off",
+    "no-var": "warn",
+    "no-await-in-loop": "warn",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-object-type": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "no-empty": [
+      "warn",
+      {
+        "allowEmptyCatch": true
+      }
+    ]
+  },
+  "ignorePatterns": [
+    "*.css",
+    "*.scss",
+    "*.json",
+    "*.config.js",
+    "*.config.cjs",
+    "*.config.mjs",
+    "next.config.js",
+    "next.config.ts",
+    "jest.config.js",
+    "babel.config.js",
+    "tailwind.config.js",
+    "postcss.config.js",
+    ".next",
+    "coverage",
+    "node_modules",
+    "dist",
+    "build",
+    "next-env.d.ts",
+    "out",
+    "src/sandbox"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

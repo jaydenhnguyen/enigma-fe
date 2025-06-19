@@ -12,7 +12,9 @@ const EXPANDED_WIDTH = 280;
 
 export function PrivateLayout({ children }: { children: React.ReactElement }) {
   const router = useRouter();
+  // Toggles the side menu width (Hamburger menu expand or collapse)
   const [isSideMenuCollapsed, setIsSideMenuCollapsed] = React.useState(false);
+  // Prevents layout from flashing before auth check is complete.
   const [hydrated, setHydrated] = React.useState(false);
 
   React.useEffect(() => {
@@ -23,6 +25,7 @@ export function PrivateLayout({ children }: { children: React.ReactElement }) {
     }
   }, []);
 
+  // Passed as props to the head bar where it will toggle the hamburger menu.
   const toggleSideMenu = React.useCallback(() => {
     setIsSideMenuCollapsed(!isSideMenuCollapsed);
   }, [isSideMenuCollapsed]);

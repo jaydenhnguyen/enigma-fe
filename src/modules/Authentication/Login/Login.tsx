@@ -11,9 +11,11 @@ import { LOGIN_FORM_FIELD_NAMES, NOTIFY_MESSAGES } from './constants';
 import classes from './Login.module.scss';
 
 export function Login(): React.ReactElement {
+  // Custom hook useLoginForm. Manages the form state and validation.
   const { control, formHandleSubmit } = useLoginForm();
   const router = useRouter();
 
+  // The useCallback hook is used for handleLoginSuccess and onSubmitLoginForm to memoize these functions, ensuring they don’t get recreated on every render unless their dependencies (router or data) change.
   const handleLoginSuccess = React.useCallback(
     (loginResponse: LoginResponse) => {
       const { accessToken, expireIn } = loginResponse;
@@ -31,12 +33,14 @@ export function Login(): React.ReactElement {
     [router],
   );
 
+  // useLogin custom hook uses useMutation, used for handling async operations like POST/PUT/DELETE. API request is made in this custom hook.
   const {
     mutate: loginMutation,
     isPending: isLoading,
     data,
   } = useLogin(handleLoginSuccess, () => notify({ message: NOTIFY_MESSAGES.ERROR, type: ToastType.error }));
 
+  // useCallback memoizes a function so it doesn’t get recreated on every render. This will be passed to useLoginForm custom hook.
   const onSubmitLoginForm = React.useCallback((data: LoginRequest) => loginMutation(data), [data]);
 
   return (

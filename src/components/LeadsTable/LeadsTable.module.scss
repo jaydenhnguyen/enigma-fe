@@ -1,0 +1,198 @@
+// src/modules/Leads/components/LeadsTable/LeadsTable.module.scss
+.tableContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.tableWrapper {
+  flex: 1;
+  overflow: auto;
+  max-height: calc(100vh - 200px); // Adjust based on your layout
+  
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+    
+    &:hover {
+      background: #a8a8a8;
+    }
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 1200px; // Ensure horizontal scroll for narrow screens
+}
+
+.tableHead {
+  background-color: #f8f9fa;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  
+  th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #495057;
+    border-bottom: 2px solid #dee2e6;
+    white-space: nowrap;
+    
+    &:first-child {
+      width: 50px;
+    }
+  }
+}
+
+.sortableHeader {
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+  
+  &:hover {
+    background-color: #e9ecef;
+  }
+  
+  &:active {
+    background-color: #dee2e6;
+  }
+}
+
+.tableBody {
+  tr {
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+      background-color: #f8f9fa;
+    }
+    
+    &:not(:last-child) {
+      border-bottom: 1px solid #dee2e6;
+    }
+  }
+  
+  td {
+    padding: 12px 16px;
+    vertical-align: middle;
+    color: #495057;
+  }
+}
+
+.checkboxColumn {
+  width: 50px;
+  text-align: center;
+  
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+}
+
+.nameColumn {
+  font-weight: 500;
+  color: #212529;
+  min-width: 150px;
+}
+
+.emailColumn {
+  min-width: 200px;
+  color: #0066cc;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statusNew {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.statusContacted {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.statusQualified {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+}
+
+.statusConverted {
+  background-color: #e4f4fd;
+  color: #0277bd;
+}
+
+.statusLost {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background: white;
+  border-radius: 8px;
+}
+
+.spinner {
+  font-size: 16px;
+  color: #666;
+}
+
+.emptyState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #666;
+  font-size: 16px;
+  background: white;
+  
+  p {
+    margin: 0;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .tableWrapper {
+    max-height: calc(100vh - 150px);
+  }
+  
+  .table {
+    font-size: 12px;
+  }
+  
+  .tableHead th,
+  .tableBody td {
+    padding: 8px 12px;
+  }
+}

@@ -1,7 +1,6 @@
-// src/modules/Leads/hooks/useLeads.ts
 import { useState, useEffect, useCallback } from 'react';
-import { getLeads } from '../../../apis/leads';
-import { Lead, LeadsRequest } from '../models';
+import { getLeads } from 'src/apis/leads';
+import { Lead, LeadsRequest } from 'src/modules/Leads/models';
 
 interface UseLeadsReturn {
   leads: Lead[];
@@ -25,16 +24,18 @@ export const useLeads = (initialParams?: LeadsRequest): UseLeadsReturn => {
   const limit = initialParams?.limit || 10;
   const totalPages = Math.ceil(totalCount / limit);
 
+  // Fetch leads only when the currentParams change.
   const fetchLeads = useCallback(async (params?: LeadsRequest) => {
     setLoading(true);
     setError(null);
     
     try {
+      // Merge currentParams with any new params provided
       const requestParams = { ...currentParams, ...params };
       setCurrentParams(requestParams);
-      
       const response = await getLeads(requestParams);
       setLeads(response.leads);
+      console.log('Fetched leads:', typeof(response), response.leads);
       setTotalCount(response.totalCount);
       setCurrentPage(response.page);
     } catch (err) {

@@ -1,185 +1,184 @@
 // src/modules/Leads/Leads.module.scss
 .leadsContainer {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 24px;
-  background-color: #f8f9fa;
-  gap: 20px;
+  @apply flex flex-col h-full p-6 bg-gray-50 gap-5;
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  padding: 20px 24px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  @apply flex justify-between items-center bg-white p-5 rounded-lg shadow-sm;
 }
 
 .titleSection {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  @apply flex items-center gap-3;
 }
 
 .title {
-  font-size: 24px;
-  font-weight: 600;
-  color: #212529;
-  margin: 0;
+  @apply text-2xl font-semibold text-gray-800 m-0;
 }
 
 .leadCount {
-  background-color: #e9ecef;
-  color: #495057;
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 14px;
-  font-weight: 500;
+  @apply bg-gray-200 text-gray-600 px-3 py-1 rounded-2xl text-sm font-medium;
 }
 
 .actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  @apply flex items-center gap-4;
 }
 
 .searchContainer {
-  position: relative;
+  @apply relative;
 }
 
 .searchInput {
-  width: 300px;
-  padding: 10px 16px;
-  border: 1px solid #ced4da;
-  border-radius: 6px;
-  font-size: 14px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  @apply w-80 px-4 py-2.5 border border-gray-300 rounded-md text-sm transition-all duration-200 ease-in-out;
   
   &:focus {
-    outline: none;
-    border-color: #0066cc;
-    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    @apply outline-none border-blue-600 ring-2 ring-blue-100;
   }
   
   &::placeholder {
-    color: #6c757d;
+    @apply text-gray-500;
   }
 }
 
 .refreshButton {
-  padding: 10px 16px;
-  background-color: #6c757d;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  @apply px-4 py-2.5 bg-gray-500 text-white border-0 rounded-md text-sm font-medium cursor-pointer transition-colors duration-200 ease-in-out;
   
   &:hover:not(:disabled) {
-    background-color: #5a6268;
+    @apply bg-gray-600;
   }
   
   &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+    @apply opacity-60 cursor-not-allowed;
   }
 }
 
 .addButton {
-  padding: 10px 20px;
-  background-color: #0066cc;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  @apply px-5 py-2.5 bg-blue-600 text-white border-0 rounded-md text-sm font-medium cursor-pointer transition-colors duration-200 ease-in-out;
   
   &:hover {
-    background-color: #0056b3;
+    @apply bg-blue-700;
   }
 }
 
 .errorMessage {
-  background-color: #f8d7da;
-  color: #721c24;
-  padding: 16px;
-  border-radius: 6px;
-  border: 1px solid #f5c6cb;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @apply bg-red-100 text-red-800 p-4 rounded-md border border-red-200 flex justify-between items-center;
   
   p {
-    margin: 0;
-    font-size: 14px;
+    @apply m-0 text-sm;
   }
 }
 
 .retryButton {
-  padding: 6px 12px;
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  @apply px-3 py-1.5 bg-red-600 text-white border-0 rounded text-xs cursor-pointer transition-colors duration-200 ease-in-out;
   
   &:hover {
-    background-color: #c82333;
+    @apply bg-red-700;
   }
 }
 
 .tableSection {
-  flex: 1;
-  min-height: 0; // Important for flex child to be scrollable
+  @apply flex-1 min-h-0; // Important for flex child to be scrollable
 }
 
 .paginationSection {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  padding: 16px 24px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  @apply flex justify-between items-center bg-white p-4 rounded-lg shadow-sm;
 }
 
 .pagination {
-  display: flex;
-  gap: 8px;
-  align-items: center;
+  @apply flex gap-2 items-center;
 }
 
 .pageButton {
-  padding: 8px 12px;
-  border: 1px solid #ced4da;
-  background-color: white;
-  color: #495057;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.2s ease;
+  @apply px-3 py-2 border border-gray-300 bg-white text-gray-600 rounded cursor-pointer text-sm transition-all duration-200 ease-in-out;
   
   &:hover:not(:disabled) {
-    background-color: #e9ecef;
-    border-color: #adb5bd;
+    @apply bg-gray-100 border-gray-400;
   }
   
   &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+    @apply opacity-50 cursor-not-allowed;
   }
 }
 
 .activePageButton {
-  background-color: #0066cc;
-  color: white;
-  border-color: #0066cc;
+  @apply bg-blue-600 text-white border-blue-600;
+  
+  &:hover {
+    @apply bg-blue-700 border-blue-700;
+  }
+}
+
+.paginationInfo {
+  @apply text-gray-500 text-sm font-medium;
+}
+
+// Responsive design
+@media (max-width: 1200px) {
+  .leadsContainer {
+    @apply p-4;
+  }
+  
+  .header {
+    @apply flex-col gap-4 items-stretch;
+  }
+  
+  .actions {
+    @apply justify-between;
+  }
+  
+  .searchInput {
+    @apply w-64;
+  }
+}
+
+@media (max-width: 768px) {
+  .leadsContainer {
+    @apply p-3 gap-4;
+  }
+  
+  .header {
+    @apply p-4;
+  }
+  
+  .titleSection {
+    @apply flex-col items-start gap-2;
+  }
+  
+  .title {
+    @apply text-xl;
+  }
+  
+  .actions {
+    @apply flex-col gap-3;
+  }
+  
+  .searchInput {
+    @apply w-full;
+  }
+  
+  .addButton,
+  .refreshButton {
+    @apply w-full justify-center;
+  }
+  
+  .paginationSection {
+    @apply flex-col gap-3 p-4;
+  }
+  
+  .pagination {
+    @apply justify-center flex-wrap;
+  }
+  
+  .paginationInfo {
+    @apply text-center text-xs;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageButton {
+    @apply px-2.5 py-1.5 text-xs;
+  }
+  
+  .leadCount {
+    @apply text-xs px-2 py-0.5;
+  }
+}

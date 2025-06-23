@@ -77,20 +77,20 @@ function LeadsTable({
                                 <input
                                     type="checkbox"
                                     checked={selectedLeads.length === leads.length && leads.length > 0}
-                                    onChange={() => handleSelectAll(leads.map(lead => lead.id))}
+                                    onChange={() => handleSelectAll(leads.map(lead => lead._id))}
                                 />
                             </th>
                             <th 
                                 className={classes['sortableHeader']}
-                                onClick={() => handleSortClick('name')}
+                                onClick={() => handleSortClick('fullName')}
                             >
-                                Name {getSortIcon('name')}
+                                Name {getSortIcon('fullName')}
                             </th>
                             <th 
                                 className={classes['sortableHeader']}
-                                onClick={() => handleSortClick('movingDate')}
+                                onClick={() => handleSortClick('moveDate')}
                             >
-                                Moving Date {getSortIcon('movingDate')}
+                                Moving Date {getSortIcon('moveDate')}
                             </th>
                             <th 
                                 className={classes['sortableHeader']}
@@ -106,21 +106,21 @@ function LeadsTable({
                             </th>
                             <th 
                                 className={classes['sortableHeader']}
-                                onClick={() => handleSortClick('leadStatus')}
+                                onClick={() => handleSortClick('currentStatus')}
                             >
-                                Lead Status {getSortIcon('leadStatus')}
+                                Lead Status {getSortIcon('currentStatus')}
                             </th>
                             <th 
                                 className={classes['sortableHeader']}
-                                onClick={() => handleSortClick('leadCreationDate')}
+                                onClick={() => handleSortClick('createdAt')}
                             >
-                                Lead Creation Date {getSortIcon('leadCreationDate')}
+                                Lead Creation Date {getSortIcon('createdAt')}
                             </th>
                             <th 
                                 className={classes['sortableHeader']}
-                                onClick={() => handleSortClick('leadModifiedDate')}
+                                onClick={() => handleSortClick('updatedAt')}
                             >
-                                Lead Modified Date {getSortIcon('leadModifiedDate')}
+                                Lead Modified Date {getSortIcon('updatedAt')}
                             </th>
                             <th>Refusal Reason</th>
                             <th>UTM Campaign</th>
@@ -130,21 +130,29 @@ function LeadsTable({
                     </thead>
                     <tbody className={classes['tableBody']}>
                         {leads.map((lead) => (
-                            <tr key={lead.id} className={classes['tableRow']}>
+                            <tr key={lead._id} className={classes['tableRow']}>
                                 <td className={classes['checkboxColumn']}>
                                     <input
                                         type="checkbox"
-                                        checked={selectedLeads.includes(lead.id)}
-                                        onChange={() => handleSelectLead(lead.id)}
+                                        checked={selectedLeads.includes(lead._id)}
+                                        onChange={() => handleSelectLead(lead._id)}
                                     />
                                 </td>
-                                <td className={classes['nameColumn']}>{lead.name}</td>
-                                <td>{formatDate(lead.movingDate)}</td>
+                                <td className={classes['nameColumn']}>{lead.fullName}</td>
+                                <td>{formatDate(lead.moveDate)}</td>
                                 <td>{lead.phone}</td>
                                 <td className={classes['emailColumn']}>{lead.email}</td>
-                                <td>{getStatusBadge(lead.leadStatus)}</td>
-                                <td>{formatDate(lead.leadCreationDate)}</td>
-                                <td>{formatDate(lead.leadModifiedDate)}</td>
+                                <td>
+                                    {getStatusBadge(
+                                        (typeof lead.currentStatus === 'string' &&
+                                            ['new', 'contacted', 'qualified', 'converted', 'lost'].includes(lead.currentStatus.toLowerCase())
+                                        )
+                                            ? (lead.currentStatus.toLowerCase() as 'new' | 'contacted' | 'qualified' | 'converted' | 'lost')
+                                            : 'new'
+                                    )}
+                                </td>
+                                <td>{formatDate(lead.createdAt)}</td>
+                                <td>{formatDate(lead.updatedAt)}</td>
                                 <td>{lead.refusalReason || '-'}</td>
                                 <td>{lead.utm_campaign || '-'}</td>
                                 <td>{lead.utm_metric || '-'}</td>

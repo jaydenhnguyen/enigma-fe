@@ -1,19 +1,38 @@
-import { request } from '../../configs';
-import { LeadsRequest, LeadsResponse, CreateLeadRequest, LeadResponse } from '../../modules/Leads/models';
+import { request } from 'src/configs';
+import { LeadsRequest, LeadsResponse, CreateLeadRequest, LeadResponse } from 'src/modules/Leads/models';
 import { LEADS_ENDPOINTS } from './endpoints';
 
 export const getLeads = async (params: LeadsRequest): Promise<LeadsResponse> => {
   const queryParams = new URLSearchParams();
-  
+  /* 
+  - page: The page number for pagination.
+  - limit: The number of leads per page.
+  - sortBy: The field to sort the leads by.
+  - order: The order of sorting (asc or desc).
+  - search: A search term to filter leads.
+  */
   if (params.page) queryParams.append('page', params.page.toString());
   if (params.limit) queryParams.append('limit', params.limit.toString());
   if (params.sortBy) queryParams.append('sortBy', params.sortBy);
-  if (params.sortOrder) queryParams.append('sortOrder', params.sortOrder);
+  if (params.order) queryParams.append('order', params.order);
   if (params.search) queryParams.append('search', params.search);
 
   const url = `${LEADS_ENDPOINTS.GET_LEADS}?${queryParams.toString()}`;
-  
-  return await request.get(url);
+  // To implement pagination, the endpoint should return totalCount, page and limit in the response. Mock API only provide leads data to get more parameters requires premium subscription. We will add those parameters manually for mock API responses.
+    // return await request.get(url);
+
+  if (!process.env['NEXT_PUBLIC_MOCK_API_URL']) {
+    return await request.get(url);
+  } else{
+    let response = await request.get(url);
+    return {
+      leads: Array.isArray(response) ? response : [],
+      totalCount: 80, // Mocked total count
+      page: params.page || 1, // Mocked current page
+      limit: params.limit || 10, // Mocked limit
+    };
+  }
+
 };
 
 export const createLead = async (data: CreateLeadRequest): Promise<LeadResponse> => {

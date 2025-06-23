@@ -1,183 +1,130 @@
 // src/modules/Leads/components/LeadsTable/LeadsTable.module.scss
 .tableContainer {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  @apply w-full h-full flex flex-col bg-white rounded-lg shadow-lg overflow-hidden;
 }
 
 .tableWrapper {
-  flex: 1;
-  overflow: auto;
+  @apply flex-1 overflow-auto;
   max-height: calc(100vh - 200px); // Adjust based on your layout
   
   // Custom scrollbar
   &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    @apply w-2 h-2;
   }
   
   &::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    @apply bg-gray-100;
   }
   
   &::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 4px;
+    @apply bg-gray-400 rounded;
     
     &:hover {
-      background: #a8a8a8;
+      @apply bg-gray-500;
     }
   }
 }
 
 .table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
+  @apply w-full border-collapse text-sm;
   min-width: 1200px; // Ensure horizontal scroll for narrow screens
 }
 
 .tableHead {
-  background-color: #f8f9fa;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  @apply bg-gray-50 sticky top-0 z-10;
   
   th {
-    padding: 12px 16px;
-    text-align: left;
-    font-weight: 600;
-    color: #495057;
-    border-bottom: 2px solid #dee2e6;
-    white-space: nowrap;
+    @apply p-3 text-left font-semibold text-gray-600 border-b-2 border-gray-200 whitespace-nowrap;
     
     &:first-child {
-      width: 50px;
+      @apply w-12;
     }
   }
 }
 
 .sortableHeader {
-  cursor: pointer;
-  user-select: none;
-  transition: background-color 0.2s ease;
+  @apply cursor-pointer select-none transition-colors duration-200 ease-in-out;
   
   &:hover {
-    background-color: #e9ecef;
+    @apply bg-gray-100;
   }
   
   &:active {
-    background-color: #dee2e6;
+    @apply bg-gray-200;
   }
 }
 
 .tableBody {
   tr {
-    transition: background-color 0.2s ease;
+    @apply transition-colors duration-200 ease-in-out;
     
     &:hover {
-      background-color: #f8f9fa;
+      @apply bg-gray-50;
     }
     
     &:not(:last-child) {
-      border-bottom: 1px solid #dee2e6;
+      @apply border-b border-gray-200;
     }
   }
   
   td {
-    padding: 12px 16px;
-    vertical-align: middle;
-    color: #495057;
+    @apply p-3 align-middle text-gray-600;
   }
 }
 
 .checkboxColumn {
-  width: 50px;
-  text-align: center;
+  @apply w-12 text-center;
   
   input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
+    @apply w-4 h-4 cursor-pointer;
   }
 }
 
 .nameColumn {
-  font-weight: 500;
-  color: #212529;
-  min-width: 150px;
+  @apply font-medium text-gray-800 min-w-[150px];
 }
 
 .emailColumn {
-  min-width: 200px;
-  color: #0066cc;
+  @apply min-w-[200px] text-blue-600;
 }
 
 .statusBadge {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  @apply inline-block px-2 py-1 rounded-xl text-xs font-medium uppercase tracking-wider;
 }
 
 .statusNew {
-  background-color: #e3f2fd;
-  color: #1976d2;
+  @apply bg-blue-100 text-blue-700;
 }
 
 .statusContacted {
-  background-color: #f3e5f5;
-  color: #7b1fa2;
+  @apply bg-purple-100 text-purple-700;
 }
 
 .statusQualified {
-  background-color: #e8f5e8;
-  color: #2e7d32;
+  @apply bg-green-100 text-green-700;
 }
 
 .statusConverted {
-  background-color: #e4f4fd;
-  color: #0277bd;
+  @apply bg-cyan-100 text-cyan-700;
 }
 
 .statusLost {
-  background-color: #ffebee;
-  color: #c62828;
+  @apply bg-red-100 text-red-700;
 }
 
 .loadingContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  background: white;
-  border-radius: 8px;
+  @apply flex justify-center items-center h-48 bg-white rounded-lg;
 }
 
 .spinner {
-  font-size: 16px;
-  color: #666;
+  @apply text-base text-gray-600;
 }
 
 .emptyState {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  color: #666;
-  font-size: 16px;
-  background: white;
+  @apply flex justify-center items-center h-48 text-gray-600 text-base bg-white;
   
   p {
-    margin: 0;
+    @apply m-0;
   }
 }
 
@@ -188,11 +135,11 @@
   }
   
   .table {
-    font-size: 12px;
+    @apply text-xs;
   }
   
   .tableHead th,
   .tableBody td {
-    padding: 8px 12px;
+    @apply px-3 py-2;
   }
 }

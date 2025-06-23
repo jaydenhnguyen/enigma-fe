@@ -1,4 +1,3 @@
-// src/modules/Leads/Leads.tsx
 import React, { useState } from 'react';
 import { useLeads } from './hooks';
 import { LeadsTable } from '../../components/LeadsTable';
@@ -8,17 +7,9 @@ import classes from './Leads.module.scss';
 const Leads: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(15);
-  
-  const {
-    leads,
-    loading,
-    error,
-    totalCount,
-    totalPages,
-    fetchLeads,
-    refetch,
-  } = useLeads({
+  const [itemsPerPage] = useState(10);
+
+  const { leads, loading, error, totalCount, totalPages, fetchLeads, refetch } = useLeads({
     page: currentPage,
     limit: itemsPerPage,
     search: searchTerm,
@@ -40,7 +31,7 @@ const Leads: React.FC = () => {
       limit: itemsPerPage,
       search: searchTerm,
       sortBy: key,
-      sortOrder: direction,
+      order: direction,
     });
   };
 
@@ -66,13 +57,11 @@ const Leads: React.FC = () => {
       pages.push(
         <button
           key={i}
-          className={`${classes['pageButton']} ${
-            i === currentPage ? classes['activePageButton'] : ''
-          }`}
+          className={`${classes['pageButton']} ${i === currentPage ? classes['activePageButton'] : ''}`}
           onClick={() => handlePageChange(i)}
         >
           {i}
-        </button>
+        </button>,
       );
     }
 
@@ -98,68 +87,59 @@ const Leads: React.FC = () => {
   };
 
   return (
-    <div className={classes['leadsContainer']}>
-      <div className={classes['header']}>
-        <div className={classes['titleSection']}>
-          <h1 className={classes['title']}>Leads</h1>
-          <span className={classes['leadCount']}>
-            {totalCount} {totalCount === 1 ? 'lead' : 'leads'}
-          </span>
-        </div>
-        
-        <div className={classes['actions']}>
-          <div className={classes['searchContainer']}>
-            <input
-              type="text"
-              placeholder="Search leads..."
-              value={searchTerm}
-              onChange={handleSearch}
-              className={classes['searchInput']}
-            />
+        <div className={classes['leadsContainer']}>
+          <div className={classes['header']}>
+            <div className={classes['titleSection']}>
+              <h1 className={classes['title']}>Leads</h1>
+              <span className={classes['leadCount']}>
+                {totalCount} {totalCount === 1 ? 'lead' : 'leads'}
+              </span>
+            </div>
+
+            <div className={classes['actions']}>
+              <div className={classes['searchContainer']}>
+                <input
+                  type="text"
+                  placeholder="Search leads..."
+                  value={searchTerm}
+                  onChange={handleSearch}
+                  className={classes['searchInput']}
+                />
+              </div>
+
+              <button onClick={handleRefresh} className={classes['refreshButton']} disabled={loading}>
+                {loading ? 'Refreshing...' : 'Refresh'}
+              </button>
+
+              <button className={classes['addButton']}>Add Lead</button>
+            </div>
           </div>
-          
-          <button
-            onClick={handleRefresh}
-            className={classes['refreshButton']}
-            disabled={loading}
-          >
-            {loading ? 'Refreshing...' : 'Refresh'}
-          </button>
-          
-          <button className={classes['addButton']}>
-            Add Lead
-          </button>
-        </div>
-      </div>
 
-      {error && (
-        <div className={classes['errorMessage']}>
-          <p>Error: {error}</p>
-          <button onClick={handleRefresh} className={classes['retryButton']}>
-            Retry
-          </button>
-        </div>
-      )}
+          {error && (
+            <div className={classes['errorMessage']}>
+              <p>Error: {error}</p>
+              <button onClick={handleRefresh} className={classes['retryButton']}>
+                Retry
+              </button>
+            </div>
+          )}
 
-      <div className={classes['tableSection']}>
-        <LeadsTable
-          leads={leads}
-          loading={loading}
-          onSort={handleSort}
-        />
-      </div>
-
-      {totalPages > 1 && (
-        <div className={classes['paginationSection']}>
-          {renderPagination()}
-          <div className={classes['paginationInfo']}>
-            Showing {(currentPage - 1) * itemsPerPage + 1} to{' '}
-            {Math.min(currentPage * itemsPerPage, totalCount)} of {totalCount} leads
+          <div className={classes['tableSection']}>
+            <LeadsTable leads={leads} loading={loading} onSort={handleSort} />
           </div>
+
+          {totalPages > 1 && (
+            <div className={classes['paginationSection']}>
+              {renderPagination()}
+              <div className={classes['paginationInfo']}>
+                Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, totalCount)} of{' '}
+                {totalCount} leads
+              </div>
+            </div>
+          )}
         </div>
-      )}
-    </div>
   );
 };
 
 export default Leads;
+

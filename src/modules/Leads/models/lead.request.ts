@@ -2,7 +2,7 @@ export interface LeadsRequest {
   page?: number;
   limit?: number;
   sortBy?: string;
-  sortOrder?: 'asc' | 'desc';
+  order?: 'asc' | 'desc';
   search?: string;
 }
 

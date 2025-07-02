@@ -49,6 +49,7 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
               pauseOnFocusLoss
               pauseOnHover
             />
+            {/* getLayout will be defined for each page route. */}
             {getLayout(<Component {...pageProps} />)}
           </>
         </AppThemeProvider>

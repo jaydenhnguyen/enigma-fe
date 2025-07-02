@@ -17,6 +17,7 @@ type Props = {
 
 export function PrivateHeadBar({ onToggleSideMenu }: Props): React.ReactElement {
   const router = useRouter();
+  // Controls the state of drop down menu on the header.
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = React.useCallback((event: React.MouseEvent<HTMLElement>) => {

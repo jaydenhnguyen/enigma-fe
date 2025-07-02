@@ -8,6 +8,5 @@ export function useLogin(onLoginSuccess: (loginResponse: LoginResponse) => void,
     onSuccess: (data: LoginResponse) => onLoginSuccess(data as unknown as LoginResponse),
     onError,
   });
-
   return { mutate, data, error, isPending };
 }

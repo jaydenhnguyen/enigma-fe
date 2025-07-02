@@ -38,12 +38,12 @@ export function Introduction(): React.ReactElement {
           </Typography>
 
           <List>
-            {INTRO_CONTENTS.map((item: string) => (
-              <ListItem className={classes['description-item']}>
+            {INTRO_CONTENTS.map((item: string, index) => (
+              <ListItem key={index} className={classes['description-item']}>
                 <ListItemAvatar className={classes['description-icon']}>
                   <CheckCircleOutlineIcon />
                 </ListItemAvatar>
-                
+
                 <ListItemText primary={item} />
               </ListItem>
             ))}

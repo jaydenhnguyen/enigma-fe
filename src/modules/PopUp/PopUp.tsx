@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, Box, Button, IconButton, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import classes from './PopUp.module.scss';
 
 type EmptyModalProps = {
   isOpen: boolean;
@@ -11,7 +12,7 @@ type EmptyModalProps = {
   children: React.ReactNode;
 };
 
-export const EmptyModule: React.FC<EmptyModalProps> = ({
+export const EmptyModal: React.FC<EmptyModalProps> = ({
   isOpen,
   onClose,
   onSave,
@@ -28,19 +29,13 @@ export const EmptyModule: React.FC<EmptyModalProps> = ({
   };
 
   return (
-    <Modal open={isOpen} onClose={handleClose}>
-      <Box
-        sx={{
-          backgroundColor: "white",
-          padding: 4,
-          borderRadius: 2,
-          width: "400px",
-          margin: "10% auto",
-          position: "relative",
-        }}
+    <Modal className={classes['modal']} open={isOpen} onClose={handleClose} >
+      <Box className={classes['popup-container']}
+  
       >
-        <IconButton
+        <IconButton 
           onClick={handleClose}
+          
           sx={{ position: "absolute", top: 8, right: 8 }}
           aria-label="close"
         >
@@ -53,7 +48,7 @@ export const EmptyModule: React.FC<EmptyModalProps> = ({
 
         <Box>{children}</Box>
 
-        <Box mt={2} display="flex" justifyContent="flex-end" gap={2}>
+        <Box className={classes['save-button']}>
 
           <Button variant="contained" onClick={onSave}>
             Save

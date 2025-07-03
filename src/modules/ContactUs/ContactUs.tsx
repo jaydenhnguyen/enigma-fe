@@ -4,7 +4,7 @@ import { ControlTextField, notify, ToastType } from 'src/components';
 import { CreateContactMeRequest } from './models';
 import { useCreateContactMe, useCreateContactMeForm } from './hooks';
 import classes from './ContactUs.module.scss';
-
+import { EmptyModule } from '../PopUp';
 export function ContactUs(): React.ReactElement {
   const { control, formHandleSubmit } = useCreateContactMeForm();
 
@@ -25,6 +25,7 @@ export function ContactUs(): React.ReactElement {
     (data: CreateContactMeRequest) => createContactMeMutation(data),
     [createContactMeMutation],
   );
+
 
   return (
     <div className={classes['wrapper']}>
@@ -64,7 +65,6 @@ export function ContactUs(): React.ReactElement {
         </Box>
 
         {/* Right Form Section */}
-        <Box className={classes['right-side']}>
         <Card elevation={5} className={classes['contactMe-card']}>
           <CardContent className={classes['contactMe-card-content']}>
             <Typography
@@ -121,7 +121,6 @@ export function ContactUs(): React.ReactElement {
             </Box>
           </CardContent>
         </Card>
-        </Box>
       </Box>
     </div>
   );

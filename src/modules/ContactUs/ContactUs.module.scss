@@ -5,10 +5,11 @@
 .container {
   @apply grid gap-x-24 mr-[3vh] ;
   grid-template-columns: 2.25fr 2.25fr ;
+  @apply grid gap-x-24 mr-[3vh];
+  grid-template-columns: 2.25fr 2.25fr;
 }
 
 .info-section {
-  // @apply flex flex-col w-full md:w-1/2 text-gray-600;
  @apply w-full flex flex-col justify-center text-gray-600 ;
 }
 
@@ -29,7 +30,7 @@
 }
 
 .right-side {
-  @apply self-start mt-[4vh]; // Adjust the value to your liking
+  @apply self-start mt-[4vh];
 }
 
 

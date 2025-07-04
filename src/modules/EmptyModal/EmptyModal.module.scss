@@ -1,0 +1,11 @@
+.modal {
+    @apply w-full h-full flex justify-center items-center;
+}
+
+.popup-container {
+    @apply relative bg-white p-4 rounded w-[400px];
+}
+.save-button{
+    @apply mt-2 flex justify-end gap-2;
+}
+  

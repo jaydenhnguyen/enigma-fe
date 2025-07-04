@@ -65,47 +65,47 @@ export function ContactUs(): React.ReactElement {
 
         {/* Right Form Section */}
         <Box className={classes['right-side']}>
-        <Card elevation={5} className={classes['contactMe-card']}>
-          <CardContent className={classes['contactMe-card-content']}>
-            <Typography
-              component="h2"
-              variant="h3"
-              align="center"
-              fontWeight="bold"
-              gutterBottom
-              className={classes['title']}
-            >
-              Contact Us
-            </Typography>
+          <Card elevation={5} className={classes['contactMe-card']}>
+            <CardContent className={classes['contactMe-card-content']}>
+              <Typography
+                component="h2"
+                variant="h3"
+                align="center"
+                fontWeight="bold"
+                gutterBottom
+                className={classes['title']}
+              >
+                Contact Us
+              </Typography>
 
-            <Box component="form" onSubmit={formHandleSubmit(onSubmitCreateContactMeForm)} noValidate>
-              <Stack spacing={3}>
-                <ControlTextField<CreateContactMeRequest>
-                  control={control}
-                  fullWidth
-                  id="name"
-                  label="Name"
-                  name="name"
-                />
+              <Box component="form" onSubmit={formHandleSubmit(onSubmitCreateContactMeForm)} noValidate>
+                <Stack spacing={3}>
+                  <ControlTextField<CreateContactMeRequest>
+                    control={control}
+                    fullWidth
+                    id="name"
+                    label="Name"
+                    name="name"
+                  />
 
-                <ControlTextField<CreateContactMeRequest>
-                  control={control}
-                  fullWidth
-                  id="email"
-                  label="Email"
-                  name="email"
-                  type="email"
-                />
+                  <ControlTextField<CreateContactMeRequest>
+                    control={control}
+                    fullWidth
+                    id="email"
+                    label="Email"
+                    name="email"
+                    type="email"
+                  />
 
-                <ControlTextField<CreateContactMeRequest>
-                  control={control}
-                  fullWidth
-                  id="message"
-                  label="Message"
-                  name="message"
-                  multiline
-                  rows={4}
-                />
+                  <ControlTextField<CreateContactMeRequest>
+                    control={control}
+                    fullWidth
+                    id="message"
+                    label="Message"
+                    name="message"
+                    multiline
+                    rows={4}
+                  />
 
                 <Button
                   type="submit"

@@ -35,7 +35,6 @@ export const useLeads = (initialParams?: LeadsRequest): UseLeadsReturn => {
       setCurrentParams(requestParams);
       const response = await getLeads(requestParams);
       setLeads(response.leads);
-      console.log('Fetched leads:', typeof(response), response.leads);
       setTotalCount(response.totalCount);
       setCurrentPage(response.page);
     } catch (err) {

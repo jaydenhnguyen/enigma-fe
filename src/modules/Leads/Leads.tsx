@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useLeads } from './hooks';
-import { LeadsTable } from '../../components/LeadsTable';
-import { Lead } from './models';
+import { useLeads } from 'src/modules/Leads/hooks';
+import { LeadsTable } from 'src/components/LeadsTable';
+import { Lead } from 'src/modules/Leads/models';
 import classes from './Leads.module.scss';
 
 const Leads: React.FC = () => {

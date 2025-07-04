@@ -1,4 +1,6 @@
-export type LeadStatus = 'New' | "Didn't Answer" | 'Qualified' | 'Converted' | 'Lost';
+import { LEADS_CONSTANTS } from "../constants";
+
+export type LeadStatus = typeof LEADS_CONSTANTS.LEAD_STATUSES[number];
 
 export interface Lead {
   _id: string;

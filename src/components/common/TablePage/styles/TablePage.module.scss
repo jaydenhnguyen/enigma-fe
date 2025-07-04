@@ -1,8 +1,7 @@
-.leadsContainer {
+.dataPageContainer {
   @apply flex flex-col h-full p-6 bg-gray-50 gap-5;
   overflow: hidden;
   width: 100%;
-
 }
 
 .header {
@@ -20,7 +19,7 @@
   @apply text-2xl font-semibold text-gray-800 m-0;
 }
 
-.leadCount {
+.count {
   @apply bg-gray-200 text-gray-600 px-3 py-1 rounded-2xl text-sm font-medium;
 }
 
@@ -85,7 +84,6 @@
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden; 
-  
 }
 
 .paginationSection {

@@ -1,11 +1,11 @@
 import { useState, useCallback } from 'react';
-import { UseDataPageParams, UseDataPageReturn } from '..';
+import { UseTablePageParams, UseTablePageReturn } from '..';
 
-export function useDataPage({
+export function useTablePage({
   initialPage = 1,
   initialItemsPerPage = 10,
   initialSearchTerm = ''
-}: UseDataPageParams = {}): UseDataPageReturn {
+}: UseTablePageParams = {}): UseTablePageReturn {
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [itemsPerPage] = useState(initialItemsPerPage);

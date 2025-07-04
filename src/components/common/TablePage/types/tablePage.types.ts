@@ -39,13 +39,13 @@ export interface PaginationProps {
     entityName: string;
 }
 
-export interface UseDataPageParams {
+export interface UseTablePageParams {
   initialPage?: number;
   initialItemsPerPage?: number;
   initialSearchTerm?: string;
 }
 
-export interface UseDataPageReturn {
+export interface UseTablePageReturn {
   searchTerm: string;
   currentPage: number;
   itemsPerPage: number;

@@ -1,17 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getLeads } from 'src/apis/leads';
-import { Lead, LeadsRequest } from 'src/modules/Leads/models';
-
-interface UseLeadsReturn {
-  leads: Lead[];
-  loading: boolean;
-  error: string | null;
-  totalCount: number;
-  currentPage: number;
-  totalPages: number;
-  fetchLeads: (params?: LeadsRequest) => Promise<void>;
-  refetch: () => Promise<void>;
-}
+import type { Lead, LeadsRequest, UseLeadsReturn } from '..';
 
 export const useLeads = (initialParams?: LeadsRequest): UseLeadsReturn => {
   const [leads, setLeads] = useState<Lead[]>([]);

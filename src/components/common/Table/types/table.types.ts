@@ -16,7 +16,7 @@ export interface TableProps<T> {
   data: T[];
   columns: TableColumn<T>[];
   loading?: boolean;
-  onSort?: (key: keyof T, direction: 'asc' | 'desc') => void;
+  onSort?: (key: keyof T) => void;
   sortConfig?: SortConfig<T> | null;
   emptyMessage?: string;
   className?: string;

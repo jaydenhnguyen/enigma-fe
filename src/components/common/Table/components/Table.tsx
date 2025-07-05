@@ -1,7 +1,7 @@
 import React from 'react';
 import { TableHeader, TableBody } from '..';
 import type { TableProps } from '..';
-import classes from './Table.module.scss';
+import classes from '../styles/Table.module.scss';
 
 export function Table<T>({
   data,
@@ -14,8 +14,8 @@ export function Table<T>({
   rowKey,
 }: TableProps<T>): React.ReactElement {
   const handleSort = (key: keyof T) => {
-    if (onSort && sortConfig) {
-      onSort(key, sortConfig.direction === 'asc' ? 'desc' : 'asc');
+    if (onSort) {
+      onSort(key);
     }
   };
 

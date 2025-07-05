@@ -4,7 +4,7 @@ import type { SortConfig } from 'src/components/common/Table';
 export type LeadStatus = typeof LEADS_CONSTANTS.LEAD_STATUSES[number];
 
 export interface Lead {
-  _id: string;
+  id: string;
   fullName: string;
   moveDate: string;
   phone: string;

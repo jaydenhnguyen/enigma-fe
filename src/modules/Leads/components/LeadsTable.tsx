@@ -109,7 +109,7 @@ export function LeadsTable({ leads, loading = false, onSort }: LeadsTableProps):
       onSort={handleSortClick}
       sortConfig={sortConfig}
       emptyMessage="No leads found"
-      rowKey="_id"
+      rowKey="id"
     />
   );
 }

@@ -50,15 +50,9 @@ export function Leads(): React.ReactElement {
     refetch();
   };
 
-  const handleAdd = () => {
-    // Navigate to add lead page or open modal
-    console.log('Add new lead');
-  };
-
   const renderTable = (data: Lead[], loading: boolean, onSort: (key: keyof Lead, direction: 'asc' | 'desc') => void) => {
     return <LeadsTable leads={data} loading={loading} onSort={onSort} />;
   };
-
   return (
     <TablePage
       title="Leads"
@@ -74,7 +68,6 @@ export function Leads(): React.ReactElement {
       onSort={handleSort}
       onPageChange={(page) => handlePageChange(page, handlePageChangeInternal)}
       onRefresh={handleRefresh}
-      onAdd={handleAdd}
       renderTable={renderTable}
       addButtonText="Add Lead"
       searchPlaceholder="Search leads..."

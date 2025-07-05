@@ -1,5 +1,5 @@
 import { request } from 'src/configs';
-import { LeadsRequest, LeadsResponse, CreateLeadRequest, LeadResponse } from 'src/modules/Leads/models';
+import { LeadsRequest, LeadsResponse, CreateLeadRequest, LeadResponse } from 'src/modules/Leads';
 import { LEADS_ENDPOINTS } from './endpoints';
 
 export const getLeads = async (params: LeadsRequest): Promise<LeadsResponse> => {

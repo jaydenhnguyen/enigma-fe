@@ -12,7 +12,7 @@
 }
 
 .info-row {
-  @apply flex justify-between gap-6 mb-4 mt-[3vh];
+  @apply flex justify-between gap-6 mb-4 mt-[3vh] ;
 }
 
 .info-item {
@@ -36,8 +36,8 @@
   @apply text-primary-main;
 }
 
-.contact-cardMe {
-  @apply w-full md:w-1/2 h-fit;
+.contactMe-card {
+  @apply w-full max-w-[28rem] h-fit mt-[2vh] ;
 
   .contactMe-card-content {
     @apply p-8;

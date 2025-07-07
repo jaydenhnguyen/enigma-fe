@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Head from 'next/head';
 import { PrivateLayout } from 'src/layouts';
-import { EmptyModule } from "src/modules/PopUp";
-import EventDetailPopUp from "src/components/EventDetailPopUp";
+import { EventDetailPopUp, AppPopUp } from 'src/components';
 
 export default function UpcomingEventsPage(): React.ReactElement {
   const [open, setOpen] = React.useState(false);
@@ -10,9 +9,9 @@ export default function UpcomingEventsPage(): React.ReactElement {
 
   const handleOpen = () => {
     setSelectedEvent({
-      clientName: "Kevin Dohery",
-      phone: "067999777888",
-      email: "dummy@email.com",
+      clientName: 'Kevin Dohery',
+      phone: '067999777888',
+      email: 'dummy@email.com',
     });
     setOpen(true);
   };
@@ -33,21 +32,14 @@ export default function UpcomingEventsPage(): React.ReactElement {
       </Head>
 
       <div>this is Upcoming Events page</div>
-      
+
       <button onClick={handleOpen}>Open PopUp</button>
 
-      <EmptyModule
-        isOpen={open}
-        onClose={handleClose}
-        onSave={handleSave}
-        title="Event Details"
-        width="1200px"
-      >
+      <AppPopUp isOpen={open} onClose={handleClose} onSave={handleSave} title="Event Details" width="1200px">
         <EventDetailPopUp event={selectedEvent} />
-      </EmptyModule>
+      </AppPopUp>
     </>
   );
 }
 
-UpcomingEventsPage.getLayout = (page: React.ReactElement) =>
-  <PrivateLayout>{page}</PrivateLayout>;
+UpcomingEventsPage.getLayout = (page: React.ReactElement) => <PrivateLayout>{page}</PrivateLayout>;

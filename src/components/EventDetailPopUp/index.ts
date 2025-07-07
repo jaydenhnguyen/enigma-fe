@@ -1,1 +1,1 @@
-export { default } from "./EventDetailPopUp";
+export * from './EventDetailPopUp';

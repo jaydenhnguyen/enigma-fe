@@ -1,9 +1,9 @@
-export interface SortConfig<T> {
+export type SortConfig<T> = {
   key: keyof T;
   direction: 'asc' | 'desc';
 }
 
-export interface TableColumn<T> {
+export type TableColumn<T> = {
   key: keyof T;
   label: string;
   sortable?: boolean;
@@ -12,7 +12,7 @@ export interface TableColumn<T> {
   className?: string;
 }
 
-export interface TableProps<T> {
+export type TableProps<T> = {
   data: T[];
   columns: TableColumn<T>[];
   loading?: boolean;
@@ -23,13 +23,13 @@ export interface TableProps<T> {
   rowKey: keyof T;
 }
 
-export interface TableHeaderProps<T> {
+export type TableHeaderProps<T> = {
   columns: TableColumn<T>[];
   sortConfig: SortConfig<T> | null;
   onSort?: (key: keyof T) => void;
 }
 
-export interface TableBodyProps<T> {
+export type TableBodyProps<T> = {
   data: T[];
   columns: TableColumn<T>[];
   rowKey: keyof T;

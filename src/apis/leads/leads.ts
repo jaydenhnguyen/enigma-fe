@@ -18,8 +18,12 @@ export const getLeads = async (params: LeadsRequest): Promise<LeadsResponse> => 
   if (params.search) queryParams.append('search', params.search);
 
   const url = `${LEADS_ENDPOINTS.GET_LEADS}?${queryParams.toString()}`;
-  //* To implement pagination, the endpoint should return totalCount, page and limit in the response. Mock API only provide leads data to get more parameters requires premium subscription. We will add those parameters manually for mock API responses.
-    // return await request.get(url);
+  // TODO: To implement pagination, the endpoint should return totalCount, page and limit in the response. Mock API only provide leads data to get more parameters requires premium subscription. We will add those parameters manually for mock API responses.
+
+  // NOTE: For some reason mock API was returning me "id" as attribute instead of "_id", so I had to change _id to id in the following files:
+  //* 1. LeadTable
+  //* 2. lead.type.ts
+  // return await request.get(url);
 
   if (!process.env['NEXT_PUBLIC_MOCK_API_URL']) {
     // NOTE: Ideal API call when not using mock API.

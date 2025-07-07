@@ -1,9 +1,9 @@
-import { LEADS_CONSTANTS } from "..";
+import { LEADS_CONSTANTS } from "../constants/lead.constants";
 import type { SortConfig } from 'src/components/common/Table';
 
 export type LeadStatus = typeof LEADS_CONSTANTS.LEAD_STATUSES[number];
 
-export interface Lead {
+export type Lead = {
   id: string;
   fullName: string;
   moveDate: string;
@@ -20,20 +20,20 @@ export interface Lead {
   refusalReason?: string;
 }
 
-export interface LeadsResponse {
+export type LeadsResponse = {
   leads: Lead[];
   totalCount: number;
   page: number;
   limit: number;
 }
 
-export interface LeadResponse {
+export type LeadResponse = {
   success: boolean;
   data: Lead;
   message?: string;
 }
 
-export interface LeadsRequest {
+export type LeadsRequest = {
   page?: number;
   limit?: number;
   sortBy?: string;
@@ -41,7 +41,7 @@ export interface LeadsRequest {
   search?: string;
 }
 
-export interface CreateLeadRequest {
+export type CreateLeadRequest = {
   name: string;
   movingDate: string;
   phone: string;
@@ -51,7 +51,7 @@ export interface CreateLeadRequest {
   utm_source?: string;
 }
 
-export interface UseLeadsReturn {
+export type UseLeadsReturn = {
   leads: Lead[];
   loading: boolean;
   error: string | null;
@@ -62,12 +62,12 @@ export interface UseLeadsReturn {
   refetch: () => Promise<void>;
 }
 
-export interface UseLeadTableReturn {
+export type UseLeadTableReturn = {
   sortConfig: SortConfig<Lead> | null;
   updateSortConfig: (key: keyof Lead) => void;
 }
 
-export interface LeadsTableProps {
+export type LeadsTableProps = {
   leads: Lead[];
   loading?: boolean;
   onSort?: (key: keyof Lead, direction: 'asc' | 'desc') => void;

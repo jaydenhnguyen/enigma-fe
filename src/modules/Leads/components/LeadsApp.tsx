@@ -1,16 +1,17 @@
 import React from 'react';
-import { useLeads, LeadsTable } from '..';
-import { TablePage, useTablePage } from 'src/components/common/TablePage';
-import type { Lead } from '..';
+import { useLeads } from '../hooks/useLeads';
+import { LeadsTable } from './LeadsTable';
+import { AppTable, useAppTable } from 'src/components/common/AppTable';
+import type { Lead } from '../types/lead.type';
 
-export function Leads(): React.ReactElement {
+export function LeadsApp(): React.ReactElement {
   const { 
     searchTerm, 
     currentPage, 
     itemsPerPage, 
     handleSearch, 
     handlePageChange 
-  } = useTablePage({
+  } = useAppTable({
     initialItemsPerPage: 10
   });
 
@@ -54,7 +55,7 @@ export function Leads(): React.ReactElement {
     return <LeadsTable leads={data} loading={loading} onSort={onSort} />;
   };
   return (
-    <TablePage
+    <AppTable
       title="Leads"
       data={leads}
       totalCount={totalCount}

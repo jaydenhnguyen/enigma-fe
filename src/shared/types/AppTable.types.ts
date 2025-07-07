@@ -1,4 +1,4 @@
-export interface TablePageProps<T> {
+export type AppTableProps<T> = {
     title: string;
     data: T[];
     totalCount: number;
@@ -20,7 +20,7 @@ export interface TablePageProps<T> {
     className?: string;
 }
 
-export interface SearchAndActionsProps {
+export type SearchAndActionsProps = {
     searchTerm: string;
     onSearch: (term: string) => void;
     onRefresh: () => void;
@@ -30,7 +30,7 @@ export interface SearchAndActionsProps {
     searchPlaceholder?: string;
 }
 
-export interface PaginationProps {
+export type PaginationProps = {
     currentPage: number;
     totalPages: number;
     totalCount: number;
@@ -39,13 +39,13 @@ export interface PaginationProps {
     entityName: string;
 }
 
-export interface UseTablePageParams {
+export type UseAppTableParams = {
   initialPage?: number;
   initialItemsPerPage?: number;
   initialSearchTerm?: string;
 }
 
-export interface UseTablePageReturn {
+export type UseAppTableReturns = {
   searchTerm: string;
   currentPage: number;
   itemsPerPage: number;

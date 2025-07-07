@@ -5,4 +5,3 @@ export const LEADS_ENDPOINTS = {
   DELETE_LEAD: (id: string) => `/leads/${id}`,
   GET_LEAD_BY_ID: (id: string) => `/leads/${id}`,
 } as const;
-

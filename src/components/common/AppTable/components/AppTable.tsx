@@ -1,9 +1,10 @@
 import React from 'react';
-import type { TablePageProps } from '..';
-import { SearchAndActions, Pagination } from '..';
-import classes from '../styles/TablePage.module.scss';
+import type { AppTableProps } from 'src/shared/types';
+import {  Pagination } from './Pagination';
+import { SearchAndActions }  from './SearchAndActions';
+import classes from '../styles/AppTable.module.scss';
 
-export function TablePage<T>({
+export function AppTable<T>({
   title,
   data,
   totalCount,
@@ -22,7 +23,7 @@ export function TablePage<T>({
   addButtonText,
   searchPlaceholder,
   className = '',
-}: TablePageProps<T>): React.ReactElement {
+}: AppTableProps<T>): React.ReactElement {
   const entityName = title.toLowerCase();
 
   return (

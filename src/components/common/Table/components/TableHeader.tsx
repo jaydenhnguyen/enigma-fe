@@ -3,7 +3,6 @@ import { TableColumn } from '..';
 import type { TableHeaderProps } from '..';
 import classes from '../styles/Table.module.scss';
 
-
 export function TableHeader<T>({ columns, sortConfig, onSort }: TableHeaderProps<T>): React.ReactElement {
   const getSortIcon = (key: keyof T) => {
     if (sortConfig?.key !== key) return '↕️';
@@ -34,4 +33,3 @@ export function TableHeader<T>({ columns, sortConfig, onSort }: TableHeaderProps
     </thead>
   );
 }
-

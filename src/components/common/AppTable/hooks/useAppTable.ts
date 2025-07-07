@@ -1,11 +1,11 @@
 import { useState, useCallback } from 'react';
-import { UseTablePageParams, UseTablePageReturn } from '..';
+import { UseAppTableParams, UseAppTableReturns } from 'src/shared/types';
 
-export function useTablePage({
+export function useAppTable({
   initialPage = 1,
   initialItemsPerPage = 10,
   initialSearchTerm = ''
-}: UseTablePageParams = {}): UseTablePageReturn {
+}: UseAppTableParams = {}): UseAppTableReturns {
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [itemsPerPage] = useState(initialItemsPerPage);

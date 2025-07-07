@@ -1,6 +1,6 @@
 import React from 'react';
-import classes from '../styles/TablePage.module.scss'
-import type { SearchAndActionsProps } from '..';
+import classes from '../styles/AppTable.module.scss'
+import type { SearchAndActionsProps } from 'src/shared/types';
 
 export function SearchAndActions({
   searchTerm,

@@ -1,9 +1,9 @@
 import React from 'react';
-import type { Lead, LeadStatus, LeadsTableProps } from '..';
-import { useLeadTable } from '..';
+import type { Lead, LeadStatus, LeadsTableProps } from '../types/lead.type';
+import { useLeadTable } from '../hooks/useLeadTable';
 import { Table, TableColumn, dateRenderer, statusBadgeRenderer, emptyValueRenderer } from 'src/components/common/Table';
-import { LEADS_CONSTANTS } from '..';
-import classes from '../styles/LeadsTable.module.scss';
+import { LEADS_CONSTANTS } from '../constants/lead.constants';
+import classes from '../constants/LeadsTable.module.scss';
 
 export function LeadsTable({ leads, loading = false, onSort }: LeadsTableProps): React.ReactElement {
   const leadStatuses: LeadStatus[] = [...LEADS_CONSTANTS.LEAD_STATUSES];

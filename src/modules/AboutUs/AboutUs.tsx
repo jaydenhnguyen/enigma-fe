@@ -45,6 +45,7 @@ const ABOUT_CARDS = [
 type Props = {};
 
 export function AboutUs({}: Props): React.ReactElement {
+
   return (
     <Box className={classes['wrapper']}>
       <Box className={classes['container']}>
@@ -78,7 +79,7 @@ export function AboutUs({}: Props): React.ReactElement {
               whileTap={{ scale: 0.98 }}
               style={{ willChange: 'transform' }}
             >
-              <Card className={classNames(classes['card'], card.variant == 'blue' ? classes['bg-blue'] : 'bg-white')}>
+              <Card className={classNames(classes['card'], classes[card.variant])}>
                 <CardContent>
                   <Typography variant="h6" component="h3" className={classes['card-title']}>
                     {card.title}

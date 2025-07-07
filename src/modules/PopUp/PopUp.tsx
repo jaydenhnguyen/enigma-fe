@@ -9,6 +9,7 @@ type EmptyModalProps = {
   onReset?: () => void;
   title?: string;
   children: React.ReactNode;
+  width?: string;
 };
 
 export const EmptyModule: React.FC<EmptyModalProps> = ({
@@ -31,12 +32,12 @@ export const EmptyModule: React.FC<EmptyModalProps> = ({
     <Modal open={isOpen} onClose={handleClose}>
       <Box
         sx={{
-          backgroundColor: "white",
-          padding: 4,
-          borderRadius: 2,
-          width: "400px",
-          margin: "10% auto",
-          position: "relative",
+            backgroundColor: "white",
+            padding: 4,
+            borderRadius: 2,
+            width: "1200px",
+            margin: "5% auto",
+            position: "relative",
         }}
       >
         <IconButton

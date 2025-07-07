@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'src/styles/_app.scss';
 import 'src/styles/_core.scss';
 import 'src/styles/tailwind.scss';
-import { useScrollToTop } from 'src/hooks';
+import { useScrollToTop } from 'src/hooks/';
 import { AllAppContexts } from 'src/shared';
 import { AppThemeProvider } from 'src/theme/AppThemeProvider';
 

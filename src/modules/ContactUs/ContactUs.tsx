@@ -4,7 +4,6 @@ import { ControlTextField, notify, ToastType } from 'src/components';
 import { CreateContactMeRequest } from './models';
 import { useCreateContactMe, useCreateContactMeForm } from './hooks';
 import classes from './ContactUs.module.scss';
-import { AppPopup } from '../../components/common/AppPopUp';
 
 export function ContactUs(): React.ReactElement {
   const { control, formHandleSubmit } = useCreateContactMeForm();

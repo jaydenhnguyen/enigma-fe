@@ -1,0 +1,30 @@
+// Status badge styles
+.statusNew {
+    @apply bg-blue-100 text-blue-700;
+  }
+  
+  .statusContacted {
+    @apply bg-purple-100 text-purple-700;
+  }
+  
+  .statusQualified {
+    @apply bg-green-100 text-green-700;
+  }
+  
+  .statusConverted {
+    @apply bg-cyan-100 text-cyan-700;
+  }
+  
+  .statusLost {
+    @apply bg-red-100 text-red-700;
+  }
+  
+  // Column-specific styles
+  .nameColumn {
+    @apply font-medium text-gray-800 min-w-[10px];
+  }
+  
+  .emailColumn {
+    @apply min-w-[200px] text-blue-600;
+  }
+  

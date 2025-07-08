@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { PrivateLayout } from 'src/layouts';
 import { Button } from '@mui/material';
 import { EmployeeDetailPopup } from 'src/components/EmployeeDetailPopup';
-
+import {Employees} from 'src/modules/Employees/Employees';
 export default function EmployeeManagementPage(): React.ReactElement {
   const [isOpenDetailPopup, setIsOpenDetailPopup] = React.useState<boolean>(false);
 
@@ -12,10 +12,11 @@ export default function EmployeeManagementPage(): React.ReactElement {
       <Head>
         <title>A-Z Moving: Employee Management</title>
       </Head>
-
-      <Button variant="contained" onClick={() => setIsOpenDetailPopup(true)}>
+      <Employees></Employees>
+      
+      {/* <Button variant="contained" onClick={() => setIsOpenDetailPopup(true)}>
         Open the employee modal example
-      </Button>
+      </Button> */}
 
       <EmployeeDetailPopup isOpen={isOpenDetailPopup} onClose={() => setIsOpenDetailPopup(false)} onSave={() => {}} />
     </>

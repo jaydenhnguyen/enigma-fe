@@ -5,3 +5,4 @@ export * from './NotifyToast';
 export * from './PublicHeadBar';
 export * from './ControlTextField';
 export * from './EventDetailPopUp';
+export * from './EmployeeDetailPopup';

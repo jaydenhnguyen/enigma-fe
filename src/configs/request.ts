@@ -7,10 +7,10 @@ import { tokenManager } from './tokensManager';
 import { StatusCodes } from 'http-status-codes';
 
 // Added to provide mock API endpoint for the lead table.
-const baseURL = process.env['NEXT_PUBLIC_MOCK_API_URL'] ? envVariables.MOCK_API_URL : envVariables.BASE_API_URL;
+// const baseURL = process.env['NEXT_PUBLIC_MOCK_API_URL'] ? envVariables.MOCK_API_URL : envVariables.BASE_API_URL;
 export const request = axios.create({
   timeout: 10000,
-  baseURL: baseURL,
+  baseURL: envVariables.BASE_API_URL,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',

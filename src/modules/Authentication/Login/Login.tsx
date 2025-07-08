@@ -31,13 +31,14 @@ export function Login(): React.ReactElement {
     [router],
   );
 
-  const {
-    mutate: loginMutation,
-    isPending: isLoading,
-    data,
-  } = useLogin(handleLoginSuccess, () => notify({ message: NOTIFY_MESSAGES.ERROR, type: ToastType.error }));
+  const handleLoginError = React.useCallback(
+    () => notify({ message: NOTIFY_MESSAGES.ERROR, type: ToastType.error }),
+    [],
+  );
 
-  const onSubmitLoginForm = React.useCallback((data: LoginRequest) => loginMutation(data), [data]);
+  const { mutate: loginMutation, isPending: isLoading } = useLogin(handleLoginSuccess, handleLoginError);
+
+  const onSubmitLoginForm = React.useCallback((payload: LoginRequest) => loginMutation(payload), [loginMutation]);
 
   return (
     <div className={classes['wrapper']}>

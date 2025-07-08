@@ -14,10 +14,6 @@
   @apply text-primary-main mb-6;
 }
 
-.bg-blue {
-  @apply bg-opacity-15 bg-primary-light #{!important};
-}
-
 .description {
   @apply text-gray-600 text-lg leading-relaxed mx-auto;
 }
@@ -43,5 +39,5 @@
 }
 
 .card-description {
-  @apply text-gray-600;
+  @apply text-gray-600 leading-relaxed;
 }

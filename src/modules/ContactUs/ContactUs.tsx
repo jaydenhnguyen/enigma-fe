@@ -26,7 +26,6 @@ export function ContactUs(): React.ReactElement {
     [createContactMeMutation],
   );
 
-
   return (
     <div className={classes['wrapper']}>
       <Box className={classes['container']}>

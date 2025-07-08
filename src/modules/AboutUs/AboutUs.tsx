@@ -45,6 +45,7 @@ const ABOUT_CARDS = [
 type Props = {};
 
 export function AboutUs({}: Props): React.ReactElement {
+
   return (
     <Box className={classes['wrapper']}>
       <Box className={classes['container']}>

@@ -2,7 +2,7 @@ import path from 'path';
 import { NextConfig } from 'next';
 
 const config: NextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   eslint: {
     dirs: ['src'],
   },

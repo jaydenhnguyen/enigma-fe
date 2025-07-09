@@ -4,7 +4,7 @@ import {type Event, type EventType, useEvent, EventTable } from "..";
 import { AppTable } from "src/components/common/AppTable";
 import { AppPopUp } from "src/components";
 
-export function EventApp(type: EventType): React.ReactElement {
+export function EventApp({type}: {type: EventType}): React.ReactElement {
 const { 
     searchTerm, 
     currentPage, 

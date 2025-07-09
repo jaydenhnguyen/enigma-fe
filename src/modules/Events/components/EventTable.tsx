@@ -2,7 +2,7 @@ import React from 'react';
 import type { Event, EventsTableProps } from '..';
 import { useEventTable } from '..';
 import { Table, TableColumn, dateRenderer, emptyValueRenderer } from 'src/components/common/Table';
-import classes from '../styles/LeadsTable.module.scss';
+import classes from '../EventTable.module.scss';
 
 export function EventTable({ events, loading = false, onSort, onRowClick }: EventsTableProps): React.ReactElement {
   const { sortConfig, updateSortConfig } = useEventTable();
@@ -28,9 +28,7 @@ export function EventTable({ events, loading = false, onSort, onRowClick }: Even
         key: 'id',
         label: 'Event ID',
         sortable: true,
-        render: (event: Event) => {
-          return <span className={classes['event-id']}>{event.id}</span>;
-        }
+        render: emptyValueRenderer
     },
     {
       key: 'moveDate',
@@ -75,7 +73,7 @@ export function EventTable({ events, loading = false, onSort, onRowClick }: Even
       key: 'moversAssigned',
       label: 'Movers Assigned',
       sortable: true,
-      render: (event: Event) => event.moversAssigned.join(', ') || 'N/A',
+      render: (event: Event) => event.moversAssigned ? event.moversAssigned.join(', ') :  'N/A',
     },
     {
       key: 'trucksAssigned',

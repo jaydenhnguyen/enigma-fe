@@ -2,13 +2,7 @@ import * as React from 'react';
 import { AppPopUp } from '../common';
 import { Box, FormControl, Grid, InputLabel, MenuItem, Select, type SelectChangeEvent, TextField } from '@mui/material';
 
-type Props = {
-  isOpen: boolean;
-  onClose: () => void;
-  onSave: () => void;
-};
-
-type Employee = {
+export type Employee = {
   id: string;
   name: string;
   email: string;
@@ -16,10 +10,17 @@ type Employee = {
   status: string;
 };
 
+type Props = {
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: () => void;
+  selectedEmployee: Employee;
+};
+
 const licenseTypes = ['Full G', 'G1', 'G2'];
 const statusOptions = ['Active', 'In active'];
 
-export function EmployeeDetailPopup({ isOpen, onClose, onSave }: Props): React.ReactElement {
+export function EmployeeDetailPopup({ isOpen, onClose, onSave, selectedEmployee }: Props): React.ReactElement {
   const [formData, setFormData] = React.useState<Employee>({
     id: 'EMP-001',
     name: 'Name 1',
@@ -27,6 +28,10 @@ export function EmployeeDetailPopup({ isOpen, onClose, onSave }: Props): React.R
     licenseType: 'Full G',
     status: 'Active',
   });
+
+  React.useEffect(() => {
+    if (selectedEmployee) setFormData(selectedEmployee);
+  }, [selectedEmployee]);
 
   const handleInputChange = (field: keyof Employee) => (event: React.ChangeEvent<HTMLInputElement>) => {
     const updatedData = {

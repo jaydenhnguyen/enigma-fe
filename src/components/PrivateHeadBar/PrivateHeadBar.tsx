@@ -49,7 +49,7 @@ export function PrivateHeadBar(): React.ReactElement {
 
         <Box>
           <IconButton onClick={handleClick} style={{ marginTop: '5px' }}>
-            <Avatar className={classes['user-ava']}>DM</Avatar>
+            <Avatar className={classes['user-ava']}>DL</Avatar>
           </IconButton>
 
           <Menu

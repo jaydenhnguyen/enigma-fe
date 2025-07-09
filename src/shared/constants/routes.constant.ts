@@ -21,4 +21,5 @@ export const APP_ROUTES = {
   PAST_EVENTS: '/past_events',
   MANAGE_EMPLOYEES: '/employee_management',
   CLIENTS: '/clients',
+  PROFILE: '/me',
 };

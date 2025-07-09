@@ -25,7 +25,11 @@ export function PrivateHeadBar(): React.ReactElement {
 
   const handleSignOut = React.useCallback(async () => {
     tokenManager.clearSession();
-    router.replace(APP_ROUTES.INTRODUCTION).then();
+    router.replace(APP_ROUTES.INTRODUCTION).then(() => handleClose());
+  }, [router]);
+
+  const handleNavToProfile = React.useCallback(() => {
+    router.push(APP_ROUTES.PROFILE).then(() => handleClose());
   }, [router]);
 
   const onToggleSideMenu = React.useCallback(() => {
@@ -45,7 +49,7 @@ export function PrivateHeadBar(): React.ReactElement {
 
         <Box>
           <IconButton onClick={handleClick} style={{ marginTop: '5px' }}>
-            <Avatar className={classes['user-ava']}>JD</Avatar>
+            <Avatar className={classes['user-ava']}>DM</Avatar>
           </IconButton>
 
           <Menu
@@ -62,7 +66,7 @@ export function PrivateHeadBar(): React.ReactElement {
               horizontal: 'right',
             }}
           >
-            <MenuItem className={classes['menu-item']}>
+            <MenuItem className={classes['menu-item']} onClick={handleNavToProfile}>
               <AccountCircleIcon className={'text-primary-main'} /> View Profile
             </MenuItem>
 

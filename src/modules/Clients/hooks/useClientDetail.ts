@@ -1,32 +1,32 @@
 import { useState, useEffect, useCallback } from 'react';
-import { getLeadById, updateLead } from 'src/apis/leads';
-import type { UseLeadDetailReturn, LeadDetail } from '..';
+import { getClientById, updateClient } from 'src/apis/clients';
+import type { UseClientDetailReturn, ClientDetail } from '..';
 
 
-export const useLeadDetail = (leadId: string): UseLeadDetailReturn => {
-  const [leadDetail, setLeadDetail] = useState<LeadDetail | null>(null);
+export const useClientDetail = (clientId: string): UseClientDetailReturn => {
+  const [clientDetail, setClientDetail] = useState<ClientDetail | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchLeadDetail = useCallback(async () => {
-    if (!leadId) return;
+  const fetchClientDetail = useCallback(async () => {
+    if (!clientId) return;
     
     setLoading(true);
     setError(null);
     
     try {
-      const response = await getLeadById(leadId);
-      setLeadDetail(response.data);
+      const response = await getClientById(clientId);
+      setClientDetail(response.data);
     } catch (err) {
-      setError('Failed to fetch lead details');
-      console.error('Error fetching lead:', err);
+      setError('Failed to fetch client details');
+      console.error('Error fetching client:', err);
     } finally {
       setLoading(false);
     }
-  }, [leadId]);
+  }, [clientId]);
 
-  const updateLeadStatus = useCallback(async (newStatus: string, previousStatus: string) => {
-    if (!leadDetail || !leadId) return;
+  const updateClientStatus = useCallback(async (newStatus: string, previousStatus: string) => {
+    if (!clientDetail || !clientId) return;
 
     // TODO: Get assignee ID from cookies/context (placeholder implementation)
     const assigneeId = document.cookie
@@ -42,39 +42,39 @@ export const useLeadDetail = (leadId: string): UseLeadDetailReturn => {
     };
 
     const updatedStatusHistory = [
-      ...(leadDetail.statusHistory || []),
+      ...(clientDetail.statusHistory || []),
       newStatusEntry
     ];
 
     try {
       setLoading(true);
-      const response = await updateLead(leadId, {
+      const response = await updateClient(clientId, {
         currentStatus: newStatus,
         statusHistory: updatedStatusHistory
       });
-      
-      setLeadDetail(response.data);
+
+      setClientDetail(response.data);
     } catch (err) {
-      setError('Failed to update lead status');
-      console.error('Error updating lead:', err);
+      setError('Failed to update client status');
+      console.error('Error updating client:', err);
     } finally {
       setLoading(false);
     }
-  }, [leadDetail, leadId]);
+  }, [clientDetail, clientId]);
 
   const refetch = useCallback(async () => {
-    await fetchLeadDetail();
-  }, [fetchLeadDetail]);
+    await fetchClientDetail();
+  }, [fetchClientDetail]);
 
   useEffect(() => {
-    fetchLeadDetail();
-  }, [fetchLeadDetail]);
+    fetchClientDetail();
+  }, [fetchClientDetail]);
 
   return {
-    leadDetail,
+    clientDetail,
     loading,
     error,
-    updateLeadStatus,
+    updateClientStatus,
     refetch
   };
 };

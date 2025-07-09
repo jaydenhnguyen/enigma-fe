@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useLeads } from '../hooks/useClient';
-import { LeadsTable } from './ClientTable';
+import { useClients } from '../hooks/useClient';
+import { ClientsTable } from './ClientTable';
 import { AppTable, useAppTable } from 'src/components/common/AppTable';
-import type { Lead } from '../types/lead.type';
+import type { Client } from '..';
 import { AppPopUp } from 'src/components/common';
-import { LeadDetailDisplay } from './ClientDetailDisplay';
+// import { LeadDetailDisplay } from '../../../layouts/ClientDetailDisplay';
 
-export function LeadsApp(): React.ReactElement {
+export function ClientsApp(): React.ReactElement {
   const { 
     searchTerm, 
     currentPage, 
@@ -17,24 +17,24 @@ export function LeadsApp(): React.ReactElement {
     initialItemsPerPage: 10
   });
 
-  const [isLeadSelected, setIsLeadSelected] = useState<boolean>(false);
-  const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
-  const { leads, loading, error, totalCount, totalPages, fetchLeads, refetch } = useLeads({
+  const [isClientSelected, setIsClientSelected] = useState<boolean>(false);
+  const [selectedClient, setSelectedClient] = useState<Client | null>(null);
+  const { clients, loading, error, totalCount, totalPages, fetchClients, refetch } = useClients({
     page: currentPage,
     limit: itemsPerPage,
     search: searchTerm,
   });
 
   const handleSearchChange = (term: string, page: number) => {
-    fetchLeads({
+    fetchClients({
       page,
       limit: itemsPerPage,
       search: term,
     });
   };
 
-  const handleSort = (key: keyof Lead, direction: 'asc' | 'desc') => {
-    fetchLeads({
+  const handleSort = (key: keyof Client, direction: 'asc' | 'desc') => {
+    fetchClients({
       page: currentPage,
       limit: itemsPerPage,
       search: searchTerm,
@@ -44,7 +44,7 @@ export function LeadsApp(): React.ReactElement {
   };
 
   const handlePageChangeInternal = (page: number) => {
-    fetchLeads({
+    fetchClients({
       page,
       limit: itemsPerPage,
       search: searchTerm,
@@ -55,25 +55,25 @@ export function LeadsApp(): React.ReactElement {
     refetch();
   };
 
-  const onRowClick = (lead: Lead) => {
-    // Handle row click, e.g., navigate to lead details page
-    setIsLeadSelected(!isLeadSelected);
-    setSelectedLead(lead);
+  const onRowClick = (client: Client) => {
+    // Handle row click, e.g., navigate to client details page
+    setIsClientSelected(!isClientSelected);
+    setSelectedClient(client);
   };
 
   const renderTable = (
-    data: Lead[],
+    data: Client[],
     loading: boolean,
-    onSort: (key: keyof Lead, direction: 'asc' | 'desc') => void,
-    onRowClick?: (lead: Lead) => void
+    onSort: (key: keyof Client, direction: 'asc' | 'desc') => void,
+    onRowClick?: (client: Client) => void
   ) => {
-    return <LeadsTable leads={data} loading={loading} onSort={onSort} onRowClick={onRowClick} />;
+    return <ClientsTable clients={data} loading={loading} onSort={onSort} onRowClick={onRowClick} />;
   };
   return (
     <>
       <AppTable
-        title="Leads"
-        data={leads}
+        title="Clients"
+        data={clients}
         totalCount={totalCount}
         totalPages={totalPages}
         currentPage={currentPage}
@@ -87,16 +87,16 @@ export function LeadsApp(): React.ReactElement {
         onPageChange={(page) => handlePageChange(page, handlePageChangeInternal)}
         onRefresh={handleRefresh}
         renderTable={renderTable}
-        addButtonText="Add Lead"
-        searchPlaceholder="Search leads..."
+        addButtonText="Add Client"
+        searchPlaceholder="Search clients..."
       />
-      {isLeadSelected && selectedLead && (
+      {isClientSelected && selectedClient && (
         <AppPopUp
-          isOpen={isLeadSelected}
-          onClose={() => setIsLeadSelected(false)}
-          title="Lead Details"
+          isOpen={isClientSelected}
+          onClose={() => setIsClientSelected(false)}
+          title="Client Details"
         >
-          <LeadDetailDisplay lead={selectedLead} />
+          <>Client Detail</>
         </AppPopUp>
       )}
     </>

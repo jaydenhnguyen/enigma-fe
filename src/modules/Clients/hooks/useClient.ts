@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { getLeads } from 'src/apis/leads';
+import { getClients } from 'src/apis/clients';
 import type { Client, ClientsRequest, UseClientsReturn } from '..';
 
 export const useClients = (initialParams?: ClientsRequest): UseClientsReturn => {
@@ -34,21 +34,21 @@ export const useClients = (initialParams?: ClientsRequest): UseClientsReturn => 
   }, [currentParams]);
 
   const refetch = useCallback(() => {
-    return fetchLeads(currentParams);
-  }, [fetchLeads, currentParams]);
+    return fetchClients(currentParams);
+  }, [fetchClients, currentParams]);
 
   useEffect(() => {
-    fetchLeads();
+    fetchClients();
   }, []);
 
   return {
-    leads,
+    clients,
     loading,
     error,
     totalCount,
     currentPage,
     totalPages,
-    fetchLeads,
+    fetchClients,
     refetch,
   };
 };

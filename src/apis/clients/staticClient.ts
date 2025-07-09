@@ -73,6 +73,7 @@ export const staticClients: Client[] = [
         "utm_campaign": "Ergonomic",
         "utm_metric": "EXE",
         "utm_source": "calculate",
+        "currentStatus": "converted",
         "utm_term": "Cross-platform needs-based product",
         "id": "2",
         "amountPaid": 800
@@ -87,6 +88,7 @@ export const staticClients: Client[] = [
         "utm_campaign": "Generic",
         "utm_metric": "HEX",
         "utm_source": "quantify",
+        "currentStatus": "converted",
         "utm_term": "Profit-focused modular software",
         "id": "3",
         "amountPaid": 950
@@ -103,6 +105,7 @@ export const staticClients: Client[] = [
         "utm_source": "reboot",
         "utm_term": "Programmable needs-based circuit",
         "id": "4",
+        "currentStatus": "converted",
         "amountPaid": 1100
     },
     {
@@ -115,6 +118,7 @@ export const staticClients: Client[] = [
         "utm_campaign": "Sleek",
         "utm_metric": "SMS",
         "utm_source": "navigate",
+        "currentStatus": "converted",
         "utm_term": "Synchronised systemic interface",
         "id": "5",
         "amountPaid": 1300

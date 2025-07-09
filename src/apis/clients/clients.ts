@@ -34,9 +34,9 @@ export const getClients = async (params: ClientsRequest): Promise<ClientsRespons
     // NOTE: Adding totalCount, page and limit in the return object to mock the pagination response. 
     return {
       clients: Array.isArray(response) ? response : [],
-      totalCount: 80, // Mocked total count
+      totalCount: 5, // Mocked total count
       page: params.page || 1, // Mocked current page
-      limit: params.limit || 10, // Mocked limit
+      limit: 1, // Mocked limit
     };
   }
 

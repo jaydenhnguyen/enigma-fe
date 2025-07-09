@@ -1,11 +1,11 @@
 import { useState, useCallback } from 'react';
-import type { Client,  } from '..';
+import type { Client, UseClientTableReturn } from '..';
 import type { SortConfig } from 'src/components/common/Table';
 
-export const useLeadTable = (): UseLeadTableReturn => {
-  const [sortConfig, setSortConfig] = useState<SortConfig<Lead> | null>(null);
+export const useClientTable = (): UseClientTableReturn => {
+  const [sortConfig, setSortConfig] = useState<SortConfig<Client> | null>(null);
 
-  const updateSortConfig = useCallback((key: keyof Lead) => {
+  const updateSortConfig = useCallback((key: keyof Client) => {
     setSortConfig(prevConfig => {
       if (prevConfig?.key === key) {
         return {

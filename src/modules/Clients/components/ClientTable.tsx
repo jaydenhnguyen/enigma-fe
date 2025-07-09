@@ -1,15 +1,15 @@
 import React from 'react';
-import type { Lead, LeadStatus, LeadsTableProps } from '../types/lead.type';
-import { useLeadTable } from '../hooks/useClientTable';
+import type { Client, ClientStatus, ClientsTableProps } from '../types/client.type';
+import { useClientTable } from '../hooks/useClientTable';
 import { Table, TableColumn, dateRenderer, statusBadgeRenderer, emptyValueRenderer } from 'src/components/common/Table';
 import { CLIENTS_CONSTANTS } from '../constants/client.constants';
-import classes from '../styles/LeadsTable.module.scss';
+import classes from '../styles/ClientsTable.module.scss';
 
-export function LeadsTable({ leads, loading = false, onSort, onRowClick }: LeadsTableProps): React.ReactElement {
-  const leadStatuses: LeadStatus[] = [...CLIENTS_CONSTANTS.CLIENT_STATUS];
-  const { sortConfig, updateSortConfig } = useLeadTable();
+export function ClientsTable({ clients, loading = false, onSort, onRowClick }: ClientsTableProps): React.ReactElement {
+  const clientStatuses: ClientStatus[] = [...CLIENTS_CONSTANTS.CLIENT_STATUS];
+  const { sortConfig, updateSortConfig } = useClientTable();
 
-  const handleSortClick = (key: keyof Lead) => {
+  const handleSortClick = (key: keyof Client) => {
     updateSortConfig(key);
     if (onSort && sortConfig) {
       onSort(key, sortConfig.direction);
@@ -24,16 +24,16 @@ export function LeadsTable({ leads, loading = false, onSort, onRowClick }: Leads
     lost: classes['statusLost'] || '',
   });
 
-  const renderLeadStatus = (status: any) => {
+  const renderClientStatus = (status: any) => {
     const validStatus = typeof status === 'string' && 
-      leadStatuses.includes(status.toLowerCase() as LeadStatus)
-      ? (status.toLowerCase() as LeadStatus)
+      clientStatuses.includes(status.toLowerCase() as ClientStatus)
+      ? (status.toLowerCase() as ClientStatus)
       : 'new';
     
     return getStatusBadge(validStatus);
   };
 
-  const columns: TableColumn<Lead>[] = [
+  const columns: TableColumn<Client>[] = [
     {
       key: 'fullName',
       label: 'Name',
@@ -58,10 +58,18 @@ export function LeadsTable({ leads, loading = false, onSort, onRowClick }: Leads
       className: classes['emailColumn']
     },
     {
+      key: 'amountPaid',
+      label: 'Amount Paid',
+      sortable: true,
+      render: (amount: number) => {
+        return amount ? `$${amount.toLocaleString()}` : 'N/A';
+      }
+    },
+    {
       key: 'currentStatus',
       label: 'Client Status',
       sortable: true,
-      render: renderLeadStatus
+      render: renderClientStatus
     },
     {
       key: 'createdAt',
@@ -97,13 +105,13 @@ export function LeadsTable({ leads, loading = false, onSort, onRowClick }: Leads
 
   return (
     <Table
-      data={leads}
+      data={clients}
       columns={columns}
       loading={loading}
       onSort={handleSortClick}
       onRowClick={onRowClick}
       sortConfig={sortConfig}
-      emptyMessage="No leads found"
+      emptyMessage="No Clients found"
       rowKey="id"
     />
   );

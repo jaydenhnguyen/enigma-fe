@@ -1,4 +1,4 @@
-import { Client } from "./lead.type";
+import { Client } from "./client.type";
 
 export type ClientDetailsProps = {
   client: Client;

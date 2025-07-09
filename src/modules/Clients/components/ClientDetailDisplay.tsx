@@ -1,16 +1,17 @@
 import { Card, CardContent, Typography, Chip, CircularProgress, Alert } from '@mui/material';
-import type { LeadDetailsProps } from '..';
-import { useLeadDetail, CustomerJourney } from '..';
-import classes from '../styles/LeadDetailDisplay.module.scss';
+import type { ClientDetailsProps } from '..';
+import { useClientDetail } from '..';
+import { CustomerJourney } from 'src/modules/Leads';
+import classes from '../styles/ClientDetail.module.scss';
 
-export function LeadDetailDisplay({ lead }: LeadDetailsProps): React.ReactElement {
-  const { leadDetail, loading, error, updateLeadStatus } = useLeadDetail(lead.id);
+export function ClientDetailDisplay({ client }: ClientDetailsProps): React.ReactElement {
+  const { clientDetail, loading, error, updateClientStatus } = useClientDetail(client.id);
 
-  if (loading && !leadDetail) {
+  if (loading && !clientDetail) {
     return (
       <div className={classes['loading-container']}>
         <CircularProgress />
-        <Typography>Loading lead details...</Typography>
+        <Typography>Loading client details...</Typography>
       </div>
     );
   }
@@ -23,10 +24,10 @@ export function LeadDetailDisplay({ lead }: LeadDetailsProps): React.ReactElemen
     );
   }
 
-  if (!leadDetail) {
+  if (!clientDetail) {
     return (
       <Alert severity="warning" className={classes['warning-alert']}>
-        No lead details found
+        No client details found
       </Alert>
     );
   }
@@ -55,11 +56,11 @@ export function LeadDetailDisplay({ lead }: LeadDetailsProps): React.ReactElemen
       <div className={classes['header-section']}>
         <div className={classes['lead-header']}>
           <Typography variant="h4" className={classes['lead-name']}>
-            {leadDetail.fullName}
+            {clientDetail.fullName}
           </Typography>
           <Chip
-            label={leadDetail.hiredUs ? 'Hired Us' : 'Prospect'}
-            color={leadDetail.hiredUs ? 'success' : 'default'}
+            label='Hired Us'
+            color='success'
             className={classes['hire-status-chip']}
           />
         </div>
@@ -72,23 +73,23 @@ export function LeadDetailDisplay({ lead }: LeadDetailsProps): React.ReactElemen
             Contact Information
           </Typography>
           <div className={classes['contact-grid']}>
-            {leadDetail.email && (
+            {clientDetail.email && (
               <div className={classes['contact-item']}>
                 <Typography variant="body2" className={classes['contact-label']}>
                   Email:
                 </Typography>
                 <Typography variant="body1" className={classes['contact-value']}>
-                  {leadDetail.email}
+                  {clientDetail.email}
                 </Typography>
               </div>
             )}
-            {leadDetail.phone && (
+            {clientDetail.phone && (
               <div className={classes['contact-item']}>
                 <Typography variant="body2" className={classes['contact-label']}>
                   Phone:
                 </Typography>
                 <Typography variant="body1" className={classes['contact-value']}>
-                  {leadDetail.phone}
+                  {clientDetail.phone}
                 </Typography>
               </div>
             )}
@@ -107,7 +108,7 @@ export function LeadDetailDisplay({ lead }: LeadDetailsProps): React.ReactElemen
               Move Dates:
             </Typography>
             <div className={classes['dates-container']}>
-              {leadDetail.moveDates.map((date, index) => (
+              {clientDetail.moveDates.map((date, index) => (
                 <Chip
                   key={index}
                   label={formatMoveDate(date)}
@@ -124,22 +125,22 @@ export function LeadDetailDisplay({ lead }: LeadDetailsProps): React.ReactElemen
       <Card className={classes['section-card']}>
         <CardContent>
           <CustomerJourney
-            currentStatus={leadDetail.currentStatus || 'New'}
-            onStatusChange={updateLeadStatus}
+            currentStatus={clientDetail.currentStatus || 'Converted'}
+            onStatusChange={updateClientStatus}
             loading={loading}
           />
         </CardContent>
       </Card>
 
       {/* Status History */}
-      {leadDetail.statusHistory && leadDetail.statusHistory.length > 0 && (
+      {clientDetail.statusHistory && clientDetail.statusHistory.length > 0 && (
         <Card className={classes['section-card']}>
           <CardContent>
             <Typography variant="h6" className={classes['section-title']}>
               Status History
             </Typography>
             <div className={classes['history-timeline']}>
-              {leadDetail.statusHistory.map((entry, index) => (
+              {clientDetail.statusHistory.map((entry, index) => (
                 <div key={entry._id || index} className={classes['history-entry']}>
                   <div className={classes['history-dot']}></div>
                   <div className={classes['history-content']}>
@@ -158,14 +159,14 @@ export function LeadDetailDisplay({ lead }: LeadDetailsProps): React.ReactElemen
       )}
 
       {/* UTM Information */}
-      {leadDetail.utm && (
+      {clientDetail.utm && (
         <Card className={classes['section-card']}>
           <CardContent>
             <Typography variant="h6" className={classes['section-title']}>
               UTM Tracking
             </Typography>
             <div className={classes['utm-grid']}>
-              {Object.entries(leadDetail.utm).map(([key, value]) => (
+              {Object.entries(clientDetail.utm).map(([key, value]) => (
                 <div key={key} className={classes['utm-item']}>
                   <Typography variant="body2" className={classes['utm-label']}>
                     {key.replace('utm_', '').toUpperCase()}:
@@ -181,14 +182,14 @@ export function LeadDetailDisplay({ lead }: LeadDetailsProps): React.ReactElemen
       )}
 
       {/* Events Associated */}
-      {leadDetail.eventsAssociated && leadDetail.eventsAssociated.length > 0 && (
+      {clientDetail.eventsAssociated && clientDetail.eventsAssociated.length > 0 && (
         <Card className={classes['section-card']}>
           <CardContent>
             <Typography variant="h6" className={classes['section-title']}>
               Associated Events
             </Typography>
             <div className={classes['events-container']}>
-              {leadDetail.eventsAssociated.map((eventId, index) => (
+              {clientDetail.eventsAssociated.map((eventId, index) => (
                 <Chip
                   key={index}
                   label={eventId}
@@ -213,7 +214,7 @@ export function LeadDetailDisplay({ lead }: LeadDetailsProps): React.ReactElemen
                 Created:
               </Typography>
               <Typography variant="body1" className={classes['metadata-value']}>
-                {formatDate(leadDetail.createdAt)}
+                {formatDate(clientDetail.createdAt)}
               </Typography>
             </div>
             <div className={classes['metadata-item']}>
@@ -221,7 +222,7 @@ export function LeadDetailDisplay({ lead }: LeadDetailsProps): React.ReactElemen
                 Last Updated:
               </Typography>
               <Typography variant="body1" className={classes['metadata-value']}>
-                {formatDate(leadDetail.updatedAt)}
+                {formatDate(clientDetail.updatedAt)}
               </Typography>
             </div>
           </div>

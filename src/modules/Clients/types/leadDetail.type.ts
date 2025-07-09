@@ -1,7 +1,7 @@
-import { Lead } from "./lead.type";
+import { Client } from "./lead.type";
 
-export type LeadDetailsProps = {
-  lead: Lead;
+export type ClientDetailsProps = {
+  client: Client;
 }
 
 export type StatusHistoryEntry = {
@@ -20,7 +20,7 @@ export type UtmData = {
   utm_content?: string;
 }
 
-export type LeadDetail = {
+export type ClientDetail = {
   _id: string;
   hiredUs: boolean;
   fullName: string;
@@ -34,9 +34,10 @@ export type LeadDetail = {
   assignee?: string[];
   createdAt: string;
   updatedAt: string;
+  amountPaid?: number;
 }
 
-export type CreateLeadRequest = {
+export type UpdateClientRequest = {
   hiredUs?: boolean;
   fullName?: string;
   email?: string;
@@ -49,17 +50,16 @@ export type CreateLeadRequest = {
   assignee?: string[];
 }
 
-export type LeadResponse = {
-  data: LeadDetail;
+export type ClientResponse = {
+  data: ClientDetail;
   message?: string;
   success?: boolean;
 }
 
-export type UseLeadDetailReturn = {
-  leadDetail: LeadDetail | null;
+export type UseClientDetailReturn = {
+  clientDetail: ClientDetail | null;
   loading: boolean;
   error: string | null;
-  updateLeadStatus: (newStatus: string, previousStatus: string) => Promise<void>;
+  updateClientStatus: (newStatus: string, previousStatus: string) => Promise<void>;
   refetch: () => Promise<void>;
 }
-

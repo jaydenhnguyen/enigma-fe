@@ -1,6 +1,7 @@
 import { request } from 'src/configs';
 import type { LeadsRequest, LeadsResponse, CreateLeadRequest, LeadResponse } from 'src/modules/Leads';
 import { LEADS_ENDPOINTS } from './endpoints';
+import { staticLead as staticValueOfLead } from './staticLead';
 
 export const getLeads = async (params: LeadsRequest): Promise<LeadsResponse> => {
   const queryParams = new URLSearchParams();
@@ -28,8 +29,10 @@ export const getLeads = async (params: LeadsRequest): Promise<LeadsResponse> => 
   if (!process.env['NEXT_PUBLIC_MOCK_API_URL']) {
     // NOTE: Ideal API call when not using mock API.
     return await request.get(url);
-  } else{
+  } else {
+    console.log('Using mock API for leads data: ', url);
     let response = await request.get(url);
+    console.log(response)
     // NOTE: Adding totalCount, page and limit in the return object to mock the pagination response. 
     return {
       leads: Array.isArray(response) ? response : [],
@@ -54,5 +57,11 @@ export const deleteLead = async (id: string): Promise<void> => {
 };
 
 export const getLeadById = async (id: string): Promise<LeadResponse> => {
-  return await request.get(LEADS_ENDPOINTS.GET_LEAD_BY_ID(id));
+  // TODO: Remove this static value when the API is ready.
+  const staticLead: LeadResponse = {
+    data: staticValueOfLead,
+    message: "Lead fetched successfully",
+    success: true
+  };
+  return await staticLead; // For now, returning static lead data.
 };

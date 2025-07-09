@@ -30,6 +30,8 @@ export function AppPopUp({ isOpen, onClose, onSave, onReset, title, children }: 
           width: '1200px',
           margin: '5% auto',
           position: 'relative',
+          maxHeight: '80vh',
+          overflowY: 'auto',
         }}
       >
         <IconButton onClick={handleClose} sx={{ position: 'absolute', top: 8, right: 8 }} aria-label="close">
@@ -40,7 +42,9 @@ export function AppPopUp({ isOpen, onClose, onSave, onReset, title, children }: 
           {title}
         </Typography>
 
-        <Box>{children}</Box>
+        <Box >
+          {children}
+          </Box>
 
         {onSave && (
           <Box mt={2} display="flex" justifyContent="flex-end" gap={2}>

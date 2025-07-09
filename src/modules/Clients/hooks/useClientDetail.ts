@@ -7,7 +7,7 @@ export const useClientDetail = (clientId: string): UseClientDetailReturn => {
   const [clientDetail, setClientDetail] = useState<ClientDetail | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+  console.log('useClientDetail hook initialized with clientId:', clientId);
   const fetchClientDetail = useCallback(async () => {
     if (!clientId) return;
     
@@ -16,6 +16,7 @@ export const useClientDetail = (clientId: string): UseClientDetailReturn => {
     
     try {
       const response = await getClientById(clientId);
+      console.log('Fetched client detail:', response.data);
       setClientDetail(response.data);
     } catch (err) {
       setError('Failed to fetch client details');

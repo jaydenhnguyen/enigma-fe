@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useClients } from '../hooks/useClient';
 import { ClientsTable } from './ClientTable';
 import { AppTable, useAppTable } from 'src/components/common/AppTable';
-import type { Client } from '..';
+import { ClientDetailDisplay, type Client } from '..';
 import { AppPopUp } from 'src/components/common';
 // import { LeadDetailDisplay } from '../../../layouts/ClientDetailDisplay';
 
@@ -96,7 +96,7 @@ export function ClientsApp(): React.ReactElement {
           onClose={() => setIsClientSelected(false)}
           title="Client Details"
         >
-          <>Client Detail</>
+          <ClientDetailDisplay client={selectedClient} />
         </AppPopUp>
       )}
     </>

@@ -11,7 +11,7 @@ export function PrivateLayout({ children }: { children: React.ReactElement }) {
   const [hydrated, setHydrated] = React.useState(false);
 
   React.useEffect(() => {
-    if (tokenManager.isAuthenticated()) {
+    if (!tokenManager.isAuthenticated()) {
       router.replace(APP_ROUTES.INTRODUCTION).then();
     } else {
       setHydrated(true);

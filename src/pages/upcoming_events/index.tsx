@@ -2,11 +2,12 @@ import * as React from 'react';
 import Head from 'next/head';
 import { PrivateLayout } from 'src/layouts';
 import { EventDetailPopUp, AppPopUp } from 'src/components';
+import { EventApp, EventType } from 'src/modules/Events';
 
 export default function UpcomingEventsPage(): React.ReactElement {
   const [open, setOpen] = React.useState(false);
   const [selectedEvent, setSelectedEvent] = React.useState<any>(null);
-
+  const eventType: EventType = "future";
   const handleOpen = () => {
     setSelectedEvent({
       clientName: 'Kevin Dohery',
@@ -30,11 +31,8 @@ export default function UpcomingEventsPage(): React.ReactElement {
       <Head>
         <title>A-Z Moving: Upcoming Events</title>
       </Head>
-
-      <div>this is Upcoming Events page</div>
-
       <button onClick={handleOpen}>Open PopUp</button>
-
+      <EventApp type={eventType} />
       <AppPopUp isOpen={open} onClose={handleClose} onSave={handleSave} title="Event Details" width="1200px">
         <EventDetailPopUp event={selectedEvent} />
       </AppPopUp>

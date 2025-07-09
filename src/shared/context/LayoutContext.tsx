@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const LAYOUT_ACTION = {
+export const LAYOUT_ACTIONS = {
   TOGGLE_SIDE_MENU: 'TOGGLE_SIDE_MENU',
 };
 
@@ -9,7 +9,7 @@ type LayoutState = {
 };
 
 type LayoutAction = {
-  type: (typeof LAYOUT_ACTION)[keyof typeof LAYOUT_ACTION];
+  type: (typeof LAYOUT_ACTIONS)[keyof typeof LAYOUT_ACTIONS];
 };
 
 type LayoutContextProps = {
@@ -21,10 +21,10 @@ const LayoutContext = React.createContext<LayoutContextProps | undefined>(undefi
 
 const layoutReducer = (state: LayoutState, action: LayoutAction): LayoutState => {
   switch (action.type) {
-    case LAYOUT_ACTION.TOGGLE_SIDE_MENU:
+    case LAYOUT_ACTIONS.TOGGLE_SIDE_MENU:
       return { ...state, isSideMenuCollapsed: !state.isSideMenuCollapsed };
     default:
-      return state;
+      return { ...state };
   }
 };
 

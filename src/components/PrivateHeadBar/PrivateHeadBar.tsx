@@ -8,13 +8,16 @@ import { Avatar, Box, IconButton, Menu, MenuItem } from '@mui/material';
 import { tokenManager } from 'src/configs';
 import { APP_ROUTES } from 'src/shared/constants';
 import AzMovingLogo from 'src/assets/az_moving_logo.svg';
-import { LAYOUT_ACTION, useLayout } from 'src/shared/context';
+import { LAYOUT_ACTIONS, useLayout, useUserContext } from 'src/shared/context';
 import { TopBar } from '../common';
 import classes from './PrivateHeadBar.module.scss';
 
 export function PrivateHeadBar(): React.ReactElement {
   const router = useRouter();
-  const { dispatch } = useLayout();
+  const { dispatch: layoutDispatch } = useLayout();
+  const {
+    state: { firstName, lastName },
+  } = useUserContext();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = React.useCallback((event: React.MouseEvent<HTMLElement>) => {
@@ -33,7 +36,7 @@ export function PrivateHeadBar(): React.ReactElement {
   }, [router]);
 
   const onToggleSideMenu = React.useCallback(() => {
-    dispatch({ type: LAYOUT_ACTION.TOGGLE_SIDE_MENU });
+    layoutDispatch({ type: LAYOUT_ACTIONS.TOGGLE_SIDE_MENU });
   }, []);
 
   return (
@@ -49,7 +52,9 @@ export function PrivateHeadBar(): React.ReactElement {
 
         <Box>
           <IconButton onClick={handleClick} style={{ marginTop: '5px' }}>
-            <Avatar className={classes['user-ava']}>DL</Avatar>
+            <Avatar
+              className={classes['user-ava']}
+            >{`${firstName?.charAt(0).toUpperCase()}${lastName?.charAt(0).toUpperCase()}`}</Avatar>
           </IconButton>
 
           <Menu

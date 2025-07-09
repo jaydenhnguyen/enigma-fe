@@ -16,7 +16,7 @@ export const SIDE_MENU_ITEM_NAME = {
   CLIENTS: 'Clients',
 };
 
-export const SIDE_MENU_ITEMS: MenuItem[] = [
+export const SIDE_MENU_ADMIN_ITEMS: MenuItem[] = [
   {
     text: SIDE_MENU_ITEM_NAME.CALENDAR,
     icon: CalendarMonthIcon,
@@ -46,5 +46,23 @@ export const SIDE_MENU_ITEMS: MenuItem[] = [
     text: SIDE_MENU_ITEM_NAME.CLIENTS,
     icon: GroupAddIcon,
     route: APP_ROUTES.CLIENTS,
+  },
+];
+
+export const SIDE_MENU_EMPLOYEE_ITEMS: MenuItem[] = [
+  {
+    text: SIDE_MENU_ITEM_NAME.CALENDAR,
+    icon: CalendarMonthIcon,
+    route: APP_ROUTES.CALENDAR_VIEW,
+  },
+  {
+    text: SIDE_MENU_ITEM_NAME.UPCOMING_EVENTS,
+    icon: UpcomingIcon,
+    route: APP_ROUTES.UPCOMING_EVENTS,
+  },
+  {
+    text: SIDE_MENU_ITEM_NAME.PAST_EVENTS,
+    icon: FindReplaceIcon,
+    route: APP_ROUTES.PAST_EVENTS,
   },
 ];

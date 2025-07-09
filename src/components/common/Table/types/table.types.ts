@@ -20,6 +20,7 @@ export type TableProps<T> = {
   sortConfig?: SortConfig<T> | null;
   emptyMessage?: string;
   className?: string;
+  onRowClick?: (record: T) => void;
   rowKey: keyof T;
 }
 
@@ -33,4 +34,5 @@ export type TableBodyProps<T> = {
   data: T[];
   columns: TableColumn<T>[];
   rowKey: keyof T;
+  onRowClick?: (record: T) => void;
 }

@@ -69,6 +69,14 @@
   }
 }
 
+.clickableRow {
+  @apply cursor-pointer;
+  
+  &:hover {
+    @apply bg-gray-50;
+  }
+}
+
 .nameColumn {
   @apply font-medium text-gray-800 min-w-[150px];
 }

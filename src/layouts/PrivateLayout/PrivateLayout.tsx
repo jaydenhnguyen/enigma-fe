@@ -6,13 +6,8 @@ import { APP_ROUTES } from 'src/shared/constants';
 import { SideMenu } from 'src/components/SideMenu';
 import classes from './PrivateLayout.module.scss';
 
-// In px
-const COLLAPSED_WIDTH = 85;
-const EXPANDED_WIDTH = 280;
-
 export function PrivateLayout({ children }: { children: React.ReactElement }) {
   const router = useRouter();
-  const [isSideMenuCollapsed, setIsSideMenuCollapsed] = React.useState(false);
   const [hydrated, setHydrated] = React.useState(false);
 
   React.useEffect(() => {
@@ -23,25 +18,17 @@ export function PrivateLayout({ children }: { children: React.ReactElement }) {
     }
   }, []);
 
-  const toggleSideMenu = React.useCallback(() => {
-    setIsSideMenuCollapsed(!isSideMenuCollapsed);
-  }, [isSideMenuCollapsed]);
-
-  const sideMenuWidth = isSideMenuCollapsed ? COLLAPSED_WIDTH : EXPANDED_WIDTH;
-
   if (!hydrated) return null;
 
   return (
     <div className={classes['wrapper']}>
       {/* Header */}
-      <PrivateHeadBar onToggleSideMenu={toggleSideMenu} />
+      <PrivateHeadBar />
 
       {/* Body */}
       <div className={classes['content-area']}>
         {/* Side Menu with controlled width */}
-        <div className={classes['side-menu-wrapper']} style={{ width: sideMenuWidth }}>
-          <SideMenu width={sideMenuWidth} isCollapsed={isSideMenuCollapsed} />
-        </div>
+        <SideMenu />
 
         {/* Main Content */}
         <main className={classes['main-content-wrapper']}>{children}</main>

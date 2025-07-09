@@ -3,14 +3,12 @@
 }
 
 .container {
-  @apply grid gap-x-24 mr-[3vh] ;
-  grid-template-columns: 2.25fr 2.25fr ;
   @apply grid gap-x-24 mr-[3vh];
   grid-template-columns: 2.25fr 2.25fr;
 }
 
 .info-section {
- @apply w-full flex flex-col justify-center text-gray-600 ;
+  @apply w-full flex flex-col justify-center text-gray-600 ;
 }
 
 .info-row {
@@ -39,8 +37,7 @@
 }
 
 .contactMe-card {
-  @apply w-full max-w-[28rem] h-fit mt-[2vh] ; 
-
+  @apply w-full max-w-[28rem] h-fit mt-[2vh] ;
 
   .contactMe-card-content {
     @apply p-8;

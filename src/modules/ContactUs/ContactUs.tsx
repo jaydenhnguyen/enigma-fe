@@ -107,20 +107,20 @@ export function ContactUs(): React.ReactElement {
                     rows={4}
                   />
 
-                <Button
-                  type="submit"
-                  variant="contained"
-                  size="large"
-                  className={classes['submit-btn']}
-                  disabled={isLoading}
-                  loading={isLoading}
-                >
-                  Send Message
-                </Button>
-              </Stack>
-            </Box>
-          </CardContent>
-        </Card>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="large"
+                    className={classes['submit-btn']}
+                    disabled={isLoading}
+                    loading={isLoading}
+                  >
+                    Send Message
+                  </Button>
+                </Stack>
+              </Box>
+            </CardContent>
+          </Card>
         </Box>
       </Box>
     </div>

@@ -1,0 +1,71 @@
+.calendar-view-wrapper {
+  @apply h-full transition-transform duration-300;
+
+  [class*='fc-button-group'] {
+    @apply gap-x-1;
+
+    > [class*='fc-button']:not(:last-child),
+    > [class*='fc-button']:not(:first-child) {
+      @apply rounded-lg;
+    }
+  }
+
+  [class*='fc-button-primary'] {
+    @apply bg-primary-main border-none font-bold text-sm px-4 py-2;
+
+    &:hover {
+      @apply bg-primary-dark;
+    }
+
+    &:focus {
+      @apply bg-primary-dark;
+      box-shadow: none !important;
+    }
+
+    &:active {
+      @apply bg-primary-dark #{!important};
+    }
+
+    &:disabled {
+      @apply rounded-lg bg-grey-500 #{!important};
+    }
+  }
+
+  [class*='fc-button-active'] {
+    @apply bg-primary-dark #{!important};
+  }
+}
+
+.top-wrapper {
+  @apply flex justify-between items-center;
+}
+
+.slide-left {
+  animation: slideLeft 0.3s ease;
+}
+
+.slide-right {
+  animation: slideRight 0.3s ease;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

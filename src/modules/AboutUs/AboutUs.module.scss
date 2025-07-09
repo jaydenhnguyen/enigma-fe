@@ -1,0 +1,43 @@
+.wrapper {
+  @apply w-full h-full flex justify-center items-center;
+}
+
+.container {
+  @apply w-full mx-auto px-4 py-8;
+}
+
+.top-section {
+  @apply w-full text-center mb-12;
+}
+
+.title {
+  @apply text-primary-main mb-6;
+}
+
+.description {
+  @apply text-gray-600 text-lg leading-relaxed mx-auto;
+}
+
+.bottom-section {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.card {
+  @apply min-h-28 rounded-lg shadow-md transition-shadow duration-300 ease-in-out ;
+
+  &.white {
+    @apply bg-white;
+  }
+
+  &.blue {
+    @apply bg-blue-50 border border-blue-100;
+  }
+}
+
+.card-title {
+  @apply text-primary-main font-semibold mb-3;
+}
+
+.card-description {
+  @apply text-gray-600 leading-relaxed;
+}

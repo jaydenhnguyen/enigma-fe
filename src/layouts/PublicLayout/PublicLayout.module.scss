@@ -15,7 +15,7 @@
   }
 
   .main-page-btn:hover {
-    @apply bg-[#315efb3d];
+    @apply bg-primary-light;
   }
 }
 
@@ -24,7 +24,7 @@
 }
 
 .main-wrapper {
-  @apply bg-hero-bg relative top-[4.125rem];
+  @apply flex-1 bg-hero-bg mt-[4.125rem];
 }
 
 .footer-wrapper {

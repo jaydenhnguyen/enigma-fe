@@ -26,8 +26,8 @@ export function useLoginForm() {
   });
 
   return {
-    formHandleSubmit: handleSubmit,
     control,
+    formHandleSubmit: handleSubmit,
     formState: { errors, isSubmitting },
   };
 }

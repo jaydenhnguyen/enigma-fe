@@ -1,6 +1,6 @@
 export const staticLead = {
       "_id": "6851e6a85ecd0d7814d551ee",
-      "hiredUs": true,
+      "hiredUs": false,
       "fullName": "Sarah Johnson",
       "email": "sarah.johnson@gmail.com",
       "phone": "+1-555-0123",
@@ -12,7 +12,7 @@ export const staticLead = {
         "evt_001_2025_06_18_001",
         "evt_002_2025_06_18_002"
       ],
-      "currentStatus": "Converted",
+      "currentStatus": "new",
       "statusHistory": [
         {
           "modifiedToStatus": "Aware",

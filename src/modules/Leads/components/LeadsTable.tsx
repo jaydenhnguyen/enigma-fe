@@ -3,9 +3,9 @@ import type { Lead, LeadStatus, LeadsTableProps } from '../types/lead.type';
 import { useLeadTable } from '../hooks/useLeadTable';
 import { Table, TableColumn, dateRenderer, statusBadgeRenderer, emptyValueRenderer } from 'src/components/common/Table';
 import { LEADS_CONSTANTS } from '../constants/lead.constants';
-import classes from '../constants/LeadsTable.module.scss';
+import classes from '../styles/LeadsTable.module.scss';
 
-export function LeadsTable({ leads, loading = false, onSort }: LeadsTableProps): React.ReactElement {
+export function LeadsTable({ leads, loading = false, onSort, onRowClick }: LeadsTableProps): React.ReactElement {
   const leadStatuses: LeadStatus[] = [...LEADS_CONSTANTS.LEAD_STATUSES];
   const { sortConfig, updateSortConfig } = useLeadTable();
 
@@ -107,6 +107,7 @@ export function LeadsTable({ leads, loading = false, onSort }: LeadsTableProps):
       columns={columns}
       loading={loading}
       onSort={handleSortClick}
+      onRowClick={onRowClick}
       sortConfig={sortConfig}
       emptyMessage="No leads found"
       rowKey="id"

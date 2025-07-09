@@ -4,3 +4,7 @@ export * from './types/lead.type';
 export * from './constants/lead.constants';
 export * from './hooks/useLeads';
 export * from './hooks/useLeadTable';
+export * from './components/LeadDetailDisplay';
+export * from './types/leadDetail.type'
+export * from './components/CustomerJourney';
+export * from './hooks/useLeadDetail';

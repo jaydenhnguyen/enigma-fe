@@ -5,7 +5,7 @@ import { Modal, Box, Button, IconButton, Typography } from '@mui/material';
 type Props = {
   isOpen: boolean;
   onClose: () => void;
-  onSave: () => void;
+  onSave?: () => void;
   onReset?: () => void;
   title?: string;
   children: React.ReactNode;
@@ -21,24 +21,15 @@ export function AppPopUp({ isOpen, onClose, onSave, onReset, title, children }: 
   };
 
   return (
-    <Modal      sx={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    }}
-    open={isOpen} onClose={handleClose}>
+    <Modal open={isOpen} onClose={handleClose}>
       <Box
         sx={{
           backgroundColor: 'white',
+          padding: 4,
           borderRadius: 2,
-          maxWidth: '90vw', 
-          padding: '10px',
-          maxHeight: '90vh',
-          margin: 'auto',
+          width: '1200px',
+          margin: '5% auto',
           position: 'relative',
-          display: 'flex',
-          flexDirection: 'column',
-          overflow: 'hidden'
         }}
       >
         <IconButton onClick={handleClose} sx={{ position: 'absolute', top: 8, right: 8 }} aria-label="close">
@@ -49,20 +40,15 @@ export function AppPopUp({ isOpen, onClose, onSave, onReset, title, children }: 
           {title}
         </Typography>
 
-        <Box     sx={{
-            overflowY: 'auto',
-            px: 4,
-            py: 2,
-            flexGrow: 1,
-            flexShrink: 1,
-            minHeight: 0 // Important for Firefox
-          }}>{children}</Box>
+        <Box>{children}</Box>
 
-        <Box sx={{ p: 4, pt: 2, display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
-          <Button variant="contained" onClick={onSave}>
-            Save
-          </Button>
-        </Box>
+        {onSave && (
+          <Box mt={2} display="flex" justifyContent="flex-end" gap={2}>
+            <Button variant="contained" onClick={onSave}>
+              Save
+            </Button>
+          </Box>
+        )}
       </Box>
     </Modal>
   );

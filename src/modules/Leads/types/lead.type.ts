@@ -25,13 +25,7 @@ export type LeadsResponse = {
   totalCount: number;
   page: number;
   limit: number;
-}
-
-export type LeadResponse = {
-  success: boolean;
-  data: Lead;
-  message?: string;
-}
+} 
 
 export type LeadsRequest = {
   page?: number;
@@ -41,15 +35,6 @@ export type LeadsRequest = {
   search?: string;
 }
 
-export type CreateLeadRequest = {
-  name: string;
-  movingDate: string;
-  phone: string;
-  email: string;
-  utm_campaign?: string;
-  utm_metric?: string;
-  utm_source?: string;
-}
 
 export type UseLeadsReturn = {
   leads: Lead[];
@@ -71,4 +56,5 @@ export type LeadsTableProps = {
   leads: Lead[];
   loading?: boolean;
   onSort?: (key: keyof Lead, direction: 'asc' | 'desc') => void;
+  onRowClick?: (lead: Lead) => void;
 }

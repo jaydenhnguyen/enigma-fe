@@ -9,6 +9,7 @@ export function Table<T>({
   columns,
   loading = false,
   onSort,
+  onRowClick,
   sortConfig,
   emptyMessage = 'No data found',
   className = '',
@@ -31,12 +32,12 @@ export function Table<T>({
   return (
     <div className={`${classes['tableContainer']} ${className}`}>
       <div className={classes['tableWrapper']}>
+        <TableContainer>
         <MUITable className={classes['table']}>
-          <TableContainer>
             <TableHeader columns={columns} sortConfig={sortConfig ?? null} onSort={handleSort} />
-            <TableBody data={data} columns={columns} rowKey={rowKey} />
-          </TableContainer>
-        </MUITable>
+            <TableBody data={data} columns={columns} rowKey={rowKey} onRowClick={onRowClick} />
+          </MUITable>
+        </TableContainer>
       </div>
 
       {data.length === 0 && (

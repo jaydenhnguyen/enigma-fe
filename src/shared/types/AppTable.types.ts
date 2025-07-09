@@ -13,7 +13,8 @@ export type AppTableProps<T> = {
     onPageChange: (page: number) => void;
     onRefresh: () => void;
     onAdd?: () => void;
-    renderTable: (data: T[], loading: boolean, onSort: (key: keyof T, direction: 'asc' | 'desc') => void) => React.ReactNode;
+    onRowClick?: (record: T) => void;
+    renderTable: (data: T[], loading: boolean, onSort: (key: keyof T, direction: 'asc' | 'desc') => void, onRowClick?: (record: T) => void) => React.ReactNode;
     addButtonText?: string;
     searchPlaceholder?: string;
     emptyStateMessage?: string;

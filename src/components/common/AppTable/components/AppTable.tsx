@@ -17,6 +17,7 @@ export function AppTable<T>({
   onSearch,
   onSort,
   onPageChange,
+  onRowClick,
   onRefresh,
   onAdd,
   renderTable,
@@ -56,7 +57,7 @@ export function AppTable<T>({
         </div>
       )}
 
-      <div className={classes['tableSection']}>{renderTable(data, loading, onSort)}</div>
+      <div className={classes['tableSection']}>{renderTable(data, loading, onSort, onRowClick)}</div>
 
       <Pagination
         currentPage={currentPage}

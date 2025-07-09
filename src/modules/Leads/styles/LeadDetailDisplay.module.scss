@@ -1,0 +1,135 @@
+.lead-details-container {
+  @apply max-w-4xl mx-auto p-6 space-y-6;
+}
+
+.loading-container {
+  @apply flex flex-col items-center justify-center p-8 space-y-4;
+}
+
+.error-alert {
+  @apply mb-4;
+}
+
+.warning-alert {
+  @apply mb-4;
+}
+
+.header-section {
+  @apply mb-6;
+}
+
+.lead-header {
+  @apply flex items-center justify-between mb-4;
+}
+
+.lead-name {
+  @apply text-2xl font-bold text-gray-800;
+}
+
+.hire-status-chip {
+  @apply text-sm font-medium;
+}
+
+.section-card {
+  @apply shadow-sm border border-gray-200 rounded-lg;
+}
+
+.section-title {
+  @apply text-lg font-semibold text-gray-700 mb-4;
+}
+
+.contact-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+}
+
+.contact-item {
+  @apply flex flex-col space-y-1;
+}
+
+.contact-label {
+  @apply text-sm font-medium text-gray-500;
+}
+
+.contact-value {
+  @apply text-base text-gray-800;
+}
+
+.move-dates {
+  @apply space-y-3;
+}
+
+.move-label {
+  @apply text-sm font-medium text-gray-500;
+}
+
+.dates-container {
+  @apply flex flex-wrap gap-2;
+}
+
+.date-chip {
+  @apply bg-blue-50 text-blue-700 border-blue-200;
+}
+
+.history-timeline {
+  @apply space-y-4;
+}
+
+.history-entry {
+  @apply flex items-start space-x-3;
+}
+
+.history-dot {
+  @apply w-3 h-3 bg-blue-500 rounded-full mt-1 flex-shrink-0;
+}
+
+.history-content {
+  @apply flex-1 min-w-0;
+}
+
+.history-status {
+  @apply font-medium text-gray-800;
+}
+
+.history-timestamp {
+  @apply text-sm text-gray-500;
+}
+
+.utm-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+.utm-item {
+  @apply flex flex-col space-y-1;
+}
+
+.utm-label {
+  @apply text-sm font-medium text-gray-500;
+}
+
+.utm-value {
+  @apply text-base text-gray-800;
+}
+
+.events-container {
+  @apply flex flex-wrap gap-2;
+}
+
+.event-chip {
+  @apply bg-green-50 text-green-700 border-green-200;
+}
+
+.metadata-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+}
+
+.metadata-item {
+  @apply flex flex-col space-y-1;
+}
+
+.metadata-label {
+  @apply text-sm font-medium text-gray-500;
+}
+
+.metadata-value {
+  @apply text-base text-gray-800;
+}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppPopUp } from '../common';
+import { AppPopUp } from '../@common';
 import { Box, FormControl, Grid, InputLabel, MenuItem, Select, type SelectChangeEvent, TextField } from '@mui/material';
 
 export type Employee = {

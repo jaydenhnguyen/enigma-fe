@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
 import { useLeads } from '../hooks/useLeads';
 import { LeadsTable } from './LeadsTable';
-import { AppTable, useAppTable } from 'src/components/common/AppTable';
+import { AppTable, useAppTable } from 'src/components/@common/AppTable';
 import type { Lead } from '../types/lead.type';
-import { AppPopUp } from 'src/components/common';
+import { AppPopUp } from 'src/components/@common';
 import { LeadDetailDisplay } from './LeadDetailDisplay';
 
 export function LeadsApp(): React.ReactElement {
-  const { 
-    searchTerm, 
-    currentPage, 
-    itemsPerPage, 
-    handleSearch, 
-    handlePageChange 
-  } = useAppTable({
-    initialItemsPerPage: 10
+  const { searchTerm, currentPage, itemsPerPage, handleSearch, handlePageChange } = useAppTable({
+    initialItemsPerPage: 10,
   });
 
   const [isLeadSelected, setIsLeadSelected] = useState<boolean>(false);
@@ -65,7 +59,7 @@ export function LeadsApp(): React.ReactElement {
     data: Lead[],
     loading: boolean,
     onSort: (key: keyof Lead, direction: 'asc' | 'desc') => void,
-    onRowClick?: (lead: Lead) => void
+    onRowClick?: (lead: Lead) => void,
   ) => {
     return <LeadsTable leads={data} loading={loading} onSort={onSort} onRowClick={onRowClick} />;
   };
@@ -91,11 +85,7 @@ export function LeadsApp(): React.ReactElement {
         searchPlaceholder="Search leads..."
       />
       {isLeadSelected && selectedLead && (
-        <AppPopUp
-          isOpen={isLeadSelected}
-          onClose={() => setIsLeadSelected(false)}
-          title="Lead Details"
-        >
+        <AppPopUp isOpen={isLeadSelected} onClose={() => setIsLeadSelected(false)} title="Lead Details">
           <LeadDetailDisplay lead={selectedLead} />
         </AppPopUp>
       )}

@@ -1,7 +1,13 @@
 import React from 'react';
 import type { Client, ClientStatus, ClientsTableProps } from '../types/client.type';
 import { useClientTable } from '../hooks/useClientTable';
-import { Table, TableColumn, dateRenderer, statusBadgeRenderer, emptyValueRenderer } from 'src/components/common/Table';
+import {
+  Table,
+  TableColumn,
+  dateRenderer,
+  statusBadgeRenderer,
+  emptyValueRenderer,
+} from 'src/components/@common/Table';
 import { CLIENTS_CONSTANTS } from '../constants/client.constants';
 import classes from '../styles/ClientsTable.module.scss';
 
@@ -25,11 +31,11 @@ export function ClientsTable({ clients, loading = false, onSort, onRowClick }: C
   });
 
   const renderClientStatus = (status: any) => {
-    const validStatus = typeof status === 'string' && 
-      clientStatuses.includes(status.toLowerCase() as ClientStatus)
-      ? (status.toLowerCase() as ClientStatus)
-      : 'new';
-    
+    const validStatus =
+      typeof status === 'string' && clientStatuses.includes(status.toLowerCase() as ClientStatus)
+        ? (status.toLowerCase() as ClientStatus)
+        : 'new';
+
     return getStatusBadge(validStatus);
   };
 
@@ -38,24 +44,24 @@ export function ClientsTable({ clients, loading = false, onSort, onRowClick }: C
       key: 'fullName',
       label: 'Name',
       sortable: true,
-      className: classes['nameColumn']
+      className: classes['nameColumn'],
     },
     {
       key: 'moveDate',
       label: 'Moving Date',
       sortable: true,
-      render: dateRenderer
+      render: dateRenderer,
     },
     {
       key: 'phone',
       label: 'Phone',
-      sortable: true
+      sortable: true,
     },
     {
       key: 'email',
       label: 'Email',
       sortable: true,
-      className: classes['emailColumn']
+      className: classes['emailColumn'],
     },
     {
       key: 'amountPaid',
@@ -63,44 +69,44 @@ export function ClientsTable({ clients, loading = false, onSort, onRowClick }: C
       sortable: true,
       render: (amount: number) => {
         return amount ? `$${amount.toLocaleString()}` : 'N/A';
-      }
+      },
     },
     {
       key: 'currentStatus',
       label: 'Client Status',
       sortable: true,
-      render: renderClientStatus
+      render: renderClientStatus,
     },
     {
       key: 'createdAt',
       label: 'Client Creation Date',
       sortable: true,
-      render: dateRenderer
+      render: dateRenderer,
     },
     {
       key: 'updatedAt',
       label: 'Client Modified Date',
       sortable: true,
-      render: dateRenderer
+      render: dateRenderer,
     },
     {
       key: 'utm_campaign',
       label: 'UTM Campaign',
       sortable: false,
-      render: emptyValueRenderer
+      render: emptyValueRenderer,
     },
     {
       key: 'utm_metric',
       label: 'UTM Metric',
       sortable: false,
-      render: emptyValueRenderer
+      render: emptyValueRenderer,
     },
     {
       key: 'utm_source',
       label: 'UTM Source',
       sortable: false,
-      render: emptyValueRenderer
-    }
+      render: emptyValueRenderer,
+    },
   ];
 
   return (

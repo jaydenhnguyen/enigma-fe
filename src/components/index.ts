@@ -1,4 +1,4 @@
-export * from './common';
+export * from './@common';
 export * from './PrivateHeadBar';
 export * from './NavItem';
 export * from './NotifyToast';

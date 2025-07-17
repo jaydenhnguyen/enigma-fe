@@ -1,5 +1,11 @@
 import { Employee } from '../Employees/Type/EmployeesType';
-import { Table, TableColumn, dateRenderer, statusBadgeRenderer, emptyValueRenderer } from 'src/components/common/Table';
+import {
+  Table,
+  TableColumn,
+  dateRenderer,
+  statusBadgeRenderer,
+  emptyValueRenderer,
+} from 'src/components/@common/Table';
 import classes from '../Employees/constants/Employees.module.scss';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';

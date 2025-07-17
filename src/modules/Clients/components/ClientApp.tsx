@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import { useClients } from '../hooks/useClient';
 import { ClientsTable } from './ClientTable';
-import { AppTable, useAppTable } from 'src/components/common/AppTable';
+import { AppTable, useAppTable } from 'src/components/@common/AppTable';
 import { ClientDetailDisplay, type Client } from '..';
-import { AppPopUp } from 'src/components/common';
+import { AppPopUp } from 'src/components/@common';
+
 // import { LeadDetailDisplay } from '../../../layouts/ClientDetailDisplay';
 
 export function ClientsApp(): React.ReactElement {
-  const { 
-    searchTerm, 
-    currentPage, 
-    itemsPerPage, 
-    handleSearch, 
-    handlePageChange 
-  } = useAppTable({
-    initialItemsPerPage: 10
+  const { searchTerm, currentPage, itemsPerPage, handleSearch, handlePageChange } = useAppTable({
+    initialItemsPerPage: 10,
   });
 
   const [isClientSelected, setIsClientSelected] = useState<boolean>(false);
@@ -65,7 +60,7 @@ export function ClientsApp(): React.ReactElement {
     data: Client[],
     loading: boolean,
     onSort: (key: keyof Client, direction: 'asc' | 'desc') => void,
-    onRowClick?: (client: Client) => void
+    onRowClick?: (client: Client) => void,
   ) => {
     return <ClientsTable clients={data} loading={loading} onSort={onSort} onRowClick={onRowClick} />;
   };
@@ -91,11 +86,7 @@ export function ClientsApp(): React.ReactElement {
         searchPlaceholder="Search clients..."
       />
       {isClientSelected && selectedClient && (
-        <AppPopUp
-          isOpen={isClientSelected}
-          onClose={() => setIsClientSelected(false)}
-          title="Client Details"
-        >
+        <AppPopUp isOpen={isClientSelected} onClose={() => setIsClientSelected(false)} title="Client Details">
           <ClientDetailDisplay client={selectedClient} />
         </AppPopUp>
       )}

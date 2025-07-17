@@ -1,0 +1,1 @@
+export * from './AppTableV2';

@@ -1,12 +1,12 @@
 import { useState, useCallback } from 'react';
 import type { Event, UseEventTableReturn } from '..';
-import type { SortConfig } from 'src/components/common/Table';
+import type { SortConfig } from 'src/components/@common/Table';
 
 export const useEventTable = (): UseEventTableReturn => {
   const [sortConfig, setSortConfig] = useState<SortConfig<Event> | null>(null);
 
   const updateSortConfig = useCallback((key: keyof Event) => {
-    setSortConfig(prevConfig => {
+    setSortConfig((prevConfig) => {
       if (prevConfig?.key === key) {
         return {
           key,

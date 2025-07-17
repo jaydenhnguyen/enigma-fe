@@ -8,8 +8,8 @@ import { Avatar, Box, IconButton, Menu, MenuItem } from '@mui/material';
 import { tokenManager } from 'src/configs';
 import { APP_ROUTES } from 'src/shared/constants';
 import AzMovingLogo from 'src/assets/az_moving_logo.svg';
-import { LAYOUT_ACTIONS, useLayout, useUserContext } from 'src/shared/context';
-import { TopBar } from '../common';
+import { LAYOUT_ACTIONS, useLayout, USER_CONTEXT_ACTIONS, useUserContext } from 'src/shared/context';
+import { TopBar } from '../@common';
 import classes from './PrivateHeadBar.module.scss';
 
 export function PrivateHeadBar(): React.ReactElement {
@@ -17,6 +17,7 @@ export function PrivateHeadBar(): React.ReactElement {
   const { dispatch: layoutDispatch } = useLayout();
   const {
     state: { firstName, lastName },
+    dispatch: userContextDispatch,
   } = useUserContext();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -28,6 +29,13 @@ export function PrivateHeadBar(): React.ReactElement {
 
   const handleSignOut = React.useCallback(async () => {
     tokenManager.clearSession();
+    userContextDispatch({
+      type: USER_CONTEXT_ACTIONS.SET_AUTHENTICATED_USER,
+      payload: {
+        firstName: null,
+        lastName: null,
+      },
+    });
     router.replace(APP_ROUTES.INTRODUCTION).then(() => handleClose());
   }, [router]);
 

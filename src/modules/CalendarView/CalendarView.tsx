@@ -8,7 +8,7 @@ import { isAfter, isBefore, startOfDay } from 'date-fns';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Stack, Typography } from '@mui/material';
-import { AppCard } from 'src/components/common';
+import { AppCard } from 'src/components/@common';
 import classes from './CalendarView.module.scss';
 
 enum VIEW_TYPE {

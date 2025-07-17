@@ -1,7 +1,7 @@
-import { CLIENTS_CONSTANTS } from "../constants/client.constants";
-import type { SortConfig } from 'src/components/common/Table';
+import { CLIENTS_CONSTANTS } from '../constants/client.constants';
+import type { SortConfig } from 'src/components/@common/Table';
 
-export type ClientStatus = typeof CLIENTS_CONSTANTS.CLIENT_STATUS[number];
+export type ClientStatus = (typeof CLIENTS_CONSTANTS.CLIENT_STATUS)[number];
 
 export type Client = {
   id: string;
@@ -17,14 +17,14 @@ export type Client = {
   utm_source?: string;
   utm_term?: string;
   amountPaid?: number;
-}
+};
 
 export type ClientsResponse = {
   clients: Client[];
   totalCount: number;
   page: number;
   limit: number;
-} 
+};
 
 export type ClientsRequest = {
   page?: number;
@@ -32,8 +32,7 @@ export type ClientsRequest = {
   sortBy?: string;
   order?: 'asc' | 'desc';
   search?: string;
-}
-
+};
 
 export type UseClientsReturn = {
   clients: Client[];
@@ -44,16 +43,16 @@ export type UseClientsReturn = {
   totalPages: number;
   fetchClients: (params?: ClientsRequest) => Promise<void>;
   refetch: () => Promise<void>;
-}
+};
 
 export type UseClientTableReturn = {
   sortConfig: SortConfig<Client> | null;
   updateSortConfig: (key: keyof Client) => void;
-}
+};
 
 export type ClientsTableProps = {
   clients: Client[];
   loading?: boolean;
   onSort?: (key: keyof Client, direction: 'asc' | 'desc') => void;
   onRowClick?: (client: Client) => void;
-}
+};

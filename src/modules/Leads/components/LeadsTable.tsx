@@ -1,7 +1,13 @@
 import React from 'react';
 import type { Lead, LeadStatus, LeadsTableProps } from '../types/lead.type';
 import { useLeadTable } from '../hooks/useLeadTable';
-import { Table, TableColumn, dateRenderer, statusBadgeRenderer, emptyValueRenderer } from 'src/components/common/Table';
+import {
+  Table,
+  TableColumn,
+  dateRenderer,
+  statusBadgeRenderer,
+  emptyValueRenderer,
+} from 'src/components/@common/Table';
 import { LEADS_CONSTANTS } from '../constants/lead.constants';
 import classes from '../styles/LeadsTable.module.scss';
 
@@ -25,11 +31,11 @@ export function LeadsTable({ leads, loading = false, onSort, onRowClick }: Leads
   });
 
   const renderLeadStatus = (status: any) => {
-    const validStatus = typeof status === 'string' && 
-      leadStatuses.includes(status.toLowerCase() as LeadStatus)
-      ? (status.toLowerCase() as LeadStatus)
-      : 'new';
-    
+    const validStatus =
+      typeof status === 'string' && leadStatuses.includes(status.toLowerCase() as LeadStatus)
+        ? (status.toLowerCase() as LeadStatus)
+        : 'new';
+
     return getStatusBadge(validStatus);
   };
 
@@ -38,67 +44,67 @@ export function LeadsTable({ leads, loading = false, onSort, onRowClick }: Leads
       key: 'fullName',
       label: 'Name',
       sortable: true,
-      className: classes['nameColumn']
+      className: classes['nameColumn'],
     },
     {
       key: 'moveDate',
       label: 'Moving Date',
       sortable: true,
-      render: dateRenderer
+      render: dateRenderer,
     },
     {
       key: 'phone',
       label: 'Phone',
-      sortable: true
+      sortable: true,
     },
     {
       key: 'email',
       label: 'Email',
       sortable: true,
-      className: classes['emailColumn']
+      className: classes['emailColumn'],
     },
     {
       key: 'currentStatus',
       label: 'Lead Status',
       sortable: true,
-      render: renderLeadStatus
+      render: renderLeadStatus,
     },
     {
       key: 'createdAt',
       label: 'Lead Creation Date',
       sortable: true,
-      render: dateRenderer
+      render: dateRenderer,
     },
     {
       key: 'updatedAt',
       label: 'Lead Modified Date',
       sortable: true,
-      render: dateRenderer
+      render: dateRenderer,
     },
     {
       key: 'refusalReason',
       label: 'Refusal Reason',
       sortable: false,
-      render: emptyValueRenderer
+      render: emptyValueRenderer,
     },
     {
       key: 'utm_campaign',
       label: 'UTM Campaign',
       sortable: false,
-      render: emptyValueRenderer
+      render: emptyValueRenderer,
     },
     {
       key: 'utm_metric',
       label: 'UTM Metric',
       sortable: false,
-      render: emptyValueRenderer
+      render: emptyValueRenderer,
     },
     {
       key: 'utm_source',
       label: 'UTM Source',
       sortable: false,
-      render: emptyValueRenderer
-    }
+      render: emptyValueRenderer,
+    },
   ];
 
   return (

@@ -1,7 +1,7 @@
-import { LEADS_CONSTANTS } from "../constants/lead.constants";
-import type { SortConfig } from 'src/components/common/Table';
+import { LEADS_CONSTANTS } from '../constants/lead.constants';
+import type { SortConfig } from 'src/components/@common/Table';
 
-export type LeadStatus = typeof LEADS_CONSTANTS.LEAD_STATUSES[number];
+export type LeadStatus = (typeof LEADS_CONSTANTS.LEAD_STATUSES)[number];
 
 export type Lead = {
   id: string;
@@ -18,14 +18,14 @@ export type Lead = {
   utm_source?: string;
   utm_term?: string;
   refusalReason?: string;
-}
+};
 
 export type LeadsResponse = {
   leads: Lead[];
   totalCount: number;
   page: number;
   limit: number;
-} 
+};
 
 export type LeadsRequest = {
   page?: number;
@@ -33,8 +33,7 @@ export type LeadsRequest = {
   sortBy?: string;
   order?: 'asc' | 'desc';
   search?: string;
-}
-
+};
 
 export type UseLeadsReturn = {
   leads: Lead[];
@@ -45,16 +44,16 @@ export type UseLeadsReturn = {
   totalPages: number;
   fetchLeads: (params?: LeadsRequest) => Promise<void>;
   refetch: () => Promise<void>;
-}
+};
 
 export type UseLeadTableReturn = {
   sortConfig: SortConfig<Lead> | null;
   updateSortConfig: (key: keyof Lead) => void;
-}
+};
 
 export type LeadsTableProps = {
   leads: Lead[];
   loading?: boolean;
   onSort?: (key: keyof Lead, direction: 'asc' | 'desc') => void;
   onRowClick?: (lead: Lead) => void;
-}
+};

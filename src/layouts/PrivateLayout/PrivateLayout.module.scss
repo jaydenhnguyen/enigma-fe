@@ -7,6 +7,6 @@
 }
 
 .main-content-wrapper {
-  @apply flex-1 bg-grey-200 overflow-y-auto relative top-[4.125rem];
+  @apply flex-1 bg-grey-200 overflow-y-auto overflow-x-hidden relative top-[4.125rem];
   @apply max-h-[calc(100vh-4.125rem)] p-6;
 }

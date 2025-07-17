@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { Box, Drawer, List } from '@mui/material';
-import { useLayout, useUserContext } from 'src/shared/context';
 import { MenuItem } from 'src/shared/types';
+import { useLayout, useUserContext } from 'src/shared/context';
 import { SIDE_MENU_ADMIN_ITEMS, SIDE_MENU_EMPLOYEE_ITEMS } from 'src/shared/constants';
 import { SideMenuItem } from '../SideMenuItem';
 import classes from './SideMenu.module.scss';
 
-const COLLAPSED_WIDTH = 85;
-const EXPANDED_WIDTH = 280;
+export const COLLAPSED_WIDTH = 85;
+export const EXPANDED_WIDTH = 280;
 
 export function SideMenu(): React.ReactElement {
   const router = useRouter();

@@ -1,3 +1,4 @@
-import { GridSortItem } from '@mui/x-data-grid/models/gridSortModel';
-
-export type SortingRequest = GridSortItem;
+export type SortingRequest = {
+  sortField?: string;
+  sortType?: 'asc' | 'desc';
+};

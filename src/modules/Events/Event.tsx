@@ -1,31 +1,20 @@
 import * as React from 'react';
 import { Box } from '@mui/material';
 import { AppPagination, AppTable } from 'src/components';
+import { PaginateRequest, SortingRequest } from 'src/shared/models';
 import { DEFAULT_PAGINATION_PAGE_NUM, DEFAULT_PAGINATION_PARAMS } from 'src/shared/constants';
 import { EVENT_TYPE } from './constants';
 import { mapRespondedEventToTable } from './util';
 import { useBuildEventTableColumns, useGetEvents } from './hooks';
 import classes from './EventTable.module.scss';
 
-// Define types (assuming these don't exist)
-type GridPaginationModel = {
-  page: number;
-  pageSize: number;
-};
-
-type GridSortModel = Array<{
-  field: string;
-  sort: 'asc' | 'desc';
-}>;
-
 type Props = {
   eventType: EVENT_TYPE;
 };
 
 export function Event({ eventType }: Props): React.ReactElement {
-  const columns = useBuildEventTableColumns();
-  const [paginationModel, setPaginationModel] = React.useState<GridPaginationModel>(DEFAULT_PAGINATION_PARAMS);
-  const [sortModel, setSortModel] = React.useState<GridSortModel>([]);
+  const [paginationModel, setPaginationModel] = React.useState<PaginateRequest>(DEFAULT_PAGINATION_PARAMS);
+  const [sortModel, setSortModel] = React.useState<SortingRequest>();
   const [search, setSearch] = React.useState<string>('');
   const [paginationResponse, setPaginationResponse] = React.useState({
     ...DEFAULT_PAGINATION_PARAMS,
@@ -35,12 +24,14 @@ export function Event({ eventType }: Props): React.ReactElement {
   const { data, isLoading } = useGetEvents({
     payload: {
       type: eventType,
+      sortField: sortModel?.sortField,
+      sortType: sortModel?.sortType,
       ...paginationModel,
-      sort: sortModel[0]?.sort,
-      field: sortModel[0]?.field ?? '',
       search: search,
     },
   });
+
+  const columns = useBuildEventTableColumns({ setSortModel });
 
   const mappedData = React.useMemo(() => mapRespondedEventToTable(data?.data ?? []), [data?.data]);
 
@@ -55,11 +46,6 @@ export function Event({ eventType }: Props): React.ReactElement {
     setPaginationModel((prev) => ({ ...prev, page }));
   }, []);
 
-  // Handle sort changes
-  const handleSortChange = React.useCallback((sortModel: any[]) => {
-    setSortModel(sortModel);
-  }, []);
-
   React.useEffect(() => {
     if (data?.pagination) {
       setPaginationResponse(data.pagination);
@@ -68,7 +54,7 @@ export function Event({ eventType }: Props): React.ReactElement {
 
   return (
     <Box className={classes['wrapper']}>
-      <AppTable columns={columns} rowData={mappedData} isLoading={isLoading} onSortChange={handleSortChange} />
+      <AppTable columns={columns} rowData={mappedData} isLoading={isLoading} />
 
       <AppPagination
         isLoading={isLoading}

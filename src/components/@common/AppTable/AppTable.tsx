@@ -1,7 +1,6 @@
 import React from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import type { ColDef } from 'ag-grid-enterprise';
-import { ModuleRegistry } from 'ag-grid-community';
+import { ModuleRegistry, ColDef } from 'ag-grid-community';
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 
 ModuleRegistry.registerModules([AllEnterpriseModule]);
@@ -23,11 +22,7 @@ export function AppTable<TData>({
   isLoading,
   emptyMessage = 'No data available',
   onRowClick,
-  onSortChange,
-  onFilterChange,
 }: Props<TData>) {
-  const gridRef = React.useRef<AgGridReact<TData>>(null);
-
   // Handle row click
   const onRowClicked = React.useCallback(
     (event: any) => {
@@ -38,34 +33,15 @@ export function AppTable<TData>({
     [onRowClick],
   );
 
-  // Handle sort change
-  const onSortChanged = React.useCallback(() => {
-    if (onSortChange && gridRef.current) {
-      const sortModel = gridRef.current.api.getSortModel();
-      onSortChange(sortModel);
-    }
-  }, [onSortChange]);
-
-  // Handle filter change
-  const onFilterChanged = React.useCallback(() => {
-    if (onFilterChange && gridRef.current) {
-      const filterModel = gridRef.current.api.getFilterModel();
-      onFilterChange(filterModel);
-    }
-  }, [onFilterChange]);
-
   return (
     <div style={{ width: '100%', height: '95%' }}>
       <AgGridReact<TData>
-        ref={gridRef}
         columnDefs={columns}
         rowData={rowData}
         loading={isLoading}
         overlayNoRowsTemplate={`<span class="ag-overlay-no-rows-center">${emptyMessage}</span>`}
         overlayLoadingTemplate={`<span class="ag-overlay-loading-center">Loading...</span>`}
         onRowClicked={onRowClicked}
-        onSortChanged={onSortChanged}
-        onFilterChanged={onFilterChanged}
       />
     </div>
   );

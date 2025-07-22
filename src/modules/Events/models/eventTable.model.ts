@@ -10,8 +10,8 @@ export const EVENT_TABLE_COLUMNS_LABEL = {
 };
 
 export const EVENT_TABLE_COLUMNS_KEY = {
-  PICKUP_DATE: 'pickupDate',
-  DELIVERY_DATE: 'deliveryDate',
+  PICKUP_DATE_TIME: 'pickupDateTime',
+  DELIVERY_DATE_TIME: 'deliveryDateTime',
   CLIENT_NAME: 'clientName',
   PICKUP_ADDRESS: 'pickupAddress',
   DELIVERY_ADDRESS: 'deliveryAddress',

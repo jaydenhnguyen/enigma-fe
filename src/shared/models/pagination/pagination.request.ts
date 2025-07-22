@@ -1,3 +1,4 @@
-import { GridPaginationModel } from '@mui/x-data-grid';
-
-export type PaginateRequest = GridPaginationModel;
+export type PaginateRequest = {
+  page: number;
+  pageSize: number;
+};

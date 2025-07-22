@@ -1,31 +1,49 @@
 import * as React from 'react';
 import { ColDef } from 'ag-grid-enterprise';
-import { arrayValuesRender, commonValueRender, formatDateCell } from 'src/shared/util';
+import { SortingRequest } from 'src/shared/models';
+import {
+  arrayValuesRender,
+  commonValueRender,
+  formatDateCell,
+  generateSortableColumnHeaderMenu,
+} from 'src/shared/util';
 import { EVENT_TABLE_COLUMNS_KEY, EVENT_TABLE_COLUMNS_LABEL, EventTableData } from '../models';
 
-export function useBuildEventTableColumns(): ColDef[] {
+type Props = {
+  setSortModel: (sortModel: SortingRequest) => void;
+};
+
+export function useBuildEventTableColumns({ setSortModel }: Props): ColDef[] {
   return React.useMemo(
     () => [
       {
-        field: EVENT_TABLE_COLUMNS_KEY.PICKUP_DATE,
+        field: EVENT_TABLE_COLUMNS_KEY.PICKUP_DATE_TIME,
         headerName: EVENT_TABLE_COLUMNS_LABEL.PICKUP_DATE,
         width: 200,
         flex: 1,
-        sortable: true,
+        sortable: false,
         suppressHeaderFilterButton: true,
         suppressAutoSize: true,
-        mainMenuItems: ['sortAscending', 'sortDescending', 'pinSubMenu'],
+        mainMenuItems: generateSortableColumnHeaderMenu({
+          setSortModel,
+          columnKey: EVENT_TABLE_COLUMNS_KEY.PICKUP_DATE_TIME,
+          menuItems: ['pinSubMenu'],
+        }),
         cellRenderer: ({ data }: { data: EventTableData }) => formatDateCell(data.pickupDate),
         pinned: 'left',
         headerClass: 'ag-header-cell-center',
       },
       {
-        field: EVENT_TABLE_COLUMNS_KEY.DELIVERY_DATE,
+        field: EVENT_TABLE_COLUMNS_KEY.DELIVERY_DATE_TIME,
         headerName: EVENT_TABLE_COLUMNS_LABEL.DELIVERY_DATE,
         width: 200,
         flex: 1,
         sortable: true,
-        mainMenuItems: ['sortAscending', 'sortDescending', 'pinSubMenu'],
+        mainMenuItems: generateSortableColumnHeaderMenu({
+          setSortModel,
+          columnKey: EVENT_TABLE_COLUMNS_KEY.DELIVERY_DATE_TIME,
+          menuItems: ['pinSubMenu'],
+        }),
         cellRenderer: ({ data }: { data: EventTableData }) => formatDateCell(data.deliveryDate),
         pinned: 'left',
         headerClass: 'ag-header-cell-center',

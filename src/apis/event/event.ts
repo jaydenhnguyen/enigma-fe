@@ -15,8 +15,8 @@ export const getEvents = async (payload: GetEventRequest): Promise<GetEventsResp
 
   if (payload.page) queryParams.append('page', payload.page.toString());
   if (payload.pageSize) queryParams.append('pageSize', payload.pageSize.toString());
-  if (payload.field) queryParams.append('sortBy', payload.field);
-  if (payload.sort) queryParams.append('order', payload.sort);
+  if (payload.sortField) queryParams.append('sortBy', payload.sortField);
+  if (payload.sortType) queryParams.append('order', payload.sortType);
   if (payload.search) queryParams.append('search', payload.search);
 
   const url = `${EVENTS_ENDPOINTS.GET_EVENTS}/${payload.type}?${queryParams.toString()}`;

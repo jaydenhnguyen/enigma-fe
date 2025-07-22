@@ -11,9 +11,6 @@ type Props<TData> = {
   rowData: TData[];
   isLoading?: boolean;
   emptyMessage?: string;
-  totalRows?: number;
-  pageSize?: number;
-  currentPage?: number;
   onRowClick?: (data: TData) => void;
   onPaginationChange?: (pagination: { pageIndex: number; pageSize: number }) => void;
   onSortChange?: (sortModel: any) => void;
@@ -25,11 +22,7 @@ export function AppTable<TData>({
   rowData,
   isLoading,
   emptyMessage = 'No data available',
-  pageSize = 10,
-  totalRows,
-  currentPage,
   onRowClick,
-  onPaginationChange,
   onSortChange,
   onFilterChange,
 }: Props<TData>) {
@@ -66,8 +59,7 @@ export function AppTable<TData>({
       <AgGridReact<TData>
         ref={gridRef}
         columnDefs={columns}
-        rowData={rowData} // Use rowData instead of rowModelType for client-side data
-        paginationPageSize={pageSize}
+        rowData={rowData}
         loading={isLoading}
         overlayNoRowsTemplate={`<span class="ag-overlay-no-rows-center">${emptyMessage}</span>`}
         overlayLoadingTemplate={`<span class="ag-overlay-loading-center">Loading...</span>`}

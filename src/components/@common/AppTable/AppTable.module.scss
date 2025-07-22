@@ -1,0 +1,23 @@
+.table-container {
+  @apply shadow-sm border border-gray-200;
+}
+
+.clickable-table-row {
+  @apply cursor-pointer;
+
+  &:hover {
+    @apply bg-primary-main bg-opacity-[0.1];
+  }
+}
+
+.selected-row {
+  @apply bg-opacity-[0.3] #{!important};
+}
+
+.empty-row {
+  @apply text-center text-app-secondary-dtxt;
+}
+
+.table-cell {
+  @apply bg-gray-50 font-semibold text-gray-900;
+}

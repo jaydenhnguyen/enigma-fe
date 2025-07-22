@@ -32,8 +32,8 @@ export function PrivateHeadBar(): React.ReactElement {
     userContextDispatch({
       type: USER_CONTEXT_ACTIONS.SET_AUTHENTICATED_USER,
       payload: {
-        firstName: null,
-        lastName: null,
+        firstName: '',
+        lastName: '',
       },
     });
     router.replace(APP_ROUTES.INTRODUCTION).then(() => handleClose());

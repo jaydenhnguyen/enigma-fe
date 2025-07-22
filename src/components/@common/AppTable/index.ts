@@ -1,2 +1,1 @@
-export * from './components/AppTable'
-export * from './hooks/useAppTable'
+export * from './AppTable';

@@ -1,1 +1,2 @@
-export * from './table.util';
+export * from './format.util';
+export * from './pagination.util';

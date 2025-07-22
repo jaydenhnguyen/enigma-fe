@@ -1,4 +1,5 @@
 export * from './TopBar';
 export * from './AppCard';
 export * from './AppPopUp';
-export * from './AppTableV2';
+export * from './AppTable';
+export * from './AppPagination';

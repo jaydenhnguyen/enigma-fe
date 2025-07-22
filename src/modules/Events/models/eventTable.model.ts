@@ -1,5 +1,6 @@
 export const EVENT_TABLE_COLUMNS_LABEL = {
-  MOVING_DATE: 'Moving Date',
+  PICKUP_DATE: 'Pickup Date',
+  DELIVERY_DATE: 'Delivery Date',
   CLIENT_NAME: 'Client Name',
   PICKUP_ADDRESS: 'Pickup Address',
   DELIVERY_ADDRESS: 'Delivery Address',
@@ -9,21 +10,24 @@ export const EVENT_TABLE_COLUMNS_LABEL = {
 };
 
 export const EVENT_TABLE_COLUMNS_KEY = {
-  MOVING_DATE: 'movingDate',
+  PICKUP_DATE: 'pickupDate',
+  DELIVERY_DATE: 'deliveryDate',
   CLIENT_NAME: 'clientName',
   PICKUP_ADDRESS: 'pickupAddress',
   DELIVERY_ADDRESS: 'deliveryAddress',
   DELIVERY_MAN: 'deliveryMan',
   TRUCK_ADDRESS: 'truckAddress',
   MEETING_TIME: 'meetingTime',
-} as const;
+};
 
 export type EventTableData = {
-  [EVENT_TABLE_COLUMNS_KEY.MOVING_DATE]: string;
-  [EVENT_TABLE_COLUMNS_KEY.CLIENT_NAME]: string;
-  [EVENT_TABLE_COLUMNS_KEY.PICKUP_ADDRESS]: string;
-  [EVENT_TABLE_COLUMNS_KEY.DELIVERY_ADDRESS]: string;
-  [EVENT_TABLE_COLUMNS_KEY.DELIVERY_MAN]: string[];
-  [EVENT_TABLE_COLUMNS_KEY.TRUCK_ADDRESS]: string;
-  [EVENT_TABLE_COLUMNS_KEY.MEETING_TIME]: string;
+  _id: string;
+  pickupDate: string;
+  deliveryDate: string;
+  clientName: string;
+  pickupAddress: string;
+  deliveryAddress: string;
+  deliveryMan: string[];
+  truckAddress: string;
+  meetingTime: string;
 };

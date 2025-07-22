@@ -1,2 +1,3 @@
-export * from './constants';
 export * from './Event';
+export * from './models';
+export * from './constants';

@@ -13,12 +13,12 @@ export function generateSortableColumnHeaderMenu({
   return [
     {
       name: 'Sort Ascending',
-      action: () => setSortModel({ sortField: columnKey, sortType: 'asc' }),
+      action: () => setSortModel({ sortBy: columnKey, sortType: 'asc' }),
       icon: '<span class="ag-icon ag-icon-asc" role="presentation"/>',
     },
     {
       name: 'Sort Descending',
-      action: () => setSortModel({ sortField: columnKey, sortType: 'desc' }),
+      action: () => setSortModel({ sortBy: columnKey, sortType: 'desc' }),
       icon: '<span class="ag-icon ag-icon-desc" role="presentation"/>',
     },
     ...menuItems,

@@ -2,6 +2,7 @@ import React from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { ModuleRegistry, ColDef } from 'ag-grid-community';
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
+import { Paper } from '@mui/material';
 
 ModuleRegistry.registerModules([AllEnterpriseModule]);
 
@@ -34,7 +35,7 @@ export function AppTable<TData>({
   );
 
   return (
-    <div style={{ width: '100%', height: '95%' }}>
+    <Paper elevation={1} style={{ width: '100%', height: '95%' }}>
       <AgGridReact<TData>
         columnDefs={columns}
         rowData={rowData}
@@ -43,6 +44,6 @@ export function AppTable<TData>({
         overlayLoadingTemplate={`<span class="ag-overlay-loading-center">Loading...</span>`}
         onRowClicked={onRowClicked}
       />
-    </div>
+    </Paper>
   );
 }

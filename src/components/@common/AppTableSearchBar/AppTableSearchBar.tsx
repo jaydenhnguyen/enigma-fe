@@ -1,50 +1,40 @@
 import * as React from 'react';
+import { Search } from '@mui/icons-material';
 import {
   Box,
   Button,
   FormControl,
   InputLabel,
   MenuItem,
+  Paper,
   Select,
   SelectChangeEvent,
   TextField,
-  IconButton,
 } from '@mui/material';
-import { Search, Close as X } from '@mui/icons-material';
+import { SearchingRequest, SearchOptionItem } from 'src/shared/models';
 import classes from './AppTableSearchBar.module.scss';
 
-type Props = {};
+type Props = {
+  searchOptions: SearchOptionItem[];
+  onSearch: (searchModel: SearchingRequest) => void;
+  onClear: () => void;
+};
 
-export function AppTableSearchBar({}: Props): React.ReactElement {
-  const searchOptions = [
-    { value: 'name', label: 'Name' },
-    { value: 'email', label: 'Email' },
-    { value: 'id', label: 'ID' },
-    { value: 'status', label: 'Status' },
-  ];
-
-  const [searchBy, setSearchBy] = React.useState(searchOptions[0].value);
-  const [searchTerm, setSearchTerm] = React.useState('');
+export function AppTableSearchBar({ searchOptions, onSearch, onClear }: Props): React.ReactElement {
+  const [searchBy, setSearchBy] = React.useState(searchOptions?.[0]?.value);
+  const [searchValue, setSearchValue] = React.useState('');
 
   const handleSearch = () => {
-    if (searchTerm.trim()) {
-      console.log('Search by:', searchBy, 'Term:', searchTerm.trim());
-    }
-  };
-
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      handleSearch();
-    }
+    if (searchValue.trim()) onSearch({ searchBy, searchValue });
   };
 
   const handleClear = () => {
-    setSearchTerm('');
-    console.log('Search by:', searchBy, 'Term: (cleared)');
+    setSearchValue('');
+    onClear();
   };
 
   return (
-    <Box className={classes['wrapper']}>
+    <Paper elevation={1} className={classes['wrapper']}>
       {/* Search By Dropdown */}
       <Box className={classes['search-by-wrapper']}>
         <FormControl fullWidth size="small">
@@ -72,8 +62,8 @@ export function AppTableSearchBar({}: Props): React.ReactElement {
           id="searchTerm"
           size="small"
           label="Search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
           placeholder="Input search value"
         />
       </Box>
@@ -81,7 +71,7 @@ export function AppTableSearchBar({}: Props): React.ReactElement {
       {/* Action Buttons */}
       <Box display="flex" gap={1}>
         <Button
-          disabled={!searchTerm.trim()}
+          disabled={!searchValue.trim()}
           variant="contained"
           color="primary"
           onClick={handleSearch}
@@ -89,10 +79,10 @@ export function AppTableSearchBar({}: Props): React.ReactElement {
         >
           Search
         </Button>
-        <Button variant="outlined" onClick={handleClear} disabled={!searchTerm.trim()}>
+        <Button variant="outlined" onClick={handleClear}>
           Clear
         </Button>
       </Box>
-    </Box>
+    </Paper>
   );
 }

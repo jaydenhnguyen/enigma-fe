@@ -13,11 +13,12 @@ export const getEvents = async (payload: GetEventRequest): Promise<GetEventsResp
     - search: A search term to filter events.
   */
 
-  if (payload.page) queryParams.append('page', payload.page.toString());
-  if (payload.pageSize) queryParams.append('pageSize', payload.pageSize.toString());
-  if (payload.sortField) queryParams.append('sortBy', payload.sortField);
-  if (payload.sortType) queryParams.append('order', payload.sortType);
-  if (payload.search) queryParams.append('search', payload.search);
+  if (payload.page) queryParams.append('page', payload.page.toString().trim());
+  if (payload.pageSize) queryParams.append('pageSize', payload.pageSize.toString().trim());
+  if (payload.sortBy) queryParams.append('sortBy', payload.sortBy.toString().trim());
+  if (payload.sortType) queryParams.append('order', payload.sortType.toString().trim());
+  if (payload.searchBy) queryParams.append('searchBy', payload.searchBy.toString().trim());
+  if (payload.searchValue) queryParams.append('searchValue', payload.searchValue.toString().trim());
 
   const url = `${EVENTS_ENDPOINTS.GET_EVENTS}/${payload.type}?${queryParams.toString()}`;
   return await request.get(url);

@@ -18,7 +18,7 @@ export function useBuildEventTableColumns({ setSortModel }: Props): ColDef[] {
     () => [
       {
         field: EVENT_TABLE_COLUMNS_KEY.PICKUP_DATE_TIME,
-        headerName: EVENT_TABLE_COLUMNS_LABEL.PICKUP_DATE,
+        headerName: EVENT_TABLE_COLUMNS_LABEL.PICKUP_DATE_TIME,
         width: 200,
         flex: 1,
         sortable: false,
@@ -35,7 +35,7 @@ export function useBuildEventTableColumns({ setSortModel }: Props): ColDef[] {
       },
       {
         field: EVENT_TABLE_COLUMNS_KEY.DELIVERY_DATE_TIME,
-        headerName: EVENT_TABLE_COLUMNS_LABEL.DELIVERY_DATE,
+        headerName: EVENT_TABLE_COLUMNS_LABEL.DELIVERY_DATE_TIME,
         width: 200,
         flex: 1,
         sortable: true,

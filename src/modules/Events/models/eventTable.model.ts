@@ -1,6 +1,6 @@
 export const EVENT_TABLE_COLUMNS_LABEL = {
-  PICKUP_DATE: 'Pickup Date',
-  DELIVERY_DATE: 'Delivery Date',
+  PICKUP_DATE_TIME: 'Pickup Date',
+  DELIVERY_DATE_TIME: 'Delivery Date',
   CLIENT_NAME: 'Client Name',
   PICKUP_ADDRESS: 'Pickup Address',
   DELIVERY_ADDRESS: 'Delivery Address',

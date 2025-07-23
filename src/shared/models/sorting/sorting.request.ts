@@ -1,4 +1,4 @@
 export type SortingRequest = {
-  sortField?: string;
+  sortBy?: string;
   sortType?: 'asc' | 'desc';
 };

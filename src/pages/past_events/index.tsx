@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Head from 'next/head';
 import { PrivateLayout } from 'src/layouts';
+import { Event, EVENT_TYPE } from 'src/modules/Events';
 
 export default function PastEventsPage(): React.ReactElement {
   return (
@@ -9,9 +10,7 @@ export default function PastEventsPage(): React.ReactElement {
         <title>A-Z Moving: Past Events</title>
       </Head>
 
-      {/*<>*/}
-      {/*  <EventApp type={eventType} />*/}
-      {/*</>*/}
+      <Event eventType={EVENT_TYPE.PAST} />
     </>
   );
 }

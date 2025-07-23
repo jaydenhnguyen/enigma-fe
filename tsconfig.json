@@ -11,6 +11,7 @@
       "ES2018.Intl"
     ],
     "allowJs": true,
+    "types": ["@testing-library/jest-dom"],
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,

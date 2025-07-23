@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Box } from '@mui/material';
-import { AppPagination, AppTable } from 'src/components';
+import { AppPagination, AppTable, AppTableSearchBar } from 'src/components';
 import { PaginateRequest, SortingRequest } from 'src/shared/models';
 import { DEFAULT_PAGINATION_PAGE_NUM, DEFAULT_PAGINATION_PARAMS } from 'src/shared/constants';
 import { EVENT_TYPE } from './constants';
@@ -54,6 +54,8 @@ export function Event({ eventType }: Props): React.ReactElement {
 
   return (
     <Box className={classes['wrapper']}>
+      <AppTableSearchBar />
+
       <AppTable columns={columns} rowData={mappedData} isLoading={isLoading} />
 
       <AppPagination

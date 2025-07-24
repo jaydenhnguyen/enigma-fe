@@ -8,3 +8,14 @@ export const DEFAULT_PAGINATION_PARAMS = {
   page: DEFAULT_PAGINATION_PAGE_NUM,
   pageSize: DEFAULT_PAGINATION_PAGE_SIZE,
 };
+
+export const DEFAULT_TABLE_COLUMN_CONFIG = {
+  flex: 1,
+  sortable: false,
+  suppressHeaderFilterButton: true,
+  suppressAutoSize: true,
+  suppressHeaderMenuButton: true,
+  headerClass: 'flex items-center justify-center',
+  editable: false,
+  cellClass: 'flex items-center',
+};

@@ -9,6 +9,7 @@ export default function EmployeeManagementPage(): React.ReactElement {
       <Head>
         <title>A-Z Moving: Employee Management</title>
       </Head>
+      
       <Employees />
     </>
   );

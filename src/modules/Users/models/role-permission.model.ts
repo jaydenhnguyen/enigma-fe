@@ -1,3 +1,5 @@
+import { ROLES } from 'src/shared/constants';
+
 export type Permission = {
   _id: string;
   permissionName: string;
@@ -9,7 +11,7 @@ export type Permission = {
 };
 export type Role = {
   _id: string;
-  roleName: string;
+  roleName: ROLES;
   description: string;
   permissions: Permission[];
 };

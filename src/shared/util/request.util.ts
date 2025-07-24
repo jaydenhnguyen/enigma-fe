@@ -1,8 +1,4 @@
-import { request } from 'src/configs';
-import { GetEventRequest, GetEventsResponse, GetEventDetailResponse } from 'src/modules/Events';
-import { EVENTS_ENDPOINTS } from './endpoints';
-
-export const getEvents = async (payload: GetEventRequest): Promise<GetEventsResponse> => {
+export function buildListingRequestPayload(payload: any): string {
   const queryParams = new URLSearchParams();
 
   /*
@@ -20,12 +16,5 @@ export const getEvents = async (payload: GetEventRequest): Promise<GetEventsResp
   if (payload.searchBy) queryParams.append('searchBy', payload.searchBy.toString().trim());
   if (payload.searchValue) queryParams.append('searchValue', payload.searchValue.toString().trim());
 
-  const url = `${EVENTS_ENDPOINTS.GET_EVENTS}/${payload.type}?${queryParams.toString()}`;
-  return await request.get(url);
-};
-
-export const getEventDetail = async (eventId: string): Promise<GetEventDetailResponse> => {
-  const url = `${EVENTS_ENDPOINTS.GET_EVENTS_DETAILS}/${eventId?.trim()}`;
-
-  return await request.get(url);
-};
+  return queryParams.toString();
+}

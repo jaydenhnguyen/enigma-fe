@@ -10,7 +10,7 @@ export default function LeadsPage(): React.ReactElement {
         <title>A-Z Moving: Leads</title>
       </Head>
 
-      <LeadsApp/>
+      {/*<LeadsApp/>*/}
     </>
   );
 }

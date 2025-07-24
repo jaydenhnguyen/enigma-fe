@@ -6,14 +6,17 @@ import {
   commonValueRender,
   formatDateCell,
   generateSortableColumnHeaderMenu,
+  renderActionColumn,
 } from 'src/shared/util';
 import { EVENT_TABLE_COLUMNS_KEY, EVENT_TABLE_COLUMNS_LABEL, EventTableData } from '../models';
 
 type Props = {
   setSortModel: (sortModel: SortingRequest) => void;
+  onClickView?: (eventId: string) => void;
+  onClickEdit?: (eventId: string) => void;
 };
 
-export function useBuildEventTableColumns({ setSortModel }: Props): ColDef[] {
+export function useBuildEventTableColumns({ setSortModel, onClickView, onClickEdit }: Props): ColDef[] {
   return React.useMemo(
     () => [
       {
@@ -32,6 +35,7 @@ export function useBuildEventTableColumns({ setSortModel }: Props): ColDef[] {
         cellRenderer: ({ data }: { data: EventTableData }) => formatDateCell(data.pickupDate),
         pinned: 'left',
         headerClass: 'ag-header-cell-center',
+        editable: false,
       },
       {
         field: EVENT_TABLE_COLUMNS_KEY.DELIVERY_DATE_TIME,
@@ -114,9 +118,14 @@ export function useBuildEventTableColumns({ setSortModel }: Props): ColDef[] {
         width: 100,
         suppressHeaderMenuButton: true,
         suppressHeaderContextMenu: true,
-        cellRenderer: () => 'Action',
+        cellRenderer: ({ data }: { data: EventTableData }) =>
+          renderActionColumn({
+            onClickView: () => onClickView?.(data._id),
+            onClickEdit: () => onClickEdit?.(data._id),
+          }),
         pinned: 'right',
         headerClass: 'ag-header-cell-center',
+        cellClass: 'flex items-center justify-center',
       },
     ],
     [],

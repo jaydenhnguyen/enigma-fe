@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Box } from '@mui/material';
-import { AppPagination, AppTable, AppTableSearchBar } from 'src/components';
 import { PaginateRequest, SearchingRequest, SortingRequest } from 'src/shared/models';
+import { AppPagination, AppTable, AppTableSearchBar, EventDetailPopUp } from 'src/components';
 import { DEFAULT_PAGINATION_PAGE_NUM, DEFAULT_PAGINATION_PARAMS } from 'src/shared/constants';
-import { EVENT_TYPE, SEARCH_EVENT_OPTIONS } from './constants';
+import { EVENT_TABLE_COLUMNS_KEY } from './models';
 import { mapRespondedEventToTable } from './util';
+import { EVENT_TYPE, SEARCH_EVENT_OPTIONS } from './constants';
 import { useBuildEventTableColumns, useGetEvents } from './hooks';
 import classes from './EventTable.module.scss';
-import { EVENT_TABLE_COLUMNS_KEY } from './models';
 
 type Props = {
   eventType: EVENT_TYPE;
@@ -21,8 +21,10 @@ export function Event({ eventType }: Props): React.ReactElement {
     ...DEFAULT_PAGINATION_PARAMS,
     total: 0,
   });
+  const [isOpenEventDetailPopup, setIsOpenEventDetailPopup] = React.useState(false);
+  const [selectedEventId, setSelectedEventId] = React.useState<string | null>(null);
 
-  const { data, isLoading } = useGetEvents({
+  const { data: eventList, isLoading: isLoadingEventList } = useGetEvents({
     payload: {
       type: eventType,
       ...sortModel,
@@ -31,15 +33,29 @@ export function Event({ eventType }: Props): React.ReactElement {
     },
   });
 
-  const columns = useBuildEventTableColumns({ setSortModel });
+  const handleOpenEventDetailPopup = React.useCallback(async (eventId: string) => {
+    setSelectedEventId(eventId);
+    setIsOpenEventDetailPopup(true);
+  }, []);
+
+  const handleCloseEventDetailPopup = React.useCallback(() => {
+    setSelectedEventId(null);
+    setIsOpenEventDetailPopup(false);
+  }, []);
+
+  const columns = useBuildEventTableColumns({
+    setSortModel,
+    onClickView: (eventId: string) => handleOpenEventDetailPopup(eventId),
+    onClickEdit: (eventId: string) => handleOpenEventDetailPopup(eventId),
+  });
 
   React.useEffect(() => {
-    if (data?.pagination) {
-      setPaginationResponse(data.pagination);
+    if (eventList?.pagination) {
+      setPaginationResponse(eventList.pagination);
     }
-  }, [data?.pagination]);
+  }, [eventList?.pagination]);
 
-  const mappedData = React.useMemo(() => mapRespondedEventToTable(data?.data ?? []), [data?.data]);
+  const mappedData = React.useMemo(() => mapRespondedEventToTable(eventList?.data ?? []), [eventList?.data]);
 
   const handlePageSizeChange = React.useCallback((pageSize: number) => {
     setPaginationModel({
@@ -59,19 +75,31 @@ export function Event({ eventType }: Props): React.ReactElement {
   }, []);
 
   return (
-    <Box className={classes['wrapper']}>
-      <AppTableSearchBar searchOptions={SEARCH_EVENT_OPTIONS} onSearch={setSearchModel} onClear={ClearSearchAndReset} />
-
-      <Box className={classes['table-section']}>
-        <AppTable columns={columns} rowData={mappedData} isLoading={isLoading} />
-
-        <AppPagination
-          isLoading={isLoading}
-          totalRows={paginationResponse?.total}
-          onPageNumChange={handlePageNumChange}
-          onPageSizeChange={handlePageSizeChange}
+    <>
+      <Box className={classes['wrapper']}>
+        <AppTableSearchBar
+          searchOptions={SEARCH_EVENT_OPTIONS}
+          onSearch={setSearchModel}
+          onClear={ClearSearchAndReset}
         />
+
+        <Box className={classes['table-section']}>
+          <AppTable columns={columns} rowData={mappedData} isLoading={isLoadingEventList} />
+
+          <AppPagination
+            isLoading={isLoadingEventList}
+            totalRows={paginationResponse?.total}
+            onPageNumChange={handlePageNumChange}
+            onPageSizeChange={handlePageSizeChange}
+          />
+        </Box>
       </Box>
-    </Box>
+
+      <EventDetailPopUp
+        isOpen={isOpenEventDetailPopup && !!selectedEventId?.trim()}
+        eventId={selectedEventId ?? ''}
+        onClose={handleCloseEventDetailPopup}
+      />
+    </>
   );
 }

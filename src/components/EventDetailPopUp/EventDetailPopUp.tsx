@@ -1,223 +1,157 @@
 import * as React from 'react';
+import { Box, Chip, CircularProgress, Grid, List, ListItem, ListItemText, Typography } from '@mui/material';
+import { formatDateCell } from 'src/shared/util';
+import { notify, ToastType } from '../NotifyToast';
+import { AppPopUp, InfoRow, InfoSection } from '../@common';
+import { useGetEventDetail } from 'src/modules/Events';
+import { MoverInfo } from './components';
+import classes from './EventDetailPopUp.module.scss';
 
 type Props = {
-  event?: any;
+  isOpen: boolean;
+  eventId: string;
+  onClose: () => void;
 };
 
-export function EventDetailPopUp({ event }: Props): React.ReactElement {
+export function EventDetailPopUp({ eventId, isOpen, onClose }: Props): React.ReactElement | null {
+  const { data, isLoading, error, refetch, isFetching } = useGetEventDetail(eventId);
+
+  React.useEffect(() => {
+    if (!eventId?.trim()) return;
+    refetch().then();
+  }, [eventId]);
+
+  React.useEffect(() => {
+    if (!!error) {
+      notify({ message: 'Can not get event details', type: ToastType.error });
+      onClose();
+    }
+  }, [error]);
+
   return (
-    <div className="grid grid-cols-4 gap-6 text-gray-700 text-sm">
-      {/* CLIENT INFORMATION */}
-      <div className="space-y-4 col-span-1">
-        <h3 className="text-lg font-semibold mb-2">Client Information</h3>
+    <AppPopUp isOpen={isOpen} onClose={onClose} title="Moving Service Details">
+      {(isLoading || isFetching) && <CircularProgress />}
 
-        <div>
-          <label className="block mb-1 font-medium">Full Name</label>
-          <input
-            type="text"
-            defaultValue="Kevin Dohery"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
+      <Box className={classes['wrapper']}>
+        {/* Basic Information */}
+        <InfoSection title="Service Overview">
+          <Grid container spacing={2}>
+            <Grid>
+              <InfoRow label="Service ID" value={data?._id} />
+              <InfoRow label="Client ID" value={data?.clientId} />
+            </Grid>
+            <Grid>
+              <InfoRow
+                label="Service Rate"
+                value={
+                  <Typography variant="body2" fontWeight="bold" color="success.main">
+                    ${data?.serviceRate}/hour
+                  </Typography>
+                }
+              />
+            </Grid>
+          </Grid>
+        </InfoSection>
 
-        <div>
-          <label className="block mb-1 font-medium">Phone Number</label>
-          <input
-            type="text"
-            defaultValue="067999777888"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
+        {/* Pickup Information */}
+        <InfoSection title="Pickup Details">
+          <>
+            <InfoRow label="Date & Time" value={formatDateCell(data?.pickupDateTime ?? '')} />
+            <InfoRow label="Address" value={data?.pickupAddress} />
+            <InfoRow label="Address Size" value={<Chip label={data?.pickupAddressSize} size="small" />} />
+            <InfoRow label="Trucks Count" value={data?.pickupTrucksCount} />
 
-        <div>
-          <label className="block mb-1 font-medium">Email</label>
-          <input
-            type="email"
-            defaultValue="dummy@email.com"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
-      </div>
+            {data?.pickupMoversAssigned && data?.pickupMoversAssigned?.length > 0 && (
+              <Box mt={2}>
+                <Typography variant="body2" fontWeight="bold" mb={1}>
+                  Assigned Movers:
+                </Typography>
+                {data?.pickupMoversAssigned.map((mover, index) => <MoverInfo key={index} mover={mover} />)}
+              </Box>
+            )}
+          </>
+        </InfoSection>
 
-      {/* PICK-UP DETAILS */}
-      <div className="space-y-4 col-span-1">
-        <h3 className="text-lg font-semibold mb-2">Pick-up Details</h3>
+        {/* Delivery Information */}
+        <InfoSection title="Delivery Details">
+          <>
+            <InfoRow label="Date & Time" value={formatDateCell(data?.deliveryDateTime ?? '')} />
+            <InfoRow label="Address" value={data?.deliveryAddress} />
+            <InfoRow label="Address Size" value={<Chip label={data?.deliveryAddressSize} size="small" />} />
+            <InfoRow label="Trucks Count" value={data?.deliveryTrucksCount} />
 
-        <div>
-          <label className="block mb-1 font-medium">Pick-up Date</label>
-          <input
-            type="date"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
+            {data?.deliveryMoversAssigned && data?.deliveryMoversAssigned?.length > 0 ? (
+              <Box mt={2}>
+                <Typography variant="body2" fontWeight="bold" mb={1}>
+                  Assigned Movers:
+                </Typography>
+                {data?.deliveryMoversAssigned.map((mover, index) => <MoverInfo key={index} mover={mover} />)}
+              </Box>
+            ) : (
+              <Typography variant="body2" color="text.secondary" mt={1}>
+                No movers assigned for delivery yet
+              </Typography>
+            )}
+          </>
+        </InfoSection>
 
-        <div>
-          <label className="block mb-1 font-medium">Pick-up Time</label>
-          <input
-            type="time"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
+        {/* Crew & Logistics */}
+        <InfoSection title="Crew & Logistics">
+          <>
+            <InfoRow label="Meeting Time" value={formatDateCell(data?.meetingUpDateTime ?? '')} />
+            <InfoRow label="Crew Arrival" value={formatDateCell(data?.crewArrivalDateTime ?? '')} />
+            <InfoRow label="Crew Arrival Address" value={data?.crewArrivalAddress} />
+            <InfoRow label="Truck Location" value={data?.truckAddress} />
+          </>
+        </InfoSection>
 
-        <div>
-          <label className="block mb-1 font-medium">Pick-up Address</label>
-          <input
-            type="text"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
+        {/* Inventory */}
+        {data?.inventoryList && data?.inventoryList.length > 0 && (
+          <InfoSection title="Inventory">
+            <Box display="flex" flexWrap="wrap" gap={1}>
+              {data?.inventoryList.map((item, index) => <Chip key={index} label={item} variant="outlined" />)}
+            </Box>
+          </InfoSection>
+        )}
 
-        <div>
-          <label className="block mb-1 font-medium">Number of Movers</label>
-          <select
-            defaultValue={event?.numberOfMovers || 1}
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          >
-            {[1, 2, 3, 4, 5].map((num) => (
-              <option key={num} value={num}>
-                {num}
-              </option>
-            ))}
-          </select>
-        </div>
+        {/* Notes & Comments */}
+        {(data?.notes && data?.notes.length > 0) ||
+          (data?.clientComments && data?.clientComments.length > 0 && (
+            <InfoSection title="Notes & Comments">
+              <>
+                {data?.notes.length > 0 && (
+                  <Box mb={2}>
+                    <Typography variant="body2" fontWeight="bold" mb={1}>
+                      Internal Notes:
+                    </Typography>
+                    <List dense>
+                      {data?.notes.map((note, index) => (
+                        <ListItem key={index} sx={{ py: 0.5, px: 0 }}>
+                          <ListItemText primary={note} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Box>
+                )}
 
-        <div>
-          <label className="block mb-1 font-medium">Movers assigned</label>
-          <input
-            type="text"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
-
-        <div>
-          <label className="block mb-1 font-medium">Number of Trucks</label>
-          <select
-            defaultValue={event?.numberOfTrucks || 1}
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          >
-            {[1, 2, 3, 4, 5].map((num) => (
-              <option key={num} value={num}>
-                {num}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="block mb-1 font-medium">Pick-up address size</label>
-          <input
-            type="text"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
-      </div>
-
-      {/* DELIVERY DETAILS */}
-      <div className="space-y-4 col-span-1">
-        <h3 className="text-lg font-semibold mb-2">Delivery Details</h3>
-
-        <div>
-          <label className="block mb-1 font-medium">Delivery Date</label>
-          <input
-            type="date"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
-
-        <div>
-          <label className="block mb-1 font-medium">Delivery Time</label>
-          <input
-            type="time"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
-
-        <div>
-          <label className="block mb-1 font-medium">Delivery Address</label>
-          <input
-            type="text"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
-
-        <div>
-          <label className="block mb-1 font-medium">Number of Movers</label>
-          <select
-            defaultValue={event?.numberOfMovers || 1}
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          >
-            {[1, 2, 3, 4, 5].map((num) => (
-              <option key={num} value={num}>
-                {num}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="block mb-1 font-medium">Movers assigned</label>
-          <input
-            type="text"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
-
-        <div>
-          <label className="block mb-1 font-medium">Number of Trucks</label>
-          <select
-            defaultValue={event?.numberOfTrucks || 1}
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          >
-            {[1, 2, 3, 4, 5].map((num) => (
-              <option key={num} value={num}>
-                {num}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="block mb-1 font-medium">Delivery address size</label>
-          <input
-            type="text"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
-      </div>
-
-      {/* INVENTORY & NOTES */}
-      <div className="space-y-4 col-span-1">
-        <h3 className="text-lg font-semibold mb-2">Inventory List</h3>
-        <textarea
-          rows={4}
-          defaultValue="1 Queen Bed, 1 night stand, etc."
-          className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-        />
-
-        <h3 className="text-lg font-semibold mb-2">Note</h3>
-        <textarea
-          rows={3}
-          className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-        />
-
-        <h3 className="text-lg font-semibold mb-2">Information for Employees</h3>
-
-        <div>
-          <label className="block mb-1 font-medium">Crew Arrival Address</label>
-          <input
-            type="text"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
-
-        <div>
-          <label className="block mb-1 font-medium">Crew Arrival Time</label>
-          <input
-            type="time"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-500"
-          />
-        </div>
-      </div>
-    </div>
+                {data?.clientComments.length > 0 && (
+                  <Box>
+                    <Typography variant="body2" fontWeight="bold" mb={1}>
+                      Client Comments:
+                    </Typography>
+                    <List dense>
+                      {data?.clientComments.map((comment, index) => (
+                        <ListItem key={index} sx={{ py: 0.5, px: 0 }}>
+                          <ListItemText primary={comment} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Box>
+                )}
+              </>
+            </InfoSection>
+          ))}
+      </Box>
+    </AppPopUp>
   );
 }

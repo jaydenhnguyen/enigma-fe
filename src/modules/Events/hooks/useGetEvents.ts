@@ -4,7 +4,7 @@ import { GetEventRequest } from '../models';
 
 export function useGetEvents({ payload }: { payload: GetEventRequest }) {
   const { data, status, error, isLoading, isFetching, refetch } = useQuery({
-    queryKey: ['getUpComingEvents', payload],
+    queryKey: ['getEventList', payload],
     queryFn: () => getEvents(payload),
   });
 

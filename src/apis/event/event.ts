@@ -1,5 +1,5 @@
 import { request } from 'src/configs';
-import { GetEventRequest, GetEventsResponse } from 'src/modules/Events';
+import { GetEventRequest, GetEventsResponse, GetEventDetailResponse } from 'src/modules/Events';
 import { EVENTS_ENDPOINTS } from './endpoints';
 
 export const getEvents = async (payload: GetEventRequest): Promise<GetEventsResponse> => {
@@ -21,5 +21,11 @@ export const getEvents = async (payload: GetEventRequest): Promise<GetEventsResp
   if (payload.searchValue) queryParams.append('searchValue', payload.searchValue.toString().trim());
 
   const url = `${EVENTS_ENDPOINTS.GET_EVENTS}/${payload.type}?${queryParams.toString()}`;
+  return await request.get(url);
+};
+
+export const getEventDetail = async (eventId: string): Promise<GetEventDetailResponse> => {
+  const url = `${EVENTS_ENDPOINTS.GET_EVENTS_DETAILS}/${eventId?.trim()}`;
+
   return await request.get(url);
 };

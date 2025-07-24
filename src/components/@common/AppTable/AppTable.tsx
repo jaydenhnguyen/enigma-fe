@@ -43,6 +43,9 @@ export function AppTable<TData>({
         overlayNoRowsTemplate={`<span class="ag-overlay-no-rows-center">${emptyMessage}</span>`}
         overlayLoadingTemplate={`<span class="ag-overlay-loading-center">Loading...</span>`}
         onRowClicked={onRowClicked}
+        cellSelection={false}
+        suppressContextMenu={true}
+        suppressCellFocus={true}
       />
     </Paper>
   );

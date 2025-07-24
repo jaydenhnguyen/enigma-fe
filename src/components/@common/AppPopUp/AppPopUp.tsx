@@ -25,29 +25,50 @@ export function AppPopUp({ isOpen, onClose, onSave, onReset, title, children }: 
       <Box
         sx={{
           backgroundColor: 'white',
-          padding: 4,
           borderRadius: 2,
           width: '1200px',
           margin: '5% auto',
           position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
           maxHeight: '80vh',
-          overflowY: 'auto',
         }}
       >
-        <IconButton onClick={handleClose} sx={{ position: 'absolute', top: 8, right: 8 }} aria-label="close">
-          <CloseIcon />
-        </IconButton>
+        <Box
+          sx={{
+            position: 'relative',
+            padding: 3,
+            borderBottom: '1px solid #e0e0e0',
+            flexShrink: 0,
+          }}
+        >
+          <Typography variant="h6">{title}</Typography>
+          <IconButton onClick={handleClose} sx={{ position: 'absolute', top: 8, right: 8 }} aria-label="close">
+            <CloseIcon />
+          </IconButton>
+        </Box>
 
-        <Typography variant="h6" gutterBottom>
-          {title}
-        </Typography>
-
-        <Box >
+        <Box
+          sx={{
+            padding: 3,
+            overflowY: 'auto',
+            flexGrow: 1,
+          }}
+        >
           {children}
-          </Box>
-
+        </Box>
+        
         {onSave && (
-          <Box mt={2} display="flex" justifyContent="flex-end" gap={2}>
+          <Box
+            sx={{
+              padding: 3,
+              borderTop: '1px solid #e0e0e0',
+              display: 'flex',
+              justifyContent: 'flex-end',
+              gap: 2,
+              flexShrink: 0,
+            }}
+          >
             <Button variant="contained" onClick={onSave}>
               Save
             </Button>

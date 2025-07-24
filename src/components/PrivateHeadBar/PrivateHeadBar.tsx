@@ -15,10 +15,7 @@ import classes from './PrivateHeadBar.module.scss';
 export function PrivateHeadBar(): React.ReactElement {
   const router = useRouter();
   const { dispatch: layoutDispatch } = useLayout();
-  const {
-    state: { firstName, lastName },
-    dispatch: userContextDispatch,
-  } = useUserContext();
+  const { state: currentUser, dispatch: userContextDispatch } = useUserContext();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = React.useCallback((event: React.MouseEvent<HTMLElement>) => {
@@ -29,12 +26,10 @@ export function PrivateHeadBar(): React.ReactElement {
 
   const handleSignOut = React.useCallback(async () => {
     tokenManager.clearSession();
+
     userContextDispatch({
       type: USER_CONTEXT_ACTIONS.SET_AUTHENTICATED_USER,
-      payload: {
-        firstName: '',
-        lastName: '',
-      },
+      payload: null,
     });
     router.replace(APP_ROUTES.INTRODUCTION).then(() => handleClose());
   }, [router]);
@@ -62,7 +57,7 @@ export function PrivateHeadBar(): React.ReactElement {
           <IconButton onClick={handleClick} style={{ marginTop: '5px' }}>
             <Avatar
               className={classes['user-ava']}
-            >{`${firstName?.charAt(0).toUpperCase()}${lastName?.charAt(0).toUpperCase()}`}</Avatar>
+            >{`${currentUser?.firstName?.charAt(0).toUpperCase()}${currentUser?.lastName?.charAt(0).toUpperCase()}`}</Avatar>
           </IconButton>
 
           <Menu

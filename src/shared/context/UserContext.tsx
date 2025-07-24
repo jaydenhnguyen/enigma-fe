@@ -1,43 +1,33 @@
 import * as React from 'react';
+import { User } from 'src/modules/Users/models';
 
 export const USER_CONTEXT_ACTIONS = {
   SET_AUTHENTICATED_USER: 'SET_AUTHENTICATED_USER',
 };
 
-type UserState = {
-  firstName: string | null;
-  lastName: string | null;
-};
-
 type UserContextAction = {
   type: (typeof USER_CONTEXT_ACTIONS)[keyof typeof USER_CONTEXT_ACTIONS];
-  payload: {
-    firstName: string;
-    lastName: string;
-  };
+  payload: User | null;
 };
 
 type UserContextProps = {
-  state: UserState;
+  state: User | null;
   dispatch: React.Dispatch<UserContextAction>;
 };
 
 const UserContext = React.createContext<UserContextProps | undefined>(undefined);
 
-const userContextReducer = (state: UserState, action: UserContextAction): UserState => {
+const userContextReducer = (state: User | null, action: UserContextAction): User | null => {
   switch (action.type) {
     case USER_CONTEXT_ACTIONS.SET_AUTHENTICATED_USER:
-      return {
-        firstName: action.payload.firstName,
-        lastName: action.payload.lastName,
-      };
+      return action.payload ? { ...action.payload } : null;
     default:
-      return { ...state };
+      return state ? { ...state } : null;
   }
 };
 
 export const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [state, dispatch] = React.useReducer(userContextReducer, { firstName: null, lastName: null });
+  const [state, dispatch] = React.useReducer(userContextReducer, null);
 
   return <UserContext.Provider value={{ state, dispatch }}>{children}</UserContext.Provider>;
 };

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Box, Drawer, List } from '@mui/material';
 import { MenuItem } from 'src/shared/types';
 import { useLayout, useUserContext } from 'src/shared/context';
-import { SIDE_MENU_ADMIN_ITEMS, SIDE_MENU_EMPLOYEE_ITEMS } from 'src/shared/constants';
+import { ROLES, SIDE_MENU_ADMIN_ITEMS, SIDE_MENU_EMPLOYEE_ITEMS } from 'src/shared/constants';
 import { SideMenuItem } from '../SideMenuItem';
 import classes from './SideMenu.module.scss';
 
@@ -14,9 +14,7 @@ export function SideMenu(): React.ReactElement {
   const router = useRouter();
   const currentPath = router.pathname;
 
-  const {
-    state: { firstName, lastName },
-  } = useUserContext();
+  const { state: currentUser } = useUserContext();
 
   const {
     state: { isSideMenuCollapsed },
@@ -27,9 +25,12 @@ export function SideMenu(): React.ReactElement {
   const width = React.useMemo(() => (isSideMenuCollapsed ? COLLAPSED_WIDTH : EXPANDED_WIDTH), [isSideMenuCollapsed]);
 
   const sideMenuItems = React.useMemo(() => {
-    if (firstName === 'Jayden' && lastName === 'Nguyen') return SIDE_MENU_ADMIN_ITEMS;
+    const isAdmin = currentUser?.roles.some(
+      (role) => role.roleName === ROLES.ADMIN || role.roleName === ROLES.SUPER_ADMIN,
+    );
+    if (isAdmin) return SIDE_MENU_ADMIN_ITEMS;
     return SIDE_MENU_EMPLOYEE_ITEMS;
-  }, [firstName, lastName]);
+  }, [currentUser]);
 
   return (
     <div className={classes['wrapper']} style={{ width: width }}>

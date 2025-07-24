@@ -26,11 +26,15 @@ export function EventDetailPopUp({ eventId, isOpen, onClose }: Props): React.Rea
       notify({ message: 'Can not get event details', type: ToastType.error });
       onClose();
     }
-  }, [error]);
+  }, [error, onClose]);
 
   return (
     <AppPopUp isOpen={isOpen} onClose={onClose} title="Moving Service Details">
-      {(isLoading || isFetching) && <CircularProgress />}
+      {(isLoading || isFetching) && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
+          <CircularProgress />
+        </Box>
+      )}
 
       <Box className={classes['wrapper']}>
         {/* Basic Information */}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Box } from '@mui/material';
-import { AppPagination, AppTable, AppTableSearchBar } from 'src/components';
+import { AppPagination, AppTable, AppTableSearchBar, UserDetailPopup } from 'src/components';
 import { DEFAULT_PAGINATION_PAGE_NUM, DEFAULT_PAGINATION_PARAMS } from 'src/shared/constants';
 import { PaginateRequest, SearchingRequest, SortingRequest } from 'src/shared/models';
 import { useGetUserList } from '../Users';
@@ -55,20 +55,20 @@ export function Employees({}: Props): React.ReactElement {
     setSearchModel({ searchBy: '', searchValue: '' });
   }, []);
 
-  const handleOpenEventDetailPopup = React.useCallback(async (eventId: string) => {
+  const handleOpenUserDetailPopup = React.useCallback(async (eventId: string) => {
     setSelectedUserId(eventId);
     setIsOpenUserDetailPopup(true);
   }, []);
 
-  const handleCloseEventDetailPopup = React.useCallback(() => {
+  const handleCloseUserDetailPopup = React.useCallback(() => {
     setSelectedUserId(null);
     setIsOpenUserDetailPopup(false);
   }, []);
 
   const columns = useBuildUserTableColumn({
     setSortModel,
-    onClickView: (eventId: string) => handleOpenEventDetailPopup(eventId),
-    onClickEdit: (eventId: string) => handleOpenEventDetailPopup(eventId),
+    onClickView: (eventId: string) => handleOpenUserDetailPopup(eventId),
+    onClickEdit: (eventId: string) => handleOpenUserDetailPopup(eventId),
   });
 
   const mappedData = React.useMemo(() => mapRespondedUserLisToTable(userList?.data ?? []), [userList?.data]);
@@ -93,6 +93,12 @@ export function Employees({}: Props): React.ReactElement {
           />
         </Box>
       </Box>
+
+      <UserDetailPopup
+        isOpen={isOpenUserDetailPopup && !!selectedUserId?.trim()}
+        userId={selectedUserId ?? ''}
+        onClose={handleCloseUserDetailPopup}
+      />
     </>
   );
 }

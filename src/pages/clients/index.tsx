@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'next/head';
 import { PrivateLayout } from 'src/layouts';
-import { ClientsApp } from 'src/modules/Clients';
+import { Clients } from 'src/modules/Clients/Clients';
 
 export default function ClientsPage(): React.ReactElement {
   return (
@@ -10,7 +10,7 @@ export default function ClientsPage(): React.ReactElement {
         <title>A-Z Moving: Clients</title>
       </Head>
 
-      <ClientsApp/>
+      <Clients/>
     </>
   );
 }

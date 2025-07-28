@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Box, Container, Link, Stack } from '@mui/material';
 import { NAV_ITEMS } from 'src/shared/constants';
 import AzMovingLogo from 'src/assets/az_moving_logo.svg';
-import { TopBar } from '../common';
+import { TopBar } from '../@common';
 import { NavItem } from '../NavItem';
 import classes from './PublicHeadBar.module.scss';
 

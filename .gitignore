@@ -63,5 +63,5 @@ build_artifacts
 public/iframe-resources/redirect.js
 public/iframe-resources/script.js
 /src/sandbox/*
-/src/pages/sandbox/*
+/src/pages/sandbox/
 /src/pages/sandbox2/

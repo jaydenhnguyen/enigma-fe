@@ -9,7 +9,7 @@ export default function LeadsPage(): React.ReactElement {
         <title>A-Z Moving: Leads</title>
       </Head>
 
-      <div>this is Leads page</div>
+      {/*<LeadsApp/>*/}
     </>
   );
 }

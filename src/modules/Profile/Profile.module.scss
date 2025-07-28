@@ -1,0 +1,142 @@
+.container {
+  @apply mx-auto p-4;
+}
+
+.profileCard {
+  @apply shadow-lg;
+
+  .avatar {
+    @apply w-16 h-16 bg-blue-500;
+  }
+
+  .title {
+    @apply font-bold text-gray-800;
+  }
+}
+
+.form {
+  @apply space-y-6;
+}
+
+.sectionTitle {
+  @apply font-semibold text-gray-700 mb-4 flex items-center;
+
+  &::after {
+    @apply flex-1 h-px bg-gray-300 ml-4;
+    content: '';
+  }
+}
+
+.section {
+  @apply mb-6;
+}
+
+.textField {
+  .MuiOutlinedInput-root {
+    @apply transition-all duration-200;
+
+    &:hover {
+      @apply shadow-sm;
+    }
+
+    &.Mui-focused {
+      @apply shadow-md;
+    }
+  }
+
+  .MuiInputLabel-root {
+    @apply font-medium;
+  }
+}
+
+.disabledField {
+  .MuiOutlinedInput-root {
+    @apply bg-gray-50;
+  }
+
+  .MuiInputLabel-root {
+    @apply text-gray-500;
+  }
+
+  .MuiOutlinedInput-input {
+    @apply text-gray-600;
+  }
+}
+
+.selectField {
+  .MuiOutlinedInput-root {
+    @apply transition-all duration-200;
+
+    &:hover {
+      @apply shadow-sm;
+    }
+
+    &.Mui-focused {
+      @apply shadow-md;
+    }
+  }
+
+  &.Mui-disabled {
+    .MuiOutlinedInput-root {
+      @apply bg-gray-50;
+    }
+  }
+}
+
+.helperText {
+  @apply text-gray-500 mt-1 ml-3;
+}
+
+.divider {
+  @apply my-8 bg-gray-200;
+}
+
+.actionButtons {
+  @apply flex justify-end pt-6 border-t border-gray-200;
+}
+
+.saveButton {
+  @apply px-8 py-3 font-semibold shadow-md hover:shadow-lg transition-all duration-200;
+
+  &:hover {
+    @apply transform translate-y-[-1px];
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .container {
+    @apply p-2;
+  }
+
+  .profileCard {
+    @apply mx-2;
+  }
+
+  .actionButtons {
+    @apply justify-center;
+  }
+
+  .saveButton {
+    @apply w-full;
+  }
+}
+
+// Dark mode support (if your theme supports it)
+@media (prefers-color-scheme: dark) {
+  .sectionTitle {
+    @apply text-gray-300;
+
+    &::after {
+      @apply bg-gray-600;
+    }
+  }
+
+  .helperText {
+    @apply text-gray-400;
+  }
+
+  .divider {
+    @apply bg-gray-600;
+  }
+}

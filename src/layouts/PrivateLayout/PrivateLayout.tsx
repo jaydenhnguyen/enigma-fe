@@ -1,50 +1,51 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { tokenManager } from 'src/configs';
+import { useLayout } from 'src/shared/context';
 import { PrivateHeadBar } from 'src/components';
 import { APP_ROUTES } from 'src/shared/constants';
-import { SideMenu } from 'src/components/SideMenu';
+import { useLoadAndSetUserInfo } from 'src/shared/hooks';
+import { COLLAPSED_WIDTH, EXPANDED_WIDTH, SideMenu } from 'src/components/SideMenu';
 import classes from './PrivateLayout.module.scss';
-
-// In px
-const COLLAPSED_WIDTH = 85;
-const EXPANDED_WIDTH = 280;
 
 export function PrivateLayout({ children }: { children: React.ReactElement }) {
   const router = useRouter();
-  const [isSideMenuCollapsed, setIsSideMenuCollapsed] = React.useState(false);
   const [hydrated, setHydrated] = React.useState(false);
+  const { loadUser } = useLoadAndSetUserInfo();
+  const { state: layoutState } = useLayout();
 
   React.useEffect(() => {
-    if (!tokenManager.isAuthenticated()) {
-      router.replace(APP_ROUTES.INTRODUCTION).then();
-    } else {
+    const init = async () => {
+      if (!tokenManager.isAuthenticated()) {
+        router.replace(APP_ROUTES.INTRODUCTION).then();
+        return;
+      }
+
+      await loadUser();
       setHydrated(true);
-    }
+    };
+
+    init().then();
   }, []);
 
-  const toggleSideMenu = React.useCallback(() => {
-    setIsSideMenuCollapsed(!isSideMenuCollapsed);
-  }, [isSideMenuCollapsed]);
-
-  const sideMenuWidth = isSideMenuCollapsed ? COLLAPSED_WIDTH : EXPANDED_WIDTH;
-
   if (!hydrated) return null;
+
+  const mainWidth = `calc(100vw - ${layoutState.isSideMenuCollapsed ? COLLAPSED_WIDTH : EXPANDED_WIDTH}px)`;
 
   return (
     <div className={classes['wrapper']}>
       {/* Header */}
-      <PrivateHeadBar onToggleSideMenu={toggleSideMenu} />
+      <PrivateHeadBar />
 
       {/* Body */}
       <div className={classes['content-area']}>
         {/* Side Menu with controlled width */}
-        <div className={classes['side-menu-wrapper']} style={{ width: sideMenuWidth }}>
-          <SideMenu width={sideMenuWidth} isCollapsed={isSideMenuCollapsed} />
-        </div>
+        <SideMenu />
 
         {/* Main Content */}
-        <main className={classes['main-content-wrapper']}>{children}</main>
+        <main className={classes['main-content-wrapper']} style={{ width: mainWidth }}>
+          {children}
+        </main>
       </div>
     </div>
   );

@@ -43,6 +43,7 @@ export function Introduction(): React.ReactElement {
                 <ListItemAvatar className={classes['description-icon']}>
                   <CheckCircleOutlineIcon />
                 </ListItemAvatar>
+                
                 <ListItemText primary={item} />
               </ListItem>
             ))}

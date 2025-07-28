@@ -1,0 +1,11 @@
+.wrapper {
+  @apply bg-white rounded-lg p-4 flex gap-x-4;
+}
+
+.search-by-wrapper {
+  @apply w-[20%]
+}
+
+.search-input-wrapper {
+  @apply flex-1
+}

@@ -1,10 +1,11 @@
 import qs from 'qs';
-import axios, { AxiosError } from 'axios';
 import isNil from 'lodash/isNil';
+import axios, { AxiosError } from 'axios';
 import camelcaseKeys from 'camelcase-keys';
+import { StatusCodes } from 'http-status-codes';
+import { APP_ROUTES } from 'src/shared/constants';
 import { envVariables } from './environment';
 import { tokenManager } from './tokensManager';
-import { StatusCodes } from 'http-status-codes';
 
 export const request = axios.create({
   timeout: 10000,
@@ -42,7 +43,7 @@ request.interceptors.response.use(
 
     if (status === StatusCodes.UNAUTHORIZED) {
       tokenManager.clearSession();
-      // window.location.href = PathName.AuthLogin;
+      window.location.href = APP_ROUTES.INTRODUCTION;
       return Promise.reject(errorResponse?.data);
     }
     return Promise.reject(errorResponse?.data);

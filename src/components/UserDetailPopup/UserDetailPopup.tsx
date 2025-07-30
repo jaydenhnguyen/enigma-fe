@@ -13,9 +13,10 @@ type Props = {
   isOpen: boolean;
   userId: string;
   onClose: () => void;
+  title?: string;
 };
 
-export function UserDetailPopup({ userId, isOpen, onClose }: Props): React.ReactElement {
+export function UserDetailPopup({ title, userId, isOpen, onClose }: Props): React.ReactElement {
   const { data: userDetail, isLoading, error, refetch, isFetching } = useGetUserDetail(userId);
 
   React.useEffect(() => {
@@ -31,7 +32,7 @@ export function UserDetailPopup({ userId, isOpen, onClose }: Props): React.React
   }, [error, onClose]);
 
   return (
-    <AppPopUp isOpen={isOpen} onClose={onClose} title="User Details">
+    <AppPopUp isOpen={isOpen} onClose={onClose} title={title ?? 'User Details'}>
       {(isLoading || isFetching) && (
         <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
           <CircularProgress />

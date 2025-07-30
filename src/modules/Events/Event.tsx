@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box } from '@mui/material';
 import { PaginateRequest, SearchingRequest, SortingRequest } from 'src/shared/models';
-import { AppPagination, AppTable, AppTableSearchBar, EventDetailPopUp } from 'src/components';
+import { AppPagination, AppTable, AppTableSearchBar, EventDetailPopUp, UserDetailPopup } from 'src/components';
 import { DEFAULT_PAGINATION_PAGE_NUM, DEFAULT_PAGINATION_PARAMS } from 'src/shared/constants';
 import { EVENT_TABLE_COLUMNS_KEY } from './models';
 import { mapRespondedEventListToTable } from './util';
@@ -23,6 +23,8 @@ export function Event({ eventType }: Props): React.ReactElement {
   });
   const [isOpenEventDetailPopup, setIsOpenEventDetailPopup] = React.useState(false);
   const [selectedEventId, setSelectedEventId] = React.useState<string | null>(null);
+  const [isOpenMoverDetailPopup, setIsOpenMoverDetailPopup] = React.useState(false);
+  const [selectedMoverId, setSelectedMoverId] = React.useState<string | null>(null);
 
   const { data: eventList, isLoading: isLoadingEventList } = useGetEvents({
     payload: {
@@ -43,10 +45,21 @@ export function Event({ eventType }: Props): React.ReactElement {
     setIsOpenEventDetailPopup(false);
   }, []);
 
+  const handleOpenMoverDetailPopup = React.useCallback(async (moverId: string) => {
+    setSelectedMoverId(moverId);
+    setIsOpenMoverDetailPopup(true);
+  }, []);
+
+  const handleCloseMoverDetailPopup = React.useCallback(() => {
+    setSelectedMoverId(null);
+    setIsOpenMoverDetailPopup(false);
+  }, []);
+
   const columns = useBuildEventTableColumns({
     setSortModel,
     onClickView: (eventId: string) => handleOpenEventDetailPopup(eventId),
     onClickEdit: (eventId: string) => handleOpenEventDetailPopup(eventId),
+    onClickViewMover: (moverId: string) => handleOpenMoverDetailPopup(moverId),
   });
 
   React.useEffect(() => {
@@ -99,6 +112,13 @@ export function Event({ eventType }: Props): React.ReactElement {
         isOpen={isOpenEventDetailPopup && !!selectedEventId?.trim()}
         eventId={selectedEventId ?? ''}
         onClose={handleCloseEventDetailPopup}
+      />
+
+      <UserDetailPopup
+        title="Mover Details"
+        isOpen={isOpenMoverDetailPopup && !!selectedMoverId?.trim()}
+        userId={selectedMoverId ?? ''}
+        onClose={handleCloseMoverDetailPopup}
       />
     </>
   );

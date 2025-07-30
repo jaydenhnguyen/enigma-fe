@@ -4,7 +4,7 @@ export * from './NotifyToast';
 export * from './UserRoleChip';
 export * from './PublicHeadBar';
 export * from './PrivateHeadBar';
-export * from './DeliveryManChip';
+export * from './MoverChip';
 export * from './UserDetailPopup';
 export * from './ControlTextField';
 export * from './EventDetailPopUp';

@@ -9,7 +9,7 @@ type Props = {
   onClick?: (mover: MoverResponse & { deliveryManType: DELIVERY_ROLES }) => void;
 };
 
-export function DeliveryManChip({ mover, onClick }: Props): React.ReactElement {
+export function MoverChip({ mover, onClick }: Props): React.ReactElement {
   const config = React.useMemo(() => {
     const fullName = `${mover.firstName} ${mover.lastName}`;
 
@@ -52,7 +52,7 @@ export function DeliveryManChip({ mover, onClick }: Props): React.ReactElement {
         '&:hover': onClick
           ? {
               backgroundColor: config.backgroundColor,
-              filter: 'brightness(0.9)',
+              transform: 'scale(1.02)',
             }
           : {},
         cursor: onClick ? 'pointer' : 'default',

@@ -1,6 +1,7 @@
 import { PaginationResponse, SortingResponse } from 'src/shared/models';
 
 export type MoverResponse = {
+  _id: string;
   firstName: string;
   lastName: string;
   phoneNumber: string;

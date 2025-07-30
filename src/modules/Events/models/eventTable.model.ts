@@ -1,3 +1,6 @@
+import { MoverResponse } from './getEvents.response';
+import { DELIVERY_ROLES } from '../constants';
+
 export const EVENT_TABLE_COLUMNS_LABEL = {
   PICKUP_DATE_TIME: 'Pickup Date',
   DELIVERY_DATE_TIME: 'Delivery Date',
@@ -27,7 +30,7 @@ export type EventTableData = {
   clientName: string;
   pickupAddress: string;
   deliveryAddress: string;
-  deliveryMan: string[];
+  deliveryMan: (MoverResponse & { deliveryManType: DELIVERY_ROLES })[];
   truckAddress: string;
   meetingTime: string;
 };

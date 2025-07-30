@@ -4,7 +4,7 @@ import { PaginateRequest, SearchingRequest, SortingRequest } from 'src/shared/mo
 import { AppPagination, AppTable, AppTableSearchBar, EventDetailPopUp } from 'src/components';
 import { DEFAULT_PAGINATION_PAGE_NUM, DEFAULT_PAGINATION_PARAMS } from 'src/shared/constants';
 import { EVENT_TABLE_COLUMNS_KEY } from './models';
-import { mapRespondedEventToTable } from './util';
+import { mapRespondedEventListToTable } from './util';
 import { EVENT_TYPE, SEARCH_EVENT_OPTIONS } from './constants';
 import { useBuildEventTableColumns, useGetEvents } from './hooks';
 import classes from './EventTable.module.scss';
@@ -55,7 +55,7 @@ export function Event({ eventType }: Props): React.ReactElement {
     }
   }, [eventList?.pagination]);
 
-  const mappedData = React.useMemo(() => mapRespondedEventToTable(eventList?.data ?? []), [eventList?.data]);
+  const mappedData = React.useMemo(() => mapRespondedEventListToTable(eventList?.data ?? []), [eventList?.data]);
 
   const handlePageSizeChange = React.useCallback((pageSize: number) => {
     setPaginationModel({

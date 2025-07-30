@@ -24,3 +24,8 @@ export const SEARCH_EVENT_OPTIONS: SearchOptionItem[] = [
     label: EVENT_TABLE_COLUMNS_LABEL.DELIVERY_MAN,
   },
 ];
+
+export enum DELIVERY_ROLES {
+  PICKUP = 'PICKUP',
+  DELIVERY = 'DELIVERY',
+}

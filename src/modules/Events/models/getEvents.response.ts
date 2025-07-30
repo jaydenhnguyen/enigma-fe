@@ -1,18 +1,26 @@
 import { PaginationResponse, SortingResponse } from 'src/shared/models';
 
-export type EventResponse = {
+export type MoverResponse = {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+};
+
+export type EventDetailResponse = {
   _id: string;
   clientId: string;
   pickupDateTime: string;
   pickupAddress: string;
-  pickupMoversAssigned: string[];
+  pickupMoversAssigned: MoverResponse[];
   pickupTrucksCount: number;
-  pickupAddressSize?: string;
+  pickupAddressSize: string;
   deliveryDateTime: string;
   deliveryAddress: string;
-  deliveryMoversAssigned: string[];
+  deliveryMoversAssigned: MoverResponse[];
   deliveryTrucksCount: number;
-  deliveryAddressSize?: string;
+  deliveryAddressSize: string;
   inventoryList: string[];
   notes: string[];
   crewArrivalAddress: string;
@@ -20,13 +28,17 @@ export type EventResponse = {
   associatedEvent: string[];
   extraServices: string[];
   clientComments: string[];
-  serviceRate: number | null;
+  serviceRate: number;
   truckAddress: string;
   meetingUpDateTime: string;
 };
 
+export type GetEventDetailResponse = {
+  data: EventDetailResponse;
+};
+
 export type GetEventsResponse = {
-  data: EventResponse[];
+  data: EventDetailResponse[];
   pagination: PaginationResponse;
   sorting: SortingResponse;
 };

@@ -55,8 +55,8 @@ export function Employees({}: Props): React.ReactElement {
     setSearchModel({ searchBy: '', searchValue: '' });
   }, []);
 
-  const handleOpenUserDetailPopup = React.useCallback(async (eventId: string) => {
-    setSelectedUserId(eventId);
+  const handleOpenUserDetailPopup = React.useCallback(async (userId: string) => {
+    setSelectedUserId(userId);
     setIsOpenUserDetailPopup(true);
   }, []);
 

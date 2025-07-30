@@ -35,11 +35,11 @@ export const themeConfig: ThemeConfig = {
       contrastText: '#FFFFFF',
     },
     info: {
-      lighter: '#CAFDF5',
-      light: '#61F3F3',
-      main: '#00B8D9',
-      dark: '#006C9C',
-      darker: '#003768',
+      lighter: '#EBDCF2',
+      light: '#B580D1',
+      main: '#7b1fa2',
+      dark: '#56177A',
+      darker: '#3C0F59',
       contrastText: '#FFFFFF',
     },
     success: {

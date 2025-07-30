@@ -31,7 +31,7 @@ export function Clients({}: Props): React.ReactElement {
       ...searchModel,
     },
   });
- 
+
   React.useEffect(() => {
     if (clientList?.pagination) {
       setPaginationResponse(clientList.pagination);
@@ -71,7 +71,6 @@ export function Clients({}: Props): React.ReactElement {
     onClickEdit: (eventId: string) => handleOpenClientDetailPopup(eventId),
   });
 
- 
   const mappedData = React.useMemo(() => mapRespondedClientLisToTable(clientList?.data ?? []), [clientList?.data]);
 
   return (
@@ -103,7 +102,3 @@ export function Clients({}: Props): React.ReactElement {
     </>
   );
 }
-// function useGetClientList(arg0: { payload: { searchBy?: string; searchValue?: string; page: number; pageSize: number; sortBy?: string; sortType?: "asc" | "desc"; }; }): { data: any; isLoading: any; } {
-//     throw new Error('Function not implemented.');
-// }
-

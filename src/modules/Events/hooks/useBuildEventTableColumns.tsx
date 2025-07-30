@@ -1,13 +1,14 @@
 import * as React from 'react';
+import { Box } from '@mui/material';
 import { ColDef } from 'ag-grid-enterprise';
-import { SortingRequest } from 'src/shared/models';
 import {
-  arrayValuesRender,
   commonValueRender,
   formatDateCell,
   generateSortableColumnHeaderMenu,
   renderActionColumn,
 } from 'src/shared/util';
+import { MoverChip } from 'src/components';
+import { SortingRequest } from 'src/shared/models';
 import { DEFAULT_TABLE_COLUMN_CONFIG } from 'src/shared/constants';
 import { EVENT_TABLE_COLUMNS_KEY, EVENT_TABLE_COLUMNS_LABEL, EventTableData } from '../models';
 
@@ -15,9 +16,15 @@ type Props = {
   setSortModel: (sortModel: SortingRequest) => void;
   onClickView?: (eventId: string) => void;
   onClickEdit?: (eventId: string) => void;
+  onClickViewMover?: (moverId: string) => void;
 };
 
-export function useBuildEventTableColumns({ setSortModel, onClickView, onClickEdit }: Props): ColDef[] {
+export function useBuildEventTableColumns({
+  setSortModel,
+  onClickView,
+  onClickEdit,
+  onClickViewMover,
+}: Props): ColDef[] {
   return React.useMemo(
     () => [
       {
@@ -74,7 +81,15 @@ export function useBuildEventTableColumns({ setSortModel, onClickView, onClickEd
         field: EVENT_TABLE_COLUMNS_KEY.DELIVERY_MAN,
         headerName: EVENT_TABLE_COLUMNS_LABEL.DELIVERY_MAN,
         minWidth: 200,
-        cellRenderer: ({ data }: { data: EventTableData }) => arrayValuesRender(data.deliveryMan),
+        cellRenderer: ({ data }: { data: EventTableData }) => {
+          return (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+              {data.deliveryMan.map((mover) => (
+                <MoverChip key={`${mover._id}`} mover={mover} onClick={() => onClickViewMover?.(mover._id)} />
+              ))}
+            </Box>
+          );
+        },
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,

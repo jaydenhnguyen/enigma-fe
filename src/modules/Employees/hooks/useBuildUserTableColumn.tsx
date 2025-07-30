@@ -25,7 +25,7 @@ export function useBuildUserTableColumn({ setSortModel, onClickView, onClickEdit
         ...DEFAULT_TABLE_COLUMN_CONFIG,
         field: USER_TABLE_COLUMN_KEY.EMAIL,
         headerName: USER_TABLE_COLUMN_LABEL.EMAIL,
-        minWidth: 300,
+        minWidth: 250,
         suppressHeaderMenuButton: false,
         mainMenuItems: generateSortableColumnHeaderMenu({
           setSortModel,
@@ -40,7 +40,7 @@ export function useBuildUserTableColumn({ setSortModel, onClickView, onClickEdit
         ...DEFAULT_TABLE_COLUMN_CONFIG,
         field: USER_TABLE_COLUMN_KEY.PHONE,
         headerName: USER_TABLE_COLUMN_LABEL.PHONE,
-        minWidth: 300,
+        minWidth: 200,
         suppressHeaderMenuButton: false,
         mainMenuItems: generateSortableColumnHeaderMenu({
           setSortModel,
@@ -79,13 +79,14 @@ export function useBuildUserTableColumn({ setSortModel, onClickView, onClickEdit
         ...DEFAULT_TABLE_COLUMN_CONFIG,
         field: USER_TABLE_COLUMN_KEY.DOB,
         headerName: USER_TABLE_COLUMN_LABEL.DOB,
-        minWidth: 160,
+        minWidth: 200,
         cellRenderer: ({ data }: { data: UserTableData }) => formatDateCell(data.dob),
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
         field: USER_TABLE_COLUMN_KEY.LICENSE_TYPE,
         headerName: USER_TABLE_COLUMN_LABEL.LICENSE_TYPE,
+        minWidth: 150,
         maxWidth: 200,
         cellRenderer: ({ data }: { data: UserTableData }) => (
           <DrivingLicenseChip licenseType={data.drivingLicenseType} />
@@ -95,6 +96,7 @@ export function useBuildUserTableColumn({ setSortModel, onClickView, onClickEdit
         ...DEFAULT_TABLE_COLUMN_CONFIG,
         field: USER_TABLE_COLUMN_KEY.IS_ACTIVE,
         headerName: USER_TABLE_COLUMN_LABEL.IS_ACTIVE,
+        minWidth: 150,
         maxWidth: 150,
         cellRenderer: ({ data }: { data: UserTableData }) => <UserActiveStatusChip isActive={data.isActive} />,
       },

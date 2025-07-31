@@ -30,11 +30,13 @@ export function PrivateHeadBar(): React.ReactElement {
   const handleSignOut = React.useCallback(async () => {
     tokenManager.clearSession();
 
-    userContextDispatch({
-      type: USER_CONTEXT_ACTIONS.SET_AUTHENTICATED_USER,
-      payload: null,
+    router.replace(APP_ROUTES.INTRODUCTION).then(() => {
+      handleClose();
+      userContextDispatch({
+        type: USER_CONTEXT_ACTIONS.SET_AUTHENTICATED_USER,
+        payload: null,
+      });
     });
-    router.replace(APP_ROUTES.INTRODUCTION).then(() => handleClose());
   }, [router]);
 
   const handleNavToProfile = React.useCallback(() => {

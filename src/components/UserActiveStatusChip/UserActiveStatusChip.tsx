@@ -4,9 +4,10 @@ import { Chip } from '@mui/material';
 
 type Props = {
   isActivated: boolean;
+  size?: 'small' | 'medium';
 };
 
-export function UserActiveStatusChip({ isActivated }: Props): React.ReactElement {
+export function UserActiveStatusChip({ isActivated, size = 'medium' }: Props): React.ReactElement {
   const config = React.useMemo(() => {
     if (isActivated) {
       return {
@@ -30,7 +31,7 @@ export function UserActiveStatusChip({ isActivated }: Props): React.ReactElement
       label={config.label}
       color={config.color}
       variant={'filled'}
-      size={'medium'}
+      size={size}
       icon={config.icon}
       sx={{
         fontWeight: 'medium',

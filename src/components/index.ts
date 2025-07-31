@@ -9,6 +9,7 @@ export * from './PrivateHeadBar';
 export * from './UserDetailPopup';
 export * from './ControlTextField';
 export * from './EventDetailPopUp';
+export * from './ClientDetailPopup';
 export * from './DrivingLicenseChip';
 export * from './EmployeeDetailPopup';
 export * from './UserActiveStatusChip';

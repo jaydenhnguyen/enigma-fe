@@ -16,3 +16,12 @@ export type User = {
 export type GetMeResponse = {
   data: User;
 };
+
+export type PopulatedUserResponse = {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  isActivated: boolean;
+};

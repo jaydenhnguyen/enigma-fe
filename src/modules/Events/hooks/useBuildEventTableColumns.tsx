@@ -18,6 +18,7 @@ type Props = {
   onClickView?: (eventId: string) => void;
   onClickEdit?: (eventId: string) => void;
   onClickViewMover?: (moverId: string) => void;
+  onClickViewClient?: (clientId: string) => void;
 };
 
 export function useBuildEventTableColumns({
@@ -25,6 +26,7 @@ export function useBuildEventTableColumns({
   onClickView,
   onClickEdit,
   onClickViewMover,
+  onClickViewClient,
 }: Props): ColDef[] {
   return React.useMemo(
     () => [
@@ -61,7 +63,11 @@ export function useBuildEventTableColumns({
         field: EVENT_TABLE_COLUMNS_KEY.CLIENT_INFO,
         headerName: EVENT_TABLE_COLUMNS_LABEL.CLIENT_INFO,
         minWidth: 200,
-        cellRenderer: ({ data }: { data: EventTableData }) => <ClientChip clientInfo={data.clientInfo} />,
+        cellRenderer: ({ data }: { data: EventTableData }) => (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <ClientChip clientInfo={data.clientInfo} onClick={() => onClickViewClient?.(data.clientInfo._id)} />
+          </Box>
+        ),
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,

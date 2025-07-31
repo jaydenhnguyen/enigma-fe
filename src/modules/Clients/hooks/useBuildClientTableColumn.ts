@@ -1,13 +1,9 @@
 import * as React from 'react';
 import { ColDef } from 'ag-grid-enterprise';
 import { SortingRequest } from 'src/shared/models';
-import {
-  commonValueRender,
-  generateSortableColumnHeaderMenu,
-  renderActionColumn,
-} from 'src/shared/util';
 import { DEFAULT_TABLE_COLUMN_CONFIG } from 'src/shared/constants';
-import { CLIENT_TABLE_COLUMN_KEY, CLIENT_TABLE_COLUMN_LABEL, ClientTableData } from '../model/clientTable.model';
+import { commonValueRender, generateSortableColumnHeaderMenu, renderActionColumn } from 'src/shared/util';
+import { CLIENT_TABLE_COLUMN_KEY, CLIENT_TABLE_COLUMN_LABEL, ClientTableData } from '../model';
 
 type Props = {
   setSortModel: (sortModel: SortingRequest) => void;
@@ -16,7 +12,7 @@ type Props = {
 };
 const formatDate = (value: Date | string): string => {
   const date = typeof value === 'string' ? new Date(value) : value;
-  return date.toLocaleDateString(); 
+  return date.toLocaleDateString();
 };
 
 export function useBuildClientTableColumn({ setSortModel, onClickView, onClickEdit }: Props): ColDef[] {
@@ -74,9 +70,7 @@ export function useBuildClientTableColumn({ setSortModel, onClickView, onClickEd
           columnKey: CLIENT_TABLE_COLUMN_KEY.hiredUs,
           menuItems: ['pinSubMenu'],
         }),
-        cellRenderer: ({ data }: { data: ClientTableData }) =>
-          data.hiredUs ? 'Yes' : 'No',
-        
+        cellRenderer: ({ data }: { data: ClientTableData }) => (data.hiredUs ? 'Yes' : 'No'),
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
@@ -84,9 +78,7 @@ export function useBuildClientTableColumn({ setSortModel, onClickView, onClickEd
         headerName: CLIENT_TABLE_COLUMN_LABEL.moveDates,
         minWidth: 160,
         cellRenderer: ({ data }: { data: ClientTableData }) =>
-          data.moveDates?.length
-            ? data.moveDates.map(formatDate).join(', ')
-            : '-',     
+          data.moveDates?.length ? data.moveDates.map(formatDate).join(', ') : '-',
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
@@ -99,9 +91,7 @@ export function useBuildClientTableColumn({ setSortModel, onClickView, onClickEd
           menuItems: ['pinSubMenu'],
         }),
         cellRenderer: ({ data }: { data: ClientTableData }) =>
-          data.eventsAssociated?.length
-            ? data.eventsAssociated.join(',')
-            : '-',
+          data.eventsAssociated?.length ? data.eventsAssociated.join(',') : '-',
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
@@ -115,55 +105,52 @@ export function useBuildClientTableColumn({ setSortModel, onClickView, onClickEd
           menuItems: ['pinSubMenu'],
         }),
         cellRenderer: ({ data }: { data: ClientTableData }) => commonValueRender(data.currentStatus),
-        
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
-        field: CLIENT_TABLE_COLUMN_KEY.assignee , 
+        field: CLIENT_TABLE_COLUMN_KEY.assignee,
         headerName: CLIENT_TABLE_COLUMN_KEY.assignee,
         minWidth: 300,
-        cellRenderer: ({ data }: { data: ClientTableData }) =>
-          data.assignee?.length
-            ? data.assignee.join(', ')
-            : '-',      },
+        cellRenderer: ({ data }: { data: ClientTableData }) => (data.assignee?.length ? data.assignee.join(', ') : '-'),
+      },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
-        field: CLIENT_TABLE_COLUMN_KEY.utm.utm_source , 
+        field: CLIENT_TABLE_COLUMN_KEY.utm.utm_source,
         headerName: CLIENT_TABLE_COLUMN_KEY.utm.utm_source,
         minWidth: 150,
         cellRenderer: ({ data }: { data: ClientTableData }) => commonValueRender(data.utm?.utm_source),
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
-        field: CLIENT_TABLE_COLUMN_KEY.utm.utm_medium , 
+        field: CLIENT_TABLE_COLUMN_KEY.utm.utm_medium,
         headerName: CLIENT_TABLE_COLUMN_KEY.utm.utm_medium,
         minWidth: 150,
         cellRenderer: ({ data }: { data: ClientTableData }) => commonValueRender(data.utm?.utm_medium),
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
-        field: CLIENT_TABLE_COLUMN_KEY.utm.utm_campaign , 
+        field: CLIENT_TABLE_COLUMN_KEY.utm.utm_campaign,
         headerName: CLIENT_TABLE_COLUMN_KEY.utm.utm_campaign,
         minWidth: 150,
         cellRenderer: ({ data }: { data: ClientTableData }) => commonValueRender(data.utm?.utm_campaign),
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
-        field: CLIENT_TABLE_COLUMN_KEY.utm.utm_content , 
+        field: CLIENT_TABLE_COLUMN_KEY.utm.utm_content,
         headerName: CLIENT_TABLE_COLUMN_KEY.utm.utm_content,
         minWidth: 150,
         cellRenderer: ({ data }: { data: ClientTableData }) => commonValueRender(data.utm?.utm_content),
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
-        field: CLIENT_TABLE_COLUMN_KEY.utm.utm_campaign , 
+        field: CLIENT_TABLE_COLUMN_KEY.utm.utm_campaign,
         headerName: CLIENT_TABLE_COLUMN_KEY.utm.utm_campaign,
         minWidth: 200,
         cellRenderer: ({ data }: { data: ClientTableData }) => commonValueRender(data.utm?.utm_campaign),
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
-        field: CLIENT_TABLE_COLUMN_KEY.utm.utm_term ,
+        field: CLIENT_TABLE_COLUMN_KEY.utm.utm_term,
         headerName: CLIENT_TABLE_COLUMN_KEY.utm.utm_term,
         minWidth: 150,
         cellRenderer: ({ data }: { data: ClientTableData }) => commonValueRender(data.utm?.utm_term),
@@ -184,8 +171,5 @@ export function useBuildClientTableColumn({ setSortModel, onClickView, onClickEd
       },
     ],
     [],
-    
   );
-  
-  
 }

@@ -29,7 +29,7 @@ export function ClientChip({ clientInfo, onClick }: Props): React.ReactElement {
         },
         '&:hover': onClick
           ? {
-              backgroundColor: 'success.light',
+              backgroundColor: 'success.lighter',
               transform: 'scale(1.02)',
             }
           : {},

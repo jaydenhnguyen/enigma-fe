@@ -3,12 +3,11 @@ import { Box } from '@mui/material';
 import { AppPagination, AppTable, AppTableSearchBar, UserDetailPopup } from 'src/components';
 import { DEFAULT_PAGINATION_PAGE_NUM, DEFAULT_PAGINATION_PARAMS } from 'src/shared/constants';
 import { PaginateRequest, SearchingRequest, SortingRequest } from 'src/shared/models';
-import { CLIENT_TABLE_COLUMN_KEY } from './model/clientTable.model';
+import { CLIENT_TABLE_COLUMN_KEY } from './model';
+import { mapRespondedClientLisToTable } from './util';
 import { SEARCH_CLIENT_OPTIONS } from './constants/client.constants';
-import { useBuildClientTableColumn } from './hooks/useBuildClientTableColumn';
-import { mapRespondedClientLisToTable } from './util/mapper';
+import { useBuildClientTableColumn, useGetClientList } from './hooks';
 import classes from './Clients.module.scss';
-import { useGetClientList } from './hooks/useGetClientList';
 
 type Props = {};
 

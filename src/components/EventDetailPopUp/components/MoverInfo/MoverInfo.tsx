@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Box, Typography } from '@mui/material';
-import { MoverResponse } from 'src/modules/Events';
+import { PopulatedUserResponse } from 'src/modules/Users';
 import classes from './MoverInfo.module.scss';
 
 type Props = {
-  mover: MoverResponse;
+  mover: PopulatedUserResponse;
 };
 
 export function MoverInfo({ mover }: Props): React.ReactElement {

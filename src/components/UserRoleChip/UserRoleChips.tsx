@@ -51,11 +51,10 @@ export function UserRoleChips({ role }: Props): React.ReactElement {
       size={'medium'}
       icon={config.icon}
       sx={{
-        fontWeight: 'medium',
+        borderRadius: '6px',
         '& .MuiChip-icon': {
           fontSize: '20px',
         },
-        // Custom styling for Super Admin to make it stand out more
         ...(role === ROLES.SUPER_ADMIN && {
           background: 'linear-gradient(45deg, #9c27b0, #673ab7)',
           color: 'white',

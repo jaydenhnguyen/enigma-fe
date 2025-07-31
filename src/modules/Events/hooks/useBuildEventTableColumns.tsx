@@ -34,7 +34,8 @@ export function useBuildEventTableColumns({
         ...DEFAULT_TABLE_COLUMN_CONFIG,
         field: EVENT_TABLE_COLUMNS_KEY.PICKUP_DATE_TIME,
         headerName: EVENT_TABLE_COLUMNS_LABEL.PICKUP_DATE_TIME,
-        width: 200,
+        minWidth: 250,
+        maxWidth: 300,
         suppressHeaderMenuButton: false,
         mainMenuItems: generateSortableColumnHeaderMenu({
           setSortModel,
@@ -48,7 +49,8 @@ export function useBuildEventTableColumns({
         ...DEFAULT_TABLE_COLUMN_CONFIG,
         field: EVENT_TABLE_COLUMNS_KEY.DELIVERY_DATE_TIME,
         headerName: EVENT_TABLE_COLUMNS_LABEL.DELIVERY_DATE_TIME,
-        width: 200,
+        minWidth: 250,
+        maxWidth: 300,
         suppressHeaderMenuButton: false,
         mainMenuItems: generateSortableColumnHeaderMenu({
           setSortModel,
@@ -87,7 +89,7 @@ export function useBuildEventTableColumns({
         ...DEFAULT_TABLE_COLUMN_CONFIG,
         field: EVENT_TABLE_COLUMNS_KEY.DELIVERY_MAN,
         headerName: EVENT_TABLE_COLUMNS_LABEL.DELIVERY_MAN,
-        minWidth: 200,
+        minWidth: 350,
         cellRenderer: ({ data }: { data: EventTableData }) => {
           const hasDeliveryMen = !isEmpty(data.deliveryMan);
 

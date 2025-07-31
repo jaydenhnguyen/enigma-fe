@@ -54,7 +54,7 @@ export type ClientListItemResponse = {
     utm_term?: string;
     utm_content?: string;
   };
-  assignee: string[];
+  assignees: PopulatedUserResponse[];
   createdAt: string;
   updatedAt: string;
 };

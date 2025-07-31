@@ -23,6 +23,7 @@ export function ClientChip({ clientInfo, onClick }: Props): React.ReactElement {
         fontWeight: 'medium',
         backgroundColor: 'success.lighter',
         color: 'success.main',
+        borderRadius: '6px',
         '& .MuiChip-icon': {
           fontSize: '18px',
           color: 'success.main',

@@ -1,9 +1,11 @@
 import * as React from 'react';
 import isEmpty from 'lodash/isEmpty';
-import { Box, CircularProgress, Grid, Typography, Chip } from '@mui/material';
+import { Box, CircularProgress, Grid, Typography } from '@mui/material';
 import { formatDateCell } from 'src/shared/util';
 import { useGetClientDetail } from 'src/modules/Clients';
 import { notify, ToastType } from '../NotifyToast';
+import { HiredStatusChip } from '../HiredStatusChip';
+import { ClientStatusChip } from '../ClientStatusChip';
 import { UserActiveStatusChip } from '../UserActiveStatusChip';
 import { AppPopUp, InfoRow, InfoSection } from '../@common';
 import classes from './ClientDetailPopup.module.scss';
@@ -14,12 +16,6 @@ type Props = {
   onClose: () => void;
   title?: string;
 };
-
-const HiredStatusChip = ({ hiredUs }: { hiredUs: boolean }) => (
-  <Chip label={hiredUs ? 'Hired' : 'Not Hired'} color={hiredUs ? 'success' : 'default'} size="small" />
-);
-
-const CurrentStatusChip = ({ status }: { status: string }) => <Chip label={status} color="primary" size="small" />;
 
 export function ClientDetailPopup({ title, clientId, isOpen, onClose }: Props): React.ReactElement {
   const { data: clientDetail, isLoading, error, refetch, isFetching } = useGetClientDetail(clientId);
@@ -74,8 +70,8 @@ export function ClientDetailPopup({ title, clientId, isOpen, onClose }: Props): 
           <InfoSection title="Status & Hiring">
             <Grid container spacing={2}>
               <Grid sx={{ xs: 12, sm: 6 }}>
-                <InfoRow label="Hired Status" value={<HiredStatusChip hiredUs={clientDetail?.hiredUs} />} />
-                <InfoRow label="Current Status" value={<CurrentStatusChip status={clientDetail?.currentStatus} />} />
+                <InfoRow label="Hired Status" value={<HiredStatusChip isHired={clientDetail?.hiredUs} />} />
+                <InfoRow label="Current Status" value={<ClientStatusChip status={clientDetail?.currentStatus} />} />
               </Grid>
             </Grid>
           </InfoSection>
@@ -170,6 +166,7 @@ export function ClientDetailPopup({ title, clientId, isOpen, onClose }: Props): 
                               <Typography variant="body2">
                                 {history.modifiedBy.firstName} {history.modifiedBy.lastName}
                               </Typography>
+
                               <UserActiveStatusChip isActivated={history.modifiedBy.isActivated} size="small" />
                             </Box>
                           }

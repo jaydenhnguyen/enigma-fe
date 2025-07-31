@@ -4,16 +4,15 @@ export const mapRespondedClientLisToTable = (respondedClients: ClientListItemRes
   return respondedClients.map((r) => {
     return {
       _id: r._id,
-      hiredUs: r.hiredUs,
       email: r.email,
-      fullName: r.fullName,
-      phone: r.phone,
+      phoneNumber: r.phoneNumber,
+      firstName: r.firstName,
+      lastName: r.lastName,
+      hiredUs: r.hiredUs,
       moveDates: r.moveDates,
-      eventsAssociated: r.eventsAssociated,
       currentStatus: r.currentStatus,
       statusHistory: r.statusHistory,
-      utm: r.utm,
-      assignee: r.assignee,
+      assignees: r.assignees,
     };
   });
 };

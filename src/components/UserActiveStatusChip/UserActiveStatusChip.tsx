@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Block, CheckCircle } from '@mui/icons-material';
 import { Chip } from '@mui/material';
+import { Block, CheckCircle } from '@mui/icons-material';
 
 type Props = {
   isActivated: boolean;

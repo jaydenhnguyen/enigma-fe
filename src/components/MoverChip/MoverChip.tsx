@@ -46,6 +46,7 @@ export function MoverChip({ mover, onClick }: Props): React.ReactElement {
         fontWeight: 'medium',
         backgroundColor: config.backgroundColor,
         color: config.textColor,
+        borderRadius: '6px',
         '& .MuiChip-icon': {
           fontSize: '18px',
           color: config.textColor,

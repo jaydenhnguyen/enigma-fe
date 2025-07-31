@@ -42,7 +42,7 @@ export function EventDetailPopUp({ eventId, isOpen, onClose }: Props): React.Rea
           <Grid container spacing={2}>
             <Grid>
               <InfoRow label="Service ID" value={data?._id} />
-              <InfoRow label="Client ID" value={data?.clientId} />
+              <InfoRow label="Client ID" value={data?.clientInfo} />
             </Grid>
             <Grid>
               <InfoRow

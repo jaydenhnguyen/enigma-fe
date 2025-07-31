@@ -72,7 +72,7 @@ export function UserDetailPopup({ title, userId, isOpen, onClose }: Props): Reac
           <InfoSection title="Status & Access">
             <Grid container spacing={2}>
               <Grid sx={{ xs: 12, sm: 6 }}>
-                <InfoRow label="Active Status" value={<UserActiveStatusChip isActive={userDetail?.isActive} />} />
+                <InfoRow label="Active Status" value={<UserActiveStatusChip isActivated={userDetail?.isActivated} />} />
                 <InfoRow
                   label="Driving License"
                   value={<DrivingLicenseChip licenseType={userDetail?.drivingLicenseType} />}

@@ -8,7 +8,7 @@ export const USER_TABLE_COLUMN_LABEL = {
   LAST_NAME: 'Last Name',
   DOB: 'Date of Birth',
   LICENSE_TYPE: 'License Type',
-  IS_ACTIVE: 'Active Status',
+  IS_ACTIVATED: 'Active Status',
   ROLE: 'Roles',
 };
 
@@ -19,7 +19,7 @@ export const USER_TABLE_COLUMN_KEY = {
   LAST_NAME: 'lastName',
   DOB: 'dob',
   LICENSE_TYPE: 'drivingLicenseType',
-  IS_ACTIVE: 'isActive',
+  IS_ACTIVATED: 'isActivated',
   ROLE: 'roles',
 };
 
@@ -31,6 +31,6 @@ export type UserTableData = {
   lastName: string;
   dob: string;
   drivingLicenseType: DRIVING_LICENSE_TYPES;
-  isActive: boolean;
+  isActivated: boolean;
   roles: ROLES[];
 };

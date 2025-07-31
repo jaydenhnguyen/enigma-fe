@@ -94,11 +94,11 @@ export function useBuildUserTableColumn({ setSortModel, onClickView, onClickEdit
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
-        field: USER_TABLE_COLUMN_KEY.IS_ACTIVE,
-        headerName: USER_TABLE_COLUMN_LABEL.IS_ACTIVE,
+        field: USER_TABLE_COLUMN_KEY.IS_ACTIVATED,
+        headerName: USER_TABLE_COLUMN_LABEL.IS_ACTIVATED,
         minWidth: 150,
         maxWidth: 150,
-        cellRenderer: ({ data }: { data: UserTableData }) => <UserActiveStatusChip isActive={data.isActive} />,
+        cellRenderer: ({ data }: { data: UserTableData }) => <UserActiveStatusChip isActivated={data.isActivated} />,
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,

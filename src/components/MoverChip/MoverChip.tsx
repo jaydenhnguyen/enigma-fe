@@ -6,7 +6,7 @@ import { DELIVERY_ROLES, MoverResponse } from 'src/modules/Events';
 
 type Props = {
   mover: MoverResponse & { deliveryManType: DELIVERY_ROLES };
-  onClick?: (mover: MoverResponse & { deliveryManType: DELIVERY_ROLES }) => void;
+  onClick?: () => void;
 };
 
 export function MoverChip({ mover, onClick }: Props): React.ReactElement {
@@ -39,7 +39,7 @@ export function MoverChip({ mover, onClick }: Props): React.ReactElement {
       variant="filled"
       size="medium"
       icon={config.icon}
-      onClick={onClick ? () => onClick(mover) : undefined}
+      onClick={onClick}
       clickable={!!onClick}
       sx={{
         fontWeight: 'medium',

@@ -3,12 +3,12 @@ import { Block, CheckCircle } from '@mui/icons-material';
 import { Chip } from '@mui/material';
 
 type Props = {
-  isActive: boolean;
+  isActivated: boolean;
 };
 
-export function UserActiveStatusChip({ isActive }: Props): React.ReactElement {
+export function UserActiveStatusChip({ isActivated }: Props): React.ReactElement {
   const config = React.useMemo(() => {
-    if (isActive) {
+    if (isActivated) {
       return {
         label: 'Active',
         color: 'success' as const,
@@ -23,7 +23,7 @@ export function UserActiveStatusChip({ isActive }: Props): React.ReactElement {
       icon: <Block />,
       description: 'Not Active',
     };
-  }, [isActive]);
+  }, [isActivated]);
 
   return (
     <Chip

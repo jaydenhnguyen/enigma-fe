@@ -18,4 +18,5 @@ export const DEFAULT_TABLE_COLUMN_CONFIG = {
   headerClass: 'flex items-center justify-center',
   editable: false,
   cellClass: 'flex items-center',
+  autoHeight: true,
 };

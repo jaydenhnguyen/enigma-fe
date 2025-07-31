@@ -10,7 +10,7 @@ export type User = {
   phoneNumber: string;
   drivingLicenseType: DRIVING_LICENSE_TYPES;
   roles: Role[];
-  isActive: boolean;
+  isActivated: boolean;
 };
 
 export type GetMeResponse = {

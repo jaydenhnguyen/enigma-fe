@@ -1,3 +1,4 @@
+import { PopulatedClientResponse } from 'src/modules/Clients';
 import { PaginationResponse, SortingResponse } from 'src/shared/models';
 
 export type MoverResponse = {
@@ -6,11 +7,12 @@ export type MoverResponse = {
   lastName: string;
   phoneNumber: string;
   email: string;
+  isActivated: boolean;
 };
 
 export type EventDetailResponse = {
   _id: string;
-  clientId: string;
+  clientInfo: PopulatedClientResponse;
   pickupDateTime: string;
   pickupAddress: string;
   pickupMoversAssigned: MoverResponse[];

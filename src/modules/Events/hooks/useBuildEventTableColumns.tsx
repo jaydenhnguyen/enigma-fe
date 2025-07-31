@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box } from '@mui/material';
+import { Box, Chip } from '@mui/material';
 import { ColDef } from 'ag-grid-enterprise';
 import {
   commonValueRender,
@@ -7,10 +7,11 @@ import {
   generateSortableColumnHeaderMenu,
   renderActionColumn,
 } from 'src/shared/util';
-import { MoverChip } from 'src/components';
+import { ClientChip, MoverChip } from 'src/components';
 import { SortingRequest } from 'src/shared/models';
 import { DEFAULT_TABLE_COLUMN_CONFIG } from 'src/shared/constants';
 import { EVENT_TABLE_COLUMNS_KEY, EVENT_TABLE_COLUMNS_LABEL, EventTableData } from '../models';
+import isEmpty from 'lodash/isEmpty';
 
 type Props = {
   setSortModel: (sortModel: SortingRequest) => void;
@@ -57,10 +58,10 @@ export function useBuildEventTableColumns({
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
-        field: EVENT_TABLE_COLUMNS_KEY.CLIENT_NAME,
-        headerName: EVENT_TABLE_COLUMNS_LABEL.CLIENT_NAME,
+        field: EVENT_TABLE_COLUMNS_KEY.CLIENT_INFO,
+        headerName: EVENT_TABLE_COLUMNS_LABEL.CLIENT_INFO,
         minWidth: 200,
-        cellRenderer: ({ data }: { data: EventTableData }) => commonValueRender(data.clientName),
+        cellRenderer: ({ data }: { data: EventTableData }) => <ClientChip clientInfo={data.clientInfo} />,
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
@@ -82,11 +83,25 @@ export function useBuildEventTableColumns({
         headerName: EVENT_TABLE_COLUMNS_LABEL.DELIVERY_MAN,
         minWidth: 200,
         cellRenderer: ({ data }: { data: EventTableData }) => {
+          const hasDeliveryMen = !isEmpty(data.deliveryMan);
+
           return (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-              {data.deliveryMan.map((mover) => (
-                <MoverChip key={`${mover._id}`} mover={mover} onClick={() => onClickViewMover?.(mover._id)} />
-              ))}
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, paddingTop: '0.5rem', paddingBottom: '0.5rem' }}>
+              {hasDeliveryMen ? (
+                data.deliveryMan.map((mover) => (
+                  <MoverChip key={`${mover._id}`} mover={mover} onClick={() => onClickViewMover?.(mover._id)} />
+                ))
+              ) : (
+                <Chip
+                  label="Unassigned"
+                  variant="outlined"
+                  size="small"
+                  sx={{
+                    fontStyle: 'italic',
+                    opacity: 0.7,
+                  }}
+                />
+              )}
             </Box>
           );
         },

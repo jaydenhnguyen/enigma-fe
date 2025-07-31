@@ -1,4 +1,3 @@
-export * from './client.type';
 export * from './clientTable.model';
-export * from './getClientLisResponse';
-export * from './getClientListRequest';
+export * from './getClients.response';
+export * from './getClient.request';

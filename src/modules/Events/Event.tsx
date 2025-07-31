@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { Box } from '@mui/material';
 import { PaginateRequest, SearchingRequest, SortingRequest } from 'src/shared/models';
-import { AppPagination, AppTable, AppTableSearchBar, EventDetailPopUp, UserDetailPopup } from 'src/components';
+import {
+  AppPagination,
+  AppTable,
+  AppTableSearchBar,
+  ClientDetailPopup,
+  EventDetailPopUp,
+  UserDetailPopup,
+} from 'src/components';
 import { DEFAULT_PAGINATION_PAGE_NUM, DEFAULT_PAGINATION_PARAMS } from 'src/shared/constants';
 import { EVENT_TABLE_COLUMNS_KEY } from './models';
 import { mapRespondedEventListToTable } from './util';
@@ -23,8 +30,12 @@ export function Event({ eventType }: Props): React.ReactElement {
   });
   const [isOpenEventDetailPopup, setIsOpenEventDetailPopup] = React.useState(false);
   const [selectedEventId, setSelectedEventId] = React.useState<string | null>(null);
+
   const [isOpenMoverDetailPopup, setIsOpenMoverDetailPopup] = React.useState(false);
   const [selectedMoverId, setSelectedMoverId] = React.useState<string | null>(null);
+
+  const [isOpenClientDetailPopup, setIsOpenClientDetailPopup] = React.useState(false);
+  const [selectedClientId, setSelectedClientId] = React.useState<string | null>(null);
 
   const { data: eventList, isLoading: isLoadingEventList } = useGetEvents({
     payload: {
@@ -55,11 +66,22 @@ export function Event({ eventType }: Props): React.ReactElement {
     setIsOpenMoverDetailPopup(false);
   }, []);
 
+  const handleOpenClientDetailPopup = React.useCallback(async (clientId: string) => {
+    setSelectedClientId(clientId);
+    setIsOpenClientDetailPopup(true);
+  }, []);
+
+  const handleCloseClientDetailPopup = React.useCallback(() => {
+    setSelectedClientId(null);
+    setIsOpenClientDetailPopup(false);
+  }, []);
+
   const columns = useBuildEventTableColumns({
     setSortModel,
     onClickView: (eventId: string) => handleOpenEventDetailPopup(eventId),
     onClickEdit: (eventId: string) => handleOpenEventDetailPopup(eventId),
     onClickViewMover: (moverId: string) => handleOpenMoverDetailPopup(moverId),
+    onClickViewClient: (clientId: string) => handleOpenClientDetailPopup(clientId),
   });
 
   React.useEffect(() => {
@@ -119,6 +141,12 @@ export function Event({ eventType }: Props): React.ReactElement {
         isOpen={isOpenMoverDetailPopup && !!selectedMoverId?.trim()}
         userId={selectedMoverId ?? ''}
         onClose={handleCloseMoverDetailPopup}
+      />
+
+      <ClientDetailPopup
+        isOpen={isOpenClientDetailPopup && !!selectedClientId?.trim()}
+        clientId={selectedClientId ?? ''}
+        onClose={handleCloseClientDetailPopup}
       />
     </>
   );

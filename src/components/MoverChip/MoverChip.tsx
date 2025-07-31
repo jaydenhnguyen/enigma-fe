@@ -2,10 +2,11 @@ import * as React from 'react';
 import { Chip } from '@mui/material';
 import HailIcon from '@mui/icons-material/Hail';
 import HikingIcon from '@mui/icons-material/Hiking';
-import { DELIVERY_ROLES, MoverResponse } from 'src/modules/Events';
+import { DELIVERY_ROLES } from 'src/modules/Events';
+import { PopulatedUserResponse } from 'src/modules/Users';
 
 type Props = {
-  mover: MoverResponse & { deliveryManType: DELIVERY_ROLES };
+  mover: PopulatedUserResponse & { deliveryManType: DELIVERY_ROLES };
   onClick?: () => void;
 };
 
@@ -45,6 +46,7 @@ export function MoverChip({ mover, onClick }: Props): React.ReactElement {
         fontWeight: 'medium',
         backgroundColor: config.backgroundColor,
         color: config.textColor,
+        borderRadius: '6px',
         '& .MuiChip-icon': {
           fontSize: '18px',
           color: config.textColor,

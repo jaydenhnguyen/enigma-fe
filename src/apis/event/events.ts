@@ -9,7 +9,7 @@ export const getEventList = async (payload: GetEventRequest): Promise<GetEventsR
 };
 
 export const getEventDetail = async (eventId: string): Promise<GetEventDetailResponse> => {
-  const url = `${EVENTS_ENDPOINTS.GET_EVENTS_DETAILS}/${eventId?.trim()}`;
+  const url = `${EVENTS_ENDPOINTS.GET_EVENTS_DETAILS}/${eventId.trim()}`;
 
   return await request.get(url);
 };

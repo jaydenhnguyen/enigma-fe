@@ -18,6 +18,7 @@ type Props = {
   onClickView?: (eventId: string) => void;
   onClickEdit?: (eventId: string) => void;
   onClickViewMover?: (moverId: string) => void;
+  onClickViewClient?: (clientId: string) => void;
 };
 
 export function useBuildEventTableColumns({
@@ -25,6 +26,7 @@ export function useBuildEventTableColumns({
   onClickView,
   onClickEdit,
   onClickViewMover,
+  onClickViewClient,
 }: Props): ColDef[] {
   return React.useMemo(
     () => [
@@ -32,7 +34,8 @@ export function useBuildEventTableColumns({
         ...DEFAULT_TABLE_COLUMN_CONFIG,
         field: EVENT_TABLE_COLUMNS_KEY.PICKUP_DATE_TIME,
         headerName: EVENT_TABLE_COLUMNS_LABEL.PICKUP_DATE_TIME,
-        width: 200,
+        minWidth: 250,
+        maxWidth: 300,
         suppressHeaderMenuButton: false,
         mainMenuItems: generateSortableColumnHeaderMenu({
           setSortModel,
@@ -46,7 +49,8 @@ export function useBuildEventTableColumns({
         ...DEFAULT_TABLE_COLUMN_CONFIG,
         field: EVENT_TABLE_COLUMNS_KEY.DELIVERY_DATE_TIME,
         headerName: EVENT_TABLE_COLUMNS_LABEL.DELIVERY_DATE_TIME,
-        width: 200,
+        minWidth: 250,
+        maxWidth: 300,
         suppressHeaderMenuButton: false,
         mainMenuItems: generateSortableColumnHeaderMenu({
           setSortModel,
@@ -61,7 +65,11 @@ export function useBuildEventTableColumns({
         field: EVENT_TABLE_COLUMNS_KEY.CLIENT_INFO,
         headerName: EVENT_TABLE_COLUMNS_LABEL.CLIENT_INFO,
         minWidth: 200,
-        cellRenderer: ({ data }: { data: EventTableData }) => <ClientChip clientInfo={data.clientInfo} />,
+        cellRenderer: ({ data }: { data: EventTableData }) => (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <ClientChip clientInfo={data.clientInfo} onClick={() => onClickViewClient?.(data.clientInfo._id)} />
+          </Box>
+        ),
       },
       {
         ...DEFAULT_TABLE_COLUMN_CONFIG,
@@ -81,7 +89,7 @@ export function useBuildEventTableColumns({
         ...DEFAULT_TABLE_COLUMN_CONFIG,
         field: EVENT_TABLE_COLUMNS_KEY.DELIVERY_MAN,
         headerName: EVENT_TABLE_COLUMNS_LABEL.DELIVERY_MAN,
-        minWidth: 200,
+        minWidth: 350,
         cellRenderer: ({ data }: { data: EventTableData }) => {
           const hasDeliveryMen = !isEmpty(data.deliveryMan);
 

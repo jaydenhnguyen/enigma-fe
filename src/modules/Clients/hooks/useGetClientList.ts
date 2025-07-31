@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { getClientList } from '../../../apis/clients';
-import {GetClientListRequest} from "../model/getClientListRequest"
+import { getClientList } from 'src/apis/clients';
+import { GetClientRequest } from '../model';
 
-export function useGetClientList({ payload }: { payload: GetClientListRequest }) {
+export function useGetClientList({ payload }: { payload: GetClientRequest }) {
   const { data, status, error, isLoading, isFetching, refetch } = useQuery({
     queryKey: ['getClientList', payload],
     queryFn: () => getClientList(payload),

@@ -1,5 +1,5 @@
 .wrapper {
-  @apply p-1 px-4 border-[1px] border-solid border-grey-400 rounded-lg cursor-pointer;
+  @apply p-4 border-[1px] border-solid border-grey-400 rounded-lg cursor-pointer;
 
   &:hover {
     @apply bg-primary-main bg-opacity-[0.1];

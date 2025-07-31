@@ -97,7 +97,7 @@ export function useBuildEventTableColumns({
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, paddingTop: '0.5rem', paddingBottom: '0.5rem' }}>
               {hasDeliveryMen ? (
                 data.deliveryMan.map((mover) => (
-                  <MoverChip key={`${mover._id}`} mover={mover} onClick={() => onClickViewMover?.(mover._id)} />
+                  <MoverChip key={`${mover._id}`} populatedUser={mover} onClick={() => onClickViewMover?.(mover._id)} />
                 ))
               ) : (
                 <Chip

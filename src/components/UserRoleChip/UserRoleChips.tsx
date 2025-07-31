@@ -8,8 +8,8 @@ type Props = {
 };
 
 export function UserRoleChips({ role }: Props): React.ReactElement {
-  const getRoleConfig = (roleType: ROLES) => {
-    switch (roleType) {
+  const config = React.useMemo(() => {
+    switch (role) {
       case ROLES.SUPER_ADMIN:
         return {
           label: 'Super Admin',
@@ -20,15 +20,17 @@ export function UserRoleChips({ role }: Props): React.ReactElement {
       case ROLES.ADMIN:
         return {
           label: 'Admin',
-          color: 'primary' as const,
+          color: 'secondary' as 'secondary',
           icon: <SupervisorAccount />,
           description: 'Administrative Access',
         };
       case ROLES.EMPLOYEE:
         return {
           label: 'Employee',
-          color: 'default' as const,
+          color: 'primary' as 'primary',
           icon: <Person />,
+          backgroundColor: 'primary.lighter',
+          textColor: 'primary.main',
           description: 'Standard User Access',
         };
       default:
@@ -39,9 +41,7 @@ export function UserRoleChips({ role }: Props): React.ReactElement {
           description: 'Unknown Role',
         };
     }
-  };
-
-  const config = getRoleConfig(role);
+  }, [role]);
 
   return (
     <Chip
@@ -51,14 +51,17 @@ export function UserRoleChips({ role }: Props): React.ReactElement {
       size={'medium'}
       icon={config.icon}
       sx={{
+        fontWeight: 'bold',
+        backgroundColor: config.backgroundColor,
+        color: config.textColor,
         borderRadius: '6px',
         '& .MuiChip-icon': {
           fontSize: '20px',
+          color: config.textColor,
         },
         ...(role === ROLES.SUPER_ADMIN && {
           background: 'linear-gradient(45deg, #9c27b0, #673ab7)',
           color: 'white',
-          fontWeight: 'bold',
         }),
       }}
     />

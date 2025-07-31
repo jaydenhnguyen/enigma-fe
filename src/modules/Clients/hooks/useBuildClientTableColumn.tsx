@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Box } from '@mui/material';
+import { Box, Chip } from '@mui/material';
 import { ColDef } from 'ag-grid-enterprise';
-import { ClientStatusChip, HiredStatusChip } from 'src/components';
+import { ClientStatusChip, HiredStatusChip, MoverChip } from 'src/components';
 import { SortingRequest } from 'src/shared/models';
 import { DEFAULT_TABLE_COLUMN_CONFIG, NOT_AVAILABLE_VALUE } from 'src/shared/constants';
 import {
@@ -11,14 +11,21 @@ import {
   renderActionColumn,
 } from 'src/shared/util';
 import { CLIENT_TABLE_COLUMN_KEY, CLIENT_TABLE_COLUMN_LABEL, ClientTableData } from '../model';
+import isEmpty from 'lodash/isEmpty';
 
 type Props = {
   setSortModel: (sortModel: SortingRequest) => void;
   onClickView?: (clientId: string) => void;
   onClickEdit?: (clientId: string) => void;
+  onClickViewAssignee?: (userId: string) => void;
 };
 
-export function useBuildClientTableColumn({ setSortModel, onClickView, onClickEdit }: Props): ColDef[] {
+export function useBuildClientTableColumn({
+  setSortModel,
+  onClickView,
+  onClickEdit,
+  onClickViewAssignee,
+}: Props): ColDef[] {
   return React.useMemo(
     () => [
       {
@@ -112,14 +119,38 @@ export function useBuildClientTableColumn({ setSortModel, onClickView, onClickEd
           </Box>
         ),
       },
-      // {
-      //   ...DEFAULT_TABLE_COLUMN_CONFIG,
-      //   field: CLIENT_TABLE_COLUMN_KEY.ASSIGNEES,
-      //   headerName: CLIENT_TABLE_COLUMN_KEY.ASSIGNEES,
-      //   minWidth: 300,
-      //   cellRenderer: ({ data }: { data: ClientTableData }) =>
-      //     data.assignees?.length ? data.assignees.join(', ') : '-',
-      // },
+      {
+        ...DEFAULT_TABLE_COLUMN_CONFIG,
+        field: CLIENT_TABLE_COLUMN_KEY.ASSIGNEES,
+        headerName: CLIENT_TABLE_COLUMN_KEY.ASSIGNEES,
+        minWidth: 350,
+        cellRenderer: ({ data }: { data: ClientTableData }) => {
+          const hasAssignees = !isEmpty(data.assignees);
+          return (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, paddingTop: '0.5rem', paddingBottom: '0.5rem' }}>
+              {hasAssignees ? (
+                data.assignees.map((assignee) => (
+                  <MoverChip
+                    key={`${assignee._id}`}
+                    populatedUser={assignee}
+                    onClick={() => onClickViewAssignee?.(assignee._id)}
+                  />
+                ))
+              ) : (
+                <Chip
+                  label="No Assignee"
+                  variant="outlined"
+                  size="small"
+                  sx={{
+                    fontStyle: 'italic',
+                    opacity: 0.7,
+                  }}
+                />
+              )}
+            </Box>
+          );
+        },
+      },
       {
         field: 'action',
         headerName: 'Action',

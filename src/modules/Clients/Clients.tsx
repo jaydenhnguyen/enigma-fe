@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box } from '@mui/material';
 import { PaginateRequest, SearchingRequest, SortingRequest } from 'src/shared/models';
 import { DEFAULT_PAGINATION_PAGE_NUM, DEFAULT_PAGINATION_PARAMS } from 'src/shared/constants';
-import { AppPagination, AppTable, AppTableSearchBar, ClientDetailPopup } from 'src/components';
+import { AppPagination, AppTable, AppTableSearchBar, ClientDetailPopup, UserDetailPopup } from 'src/components';
 import { CLIENT_TABLE_COLUMN_KEY } from './model';
 import { SEARCH_CLIENT_OPTIONS } from './constants';
 import { mapRespondedClientLisToTable } from './util';
@@ -23,6 +23,9 @@ export function Clients({}: Props): React.ReactElement {
   const [isOpenClientDetailPopup, setIsOpenClientDetailPopup] = React.useState(false);
   const [selectedClientId, setSelectedClientId] = React.useState<string | null>(null);
 
+  const [isOpenAssigneeDetailPopup, setIsOpenAssigneeDetailPopup] = React.useState(false);
+  const [selectedAssigneeId, setSelectedAssigneeId] = React.useState<string | null>(null);
+
   const { data: clientList, isLoading: isLoadingClientList } = useGetClientList({
     payload: {
       ...sortModel,
@@ -41,10 +44,21 @@ export function Clients({}: Props): React.ReactElement {
     setIsOpenClientDetailPopup(false);
   }, []);
 
+  const handleOpenAssigneeDetailPopup = React.useCallback(async (moverId: string) => {
+    setSelectedAssigneeId(moverId);
+    setIsOpenAssigneeDetailPopup(true);
+  }, []);
+
+  const handleCloseAssigneeDetailPopup = React.useCallback(() => {
+    setSelectedAssigneeId(null);
+    setIsOpenAssigneeDetailPopup(false);
+  }, []);
+
   const columns = useBuildClientTableColumn({
     setSortModel,
     onClickView: (clientId: string) => handleOpenClientDetailPopup(clientId),
     onClickEdit: (clientId: string) => handleOpenClientDetailPopup(clientId),
+    onClickViewAssignee: (clientId: string) => handleOpenAssigneeDetailPopup(clientId),
   });
 
   React.useEffect(() => {
@@ -97,6 +111,13 @@ export function Clients({}: Props): React.ReactElement {
         isOpen={isOpenClientDetailPopup && !!selectedClientId?.trim()}
         clientId={selectedClientId ?? ''}
         onClose={handleCloseClientDetailPopup}
+      />
+
+      <UserDetailPopup
+        title="Assignee Details"
+        isOpen={isOpenAssigneeDetailPopup && !!selectedAssigneeId?.trim()}
+        userId={selectedAssigneeId ?? ''}
+        onClose={handleCloseAssigneeDetailPopup}
       />
     </>
   );

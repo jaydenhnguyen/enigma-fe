@@ -2,19 +2,20 @@ import * as React from 'react';
 import { Chip } from '@mui/material';
 import HailIcon from '@mui/icons-material/Hail';
 import HikingIcon from '@mui/icons-material/Hiking';
+import Person from '@mui/icons-material/Person';
 import { DELIVERY_ROLES } from 'src/modules/Events';
 import { PopulatedUserResponse } from 'src/modules/Users';
 
 type Props = {
-  mover: PopulatedUserResponse & { deliveryManType: DELIVERY_ROLES };
+  populatedUser: PopulatedUserResponse & { deliveryManType?: DELIVERY_ROLES };
   onClick?: () => void;
 };
 
-export function MoverChip({ mover, onClick }: Props): React.ReactElement {
+export function MoverChip({ populatedUser, onClick }: Props): React.ReactElement {
   const config = React.useMemo(() => {
-    const fullName = `${mover.firstName} ${mover.lastName}`;
+    const fullName = `${populatedUser.firstName} ${populatedUser.lastName}`;
 
-    if (mover.deliveryManType === DELIVERY_ROLES.PICKUP) {
+    if (populatedUser.deliveryManType === DELIVERY_ROLES.PICKUP) {
       return {
         label: fullName,
         color: 'primary' as 'primary',
@@ -24,14 +25,24 @@ export function MoverChip({ mover, onClick }: Props): React.ReactElement {
       };
     }
 
+    if (populatedUser.deliveryManType === DELIVERY_ROLES.DELIVERY) {
+      return {
+        label: fullName,
+        color: 'info' as 'info',
+        icon: <HikingIcon />,
+        backgroundColor: 'info.lighter',
+        textColor: 'info.main',
+      };
+    }
+
     return {
       label: fullName,
-      color: 'info' as 'info',
-      icon: <HikingIcon />,
-      backgroundColor: 'info.lighter',
-      textColor: 'info.main',
+      color: 'primary' as 'primary',
+      icon: <Person />,
+      backgroundColor: 'primary.lighter',
+      textColor: 'primary.main',
     };
-  }, [mover]);
+  }, [populatedUser]);
 
   return (
     <Chip
@@ -48,7 +59,7 @@ export function MoverChip({ mover, onClick }: Props): React.ReactElement {
         color: config.textColor,
         borderRadius: '6px',
         '& .MuiChip-icon': {
-          fontSize: '18px',
+          fontSize: '20px',
           color: config.textColor,
         },
         '&:hover': onClick

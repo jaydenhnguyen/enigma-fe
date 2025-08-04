@@ -1,4 +1,4 @@
 export const EVENTS_ENDPOINTS = {
-  GET_EVENT_LIST: '/events',
+  MAIN_EVENTS_ENDPOINT: '/events',
   GET_EVENTS_DETAILS: '/events/detail',
 };

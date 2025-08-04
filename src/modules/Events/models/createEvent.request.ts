@@ -1,0 +1,23 @@
+export type CreateEventRequest = {
+  clientId: string;
+  pickupDateTime: Date;
+  pickupAddress: string;
+  pickupMoversAssigned?: string[];
+  pickupTrucksCount: number;
+  pickupAddressSize?: string;
+  deliveryDateTime: Date;
+  deliveryAddress: string;
+  deliveryMoversAssigned?: string[];
+  deliveryTrucksCount: number;
+  deliveryAddressSize?: string;
+  truckAddress: string;
+  meetingUpDateTime: Date;
+  inventoryList?: string[];
+  notes?: string[];
+  crewArrivalAddress: string;
+  crewArrivalDateTime: Date;
+  associatedEvent?: string[];
+  extraServices?: string[];
+  clientComments?: string[];
+  serviceRate?: number;
+};

@@ -1,0 +1,24 @@
+.wrapper {
+  @apply flex items-start px-4 #{!important};
+}
+
+.full-name-text {
+  @apply font-bold text-base text-primary-main #{!important};
+  line-height: 1rem !important;
+}
+
+.contact-info-wrapper {
+  @apply flex flex-col mt-2 text-grey-600;
+
+  .contact-icon {
+    @apply w-4 h-4 mt-1 #{!important};
+  }
+
+  .contact-item {
+    @apply flex items-center gap-1 #{!important};
+  }
+}
+
+.divider {
+  @apply mx-2
+}

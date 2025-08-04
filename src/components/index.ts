@@ -14,4 +14,5 @@ export * from './EventDetailPopUp';
 export * from './ClientDetailPopup';
 export * from './DrivingLicenseChip';
 export * from './EmployeeDetailPopup';
+export * from './SelectiveUserOption';
 export * from './UserActiveStatusChip';

@@ -2,13 +2,15 @@ import * as React from 'react';
 import Head from 'next/head';
 import { NextPage } from 'next';
 import { AppProps } from 'next/app';
-import { ToastContainer } from 'react-toastify';
 import 'src/styles/_app.scss';
 import 'src/styles/_core.scss';
 import 'src/styles/tailwind.scss';
+import { ToastContainer } from 'react-toastify';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useScrollToTop } from 'src/hooks/';
-import { AllAppContexts, LayoutProvider, UserContextProvider } from 'src/shared/context';
 import { AppThemeProvider } from 'src/theme/AppThemeProvider';
+import { AllAppContexts, LayoutProvider, UserContextProvider } from 'src/shared/context';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
@@ -48,9 +50,11 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
               pauseOnFocusLoss
               pauseOnHover
             />
-            <LayoutProvider>
-              <UserContextProvider>{getLayout(<Component {...pageProps} />)}</UserContextProvider>
-            </LayoutProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <LayoutProvider>
+                <UserContextProvider>{getLayout(<Component {...pageProps} />)}</UserContextProvider>
+              </LayoutProvider>
+            </LocalizationProvider>
           </>
         </AppThemeProvider>
       </AllAppContexts>
